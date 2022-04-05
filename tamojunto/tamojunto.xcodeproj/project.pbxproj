@@ -56,15 +56,63 @@
 		0E54D37E27FB40F400EB3D81 /* tamojunto */ = {
 			isa = PBXGroup;
 			children = (
-				0E54D37F27FB40F400EB3D81 /* AppDelegate.swift */,
-				0E54D38127FB40F400EB3D81 /* SceneDelegate.swift */,
-				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
-				0E54D38527FB40F400EB3D81 /* Main.storyboard */,
-				0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */,
+				0E61E36427FCB63900C21E83 /* Networking */,
+				0E61E36527FCB63F00C21E83 /* Model */,
+				0E61E36327FCB62E00C21E83 /* Controller */,
+				0E61E36027FCB61600C21E83 /* View */,
+				0E61E36127FCB61D00C21E83 /* AppDelegate */,
+				0E61E36627FCB64800C21E83 /* Launchscreen */,
 				0E54D38827FB40F500EB3D81 /* Assets.xcassets */,
 				0E54D38D27FB40F500EB3D81 /* Info.plist */,
 			);
 			path = tamojunto;
+			sourceTree = "<group>";
+		};
+		0E61E36027FCB61600C21E83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E54D38527FB40F400EB3D81 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E61E36127FCB61D00C21E83 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				0E54D37F27FB40F400EB3D81 /* AppDelegate.swift */,
+				0E54D38127FB40F400EB3D81 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0E61E36327FCB62E00C21E83 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0E61E36427FCB63900C21E83 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		0E61E36527FCB63F00C21E83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E61E36627FCB64800C21E83 /* Launchscreen */ = {
+			isa = PBXGroup;
+			children = (
+				0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */,
+			);
+			path = Launchscreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +337,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K8YJCG8ZFA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tamojunto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -317,7 +365,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K8YJCG8ZFA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tamojunto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
