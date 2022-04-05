@@ -13,6 +13,7 @@
 		0E54D38727FB40F400EB3D81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38527FB40F400EB3D81 /* Main.storyboard */; };
 		0E54D38927FB40F500EB3D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38827FB40F500EB3D81 /* Assets.xcassets */; };
 		0E54D38C27FB40F500EB3D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */; };
+		0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0E54D38827FB40F500EB3D81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E54D38B27FB40F500EB3D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E54D38D27FB40F500EB3D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		0E54D37E27FB40F400EB3D81 /* tamojunto */ = {
 			isa = PBXGroup;
 			children = (
+				0E61E36727FCB6AC00C21E83 /* Extensions */,
 				0E61E36427FCB63900C21E83 /* Networking */,
 				0E61E36527FCB63F00C21E83 /* Model */,
 				0E61E36327FCB62E00C21E83 /* Controller */,
@@ -113,6 +116,14 @@
 				0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */,
 			);
 			path = Launchscreen;
+			sourceTree = "<group>";
+		};
+		0E61E36727FCB6AC00C21E83 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +199,7 @@
 			files = (
 				0E54D38427FB40F400EB3D81 /* ViewController.swift in Sources */,
 				0E54D38027FB40F400EB3D81 /* AppDelegate.swift in Sources */,
+				0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */,
 				0E54D38227FB40F400EB3D81 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
