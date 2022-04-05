@@ -13,6 +13,9 @@
 		0E54D38927FB40F500EB3D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38827FB40F500EB3D81 /* Assets.xcassets */; };
 		0E54D38C27FB40F500EB3D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */; };
 		0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */; };
+		0E61E37027FD056E00C21E83 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E61E36D27FD056E00C21E83 /* Raleway-Regular.ttf */; };
+		0E61E37127FD056E00C21E83 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E61E36E27FD056E00C21E83 /* Raleway-SemiBold.ttf */; };
+		0E61E37227FD056E00C21E83 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E61E36F27FD056E00C21E83 /* Raleway-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		0E54D38B27FB40F500EB3D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E54D38D27FB40F500EB3D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0E61E36D27FD056E00C21E83 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		0E61E36E27FD056E00C21E83 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		0E61E36F27FD056E00C21E83 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +69,7 @@
 				0E61E36027FCB61600C21E83 /* View */,
 				0E61E36127FCB61D00C21E83 /* AppDelegate */,
 				0E61E36627FCB64800C21E83 /* Launchscreen */,
-				0E54D38827FB40F500EB3D81 /* Assets.xcassets */,
+				0E61E36B27FD055000C21E83 /* Assets */,
 				0E54D38D27FB40F500EB3D81 /* Info.plist */,
 			);
 			path = tamojunto;
@@ -121,6 +127,25 @@
 				0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E61E36B27FD055000C21E83 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0E61E36C27FD055A00C21E83 /* Fonts */,
+				0E54D38827FB40F500EB3D81 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0E61E36C27FD055A00C21E83 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0E61E36F27FD056E00C21E83 /* Raleway-Bold.ttf */,
+				0E61E36D27FD056E00C21E83 /* Raleway-Regular.ttf */,
+				0E61E36E27FD056E00C21E83 /* Raleway-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +207,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E54D38C27FB40F500EB3D81 /* LaunchScreen.storyboard in Resources */,
+				0E61E37127FD056E00C21E83 /* Raleway-SemiBold.ttf in Resources */,
+				0E61E37027FD056E00C21E83 /* Raleway-Regular.ttf in Resources */,
+				0E61E37227FD056E00C21E83 /* Raleway-Bold.ttf in Resources */,
 				0E54D38927FB40F500EB3D81 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
