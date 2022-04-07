@@ -94,7 +94,7 @@
 				0E61E36027FCB61600C21E83 /* View */,
 				0E61E36127FCB61D00C21E83 /* AppDelegate */,
 				0E61E36627FCB64800C21E83 /* Launchscreen */,
-				0E54D38827FB40F500EB3D81 /* Assets.xcassets */,
+				0E61E36B27FD055000C21E83 /* Assets */,
 				0E54D38D27FB40F500EB3D81 /* Info.plist */,
 			);
 			path = tamojunto;
@@ -243,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E54D38C27FB40F500EB3D81 /* LaunchScreen.storyboard in Resources */,
+
 				69CF954827FDF20300545017 /* Raleway-Bold.ttf in Resources */,
 				0E54D38927FB40F500EB3D81 /* Assets.xcassets in Resources */,
 				69CF954927FDF20500545017 /* Raleway-Regular.ttf in Resources */,
