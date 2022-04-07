@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         
         
         
-        let controller1 = PostEditorViewController()
+        let controller1 = FullPostViewController()
         controller1.tabBarItem = UITabBarItem(title: "Início", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         let nav1 = UINavigationController(rootViewController: controller1)
         
