@@ -23,6 +23,11 @@
 		69CF955727FE194800545017 /* ButtonsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF955627FE194800545017 /* ButtonsStack.swift */; };
 		69CF955B27FE196E00545017 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF955A27FE196E00545017 /* MessageField.swift */; };
 		69CF955D27FE198500545017 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF955C27FE198500545017 /* TitleField.swift */; };
+		69CF955F27FF12D700545017 /* FullPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF955E27FF12D700545017 /* FullPost.swift */; };
+		69CF956127FF150100545017 /* Raleway-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69CF956027FF150100545017 /* Raleway-Italic.ttf */; };
+		69CF956327FF195100545017 /* FullPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956227FF195100545017 /* FullPostViewController.swift */; };
+		69CF956527FF2AAD00545017 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956427FF2AAD00545017 /* LongButton.swift */; };
+		69CF956727FF2B4400545017 /* FullPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956627FF2B4400545017 /* FullPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		69CF955627FE194800545017 /* ButtonsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStack.swift; sourceTree = "<group>"; };
 		69CF955A27FE196E00545017 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		69CF955C27FE198500545017 /* TitleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleField.swift; sourceTree = "<group>"; };
+		69CF955E27FF12D700545017 /* FullPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPost.swift; sourceTree = "<group>"; };
+		69CF956027FF150100545017 /* Raleway-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Italic.ttf"; sourceTree = "<group>"; };
+		69CF956227FF195100545017 /* FullPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPostViewController.swift; sourceTree = "<group>"; };
+		69CF956427FF2AAD00545017 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
+		69CF956627FF2B4400545017 /* FullPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				69CF953E27FCE20B00545017 /* PostEditorView.swift */,
+				69CF956627FF2B4400545017 /* FullPostView.swift */,
 				69CF955327FE192100545017 /* Components */,
 			);
 			path = View;
@@ -114,6 +125,7 @@
 				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
 				69CF954B27FDFA5200545017 /* TabBarController.swift */,
 				69CF954D27FDFA9C00545017 /* PostEditorViewController.swift */,
+				69CF956227FF195100545017 /* FullPostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,6 +163,7 @@
 		69CF954427FDF1E900545017 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				69CF956027FF150100545017 /* Raleway-Italic.ttf */,
 				69CF954727FDF1FF00545017 /* Raleway-Bold.ttf */,
 				69CF954527FDF1FF00545017 /* Raleway-Regular.ttf */,
 				69CF954627FDF1FF00545017 /* Raleway-SemiBold.ttf */,
@@ -165,6 +178,8 @@
 				69CF955627FE194800545017 /* ButtonsStack.swift */,
 				69CF955A27FE196E00545017 /* MessageField.swift */,
 				69CF955C27FE198500545017 /* TitleField.swift */,
+				69CF955E27FF12D700545017 /* FullPost.swift */,
+				69CF956427FF2AAD00545017 /* LongButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -231,6 +246,7 @@
 				69CF954827FDF20300545017 /* Raleway-Bold.ttf in Resources */,
 				0E54D38927FB40F500EB3D81 /* Assets.xcassets in Resources */,
 				69CF954927FDF20500545017 /* Raleway-Regular.ttf in Resources */,
+				69CF956127FF150100545017 /* Raleway-Italic.ttf in Resources */,
 				69CF954A27FDF20700545017 /* Raleway-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,9 +261,13 @@
 				69CF954C27FDFA5200545017 /* TabBarController.swift in Sources */,
 				69CF955D27FE198500545017 /* TitleField.swift in Sources */,
 				69CF954E27FDFA9D00545017 /* PostEditorViewController.swift in Sources */,
+				69CF956527FF2AAD00545017 /* LongButton.swift in Sources */,
+				69CF956327FF195100545017 /* FullPostViewController.swift in Sources */,
 				0E54D38427FB40F400EB3D81 /* ViewController.swift in Sources */,
 				0E54D38027FB40F400EB3D81 /* AppDelegate.swift in Sources */,
 				69CF953F27FCE20B00545017 /* PostEditorView.swift in Sources */,
+				69CF955F27FF12D700545017 /* FullPost.swift in Sources */,
+				69CF956727FF2B4400545017 /* FullPostView.swift in Sources */,
 				0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */,
 				69CF955727FE194800545017 /* ButtonsStack.swift in Sources */,
 				69CF955527FE193B00545017 /* ActivateNotificationStack.swift in Sources */,
