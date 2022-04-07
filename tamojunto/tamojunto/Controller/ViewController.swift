@@ -9,8 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
-    
     lazy var myHomeView = PostEditorView()
     
     override func viewDidLoad() {
@@ -32,9 +30,6 @@ class ViewController: UIViewController {
         
         self.view = myHomeView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
-        
-        
-        
     }
     
 }

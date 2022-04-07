@@ -1,5 +1,5 @@
 //
-//  TestViewController.swift
+//  CommentViewController.swift
 //  tamojunto
 //
 //  Created by Giovanna Toni on 07/04/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+class CommentViewController: UIViewController {
     
     lazy var myHomeView = MakeCommentView()
     
@@ -19,6 +19,5 @@ class TestViewController: UIViewController {
         super.loadView()
         
         self.view = myHomeView
-        self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
     }
 }

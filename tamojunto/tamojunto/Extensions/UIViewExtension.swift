@@ -109,4 +109,10 @@ extension UIView {
         anchorCenterYToSuperview()
     }
     
+    func addShadow(radius: CGFloat) {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.15
+        self.layer.shadowRadius = radius
+    }
+    
 }

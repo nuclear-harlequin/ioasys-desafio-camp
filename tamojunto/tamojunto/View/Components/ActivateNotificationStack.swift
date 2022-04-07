@@ -16,7 +16,7 @@ class ActivateNotificationStack: UIView{
         lbl.text = "Ativar notificações de comentários"
         lbl.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Regular", size: 16)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .justified
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()

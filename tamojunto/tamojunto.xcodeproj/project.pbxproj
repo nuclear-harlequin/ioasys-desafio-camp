@@ -12,6 +12,11 @@
 		0E54D38427FB40F400EB3D81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E54D38327FB40F400EB3D81 /* ViewController.swift */; };
 		0E54D38C27FB40F500EB3D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E54D38A27FB40F500EB3D81 /* LaunchScreen.storyboard */; };
 		0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */; };
+		0EC7FB9427FF23CA004DB853 /* MakeCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9327FF23CA004DB853 /* MakeCommentView.swift */; };
+		0EC7FB9627FF24A2004DB853 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9527FF24A2004DB853 /* PostView.swift */; };
+		0EC7FB9927FF2682004DB853 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9827FF2682004DB853 /* CodeView.swift */; };
+		0EC7FB9D27FF2ADE004DB853 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */; };
+		0EC7FB9F27FF6473004DB853 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */; };
 		0ECB68B627FE4FC1000CD6B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ECB68B527FE4FC1000CD6B0 /* Assets.xcassets */; };
 		69CF953F27FCE20B00545017 /* PostEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF953E27FCE20B00545017 /* PostEditorView.swift */; };
 		69CF954827FDF20300545017 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69CF954727FDF1FF00545017 /* Raleway-Bold.ttf */; };
@@ -33,6 +38,11 @@
 		0E54D38B27FB40F500EB3D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E54D38D27FB40F500EB3D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0EC7FB9327FF23CA004DB853 /* MakeCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCommentView.swift; sourceTree = "<group>"; };
+		0EC7FB9527FF24A2004DB853 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		0EC7FB9827FF2682004DB853 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		0ECB68B527FE4FC1000CD6B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = tamojunto/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		69CF953E27FCE20B00545017 /* PostEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorView.swift; sourceTree = "<group>"; };
 		69CF954527FDF1FF00545017 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -78,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0E54D37D27FB40F400EB3D81 /* Products */,
+				0EC7FB9727FF2676004DB853 /* Protocols */,
 				0E61E36727FCB6AC00C21E83 /* Extensions */,
 				0E61E36427FCB63900C21E83 /* Networking */,
 				0E61E36527FCB63F00C21E83 /* Model */,
@@ -95,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				69CF953E27FCE20B00545017 /* PostEditorView.swift */,
+				0EC7FB9327FF23CA004DB853 /* MakeCommentView.swift */,
 				69CF955327FE192100545017 /* Components */,
 			);
 			path = View;
@@ -115,6 +127,7 @@
 				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
 				69CF954B27FDFA5200545017 /* TabBarController.swift */,
 				69CF954D27FDFA9C00545017 /* PostEditorViewController.swift */,
+				0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,8 +158,17 @@
 			isa = PBXGroup;
 			children = (
 				0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */,
+				0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0EC7FB9727FF2676004DB853 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0EC7FB9827FF2682004DB853 /* CodeView.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		69CF954427FDF1E900545017 /* Fonts */ = {
@@ -166,6 +188,7 @@
 				69CF955627FE194800545017 /* ButtonsStack.swift */,
 				69CF955A27FE196E00545017 /* MessageField.swift */,
 				69CF955C27FE198500545017 /* TitleField.swift */,
+				0EC7FB9527FF24A2004DB853 /* PostView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -245,14 +268,19 @@
 			files = (
 				69CF954C27FDFA5200545017 /* TabBarController.swift in Sources */,
 				69CF955D27FE198500545017 /* TitleField.swift in Sources */,
+				0EC7FB9F27FF6473004DB853 /* CommentViewController.swift in Sources */,
 				69CF954E27FDFA9D00545017 /* PostEditorViewController.swift in Sources */,
 				0E54D38427FB40F400EB3D81 /* ViewController.swift in Sources */,
+				0EC7FB9427FF23CA004DB853 /* MakeCommentView.swift in Sources */,
 				0E54D38027FB40F400EB3D81 /* AppDelegate.swift in Sources */,
 				69CF953F27FCE20B00545017 /* PostEditorView.swift in Sources */,
 				0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */,
 				69CF955727FE194800545017 /* ButtonsStack.swift in Sources */,
+				0EC7FB9927FF2682004DB853 /* CodeView.swift in Sources */,
 				69CF955527FE193B00545017 /* ActivateNotificationStack.swift in Sources */,
+				0EC7FB9D27FF2ADE004DB853 /* UILabelExtension.swift in Sources */,
 				69CF955B27FE196E00545017 /* MessageField.swift in Sources */,
+				0EC7FB9627FF24A2004DB853 /* PostView.swift in Sources */,
 				0E54D38227FB40F400EB3D81 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
