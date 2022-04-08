@@ -21,6 +21,7 @@ class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         tabBar.tintColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1.00)
         
+
         let controller1 = PostEditorViewController()
         controller1.tabBarItem = UITabBarItem(title: "Início", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         let nav1 = UINavigationController(rootViewController: controller1)
