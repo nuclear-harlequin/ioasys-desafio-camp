@@ -140,9 +140,7 @@ class PostEditorView: UIView{
     
     //MARK: - Setup of the cnstraints
     func setConstraints(){
-
-
-        NSLayoutConstraint.activate([
+       NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
