@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CommentView: UITableViewCell {
+class CommentView: UIView {
     
     lazy var blankView: UIView = {
         let view = UIView()
@@ -41,8 +41,9 @@ class CommentView: UITableViewCell {
         return lbl
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +53,7 @@ class CommentView: UITableViewCell {
 
 extension CommentView: CodeView {
     func buildViewHierarchy() {
-        contentView.addSubview(blankView)
+        self.addSubview(blankView)
         blankView.addSubview(infoLabel)
         blankView.addSubview(contentLabel)
     }

@@ -40,10 +40,10 @@ extension CommentsStackView: CodeView {
     func buildViewHierarchy() {
         self.addSubview(scrollView)
         scrollView.addSubview(commentsStack)
-        commentsStack.addSubview(comment1)
-        commentsStack.addSubview(comment2)
-        commentsStack.addSubview(comment3)
-        commentsStack.addSubview(comment4)
+        commentsStack.addArrangedSubview(comment1)
+        commentsStack.addArrangedSubview(comment2)
+        commentsStack.addArrangedSubview(comment3)
+        commentsStack.addArrangedSubview(comment4)
     }
     
     func setupConstraints() {
