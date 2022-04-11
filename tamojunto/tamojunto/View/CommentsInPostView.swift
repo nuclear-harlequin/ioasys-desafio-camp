@@ -15,6 +15,8 @@ class CommentsInPostView: UIView {
     lazy var commentBackButtons = ButtonsStack()
     lazy var commentsStack = CommentsStackView()
     
+    lazy var scrollView = UIScrollView()
+    
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "primary20")
@@ -42,17 +44,22 @@ class CommentsInPostView: UIView {
 
 extension CommentsInPostView: CodeView {
     func buildViewHierarchy() {
-        self.addSubview(contentView)
-        contentView.addSubview(commentsStack)
+        self.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         contentView.addSubview(post)
+        contentView.addSubview(numberOfCommentsLabel)
+        contentView.addSubview(commentsStack)
         contentView.addSubview(notificationToggle)
         contentView.addSubview(moreCommentsButton)
         contentView.addSubview(commentBackButtons)
-        contentView.addSubview(numberOfCommentsLabel)
     }
     
     func setupConstraints() {
-        contentView.anchorTo(superview: self)
+        scrollView.anchorTo(superview: self)
+        scrollView.anchorCenterSuperview()
+        
+        contentView.anchorTo(superview: scrollView)
+        contentView.anchorCenterSuperview()
         
         post.anchor(top: contentView.topAnchor,
                     left: contentView.leftAnchor,
@@ -67,7 +74,6 @@ extension CommentsInPostView: CodeView {
                                      left: contentView.leftAnchor,
                                      bottom: commentsStack.topAnchor,
                                      right: contentView.rightAnchor,
-                                     topConstant: 16,
                                      leftConstant: 24,
                                      bottomConstant: 16,
                                      rightConstant: 24)
@@ -76,23 +82,30 @@ extension CommentsInPostView: CodeView {
                              left: contentView.leftAnchor,
                              bottom: notificationToggle.topAnchor,
                              right: contentView.rightAnchor,
-                             leftConstant: 8,
-                             rightConstant: 8)
+                             leftConstant: 24,
+                             bottomConstant: 24.5,
+                             rightConstant: 24)
         
         notificationToggle.anchor(top: commentsStack.bottomAnchor,
                                   left: contentView.leftAnchor,
                                   bottom: moreCommentsButton.topAnchor,
                                   right: contentView.rightAnchor,
-                                  topConstant: 24.5,
                                   leftConstant: 24,
                                   bottomConstant: 24.5,
                                   rightConstant: 24)
         
-        commentBackButtons.anchor(top: notificationToggle.bottomAnchor,
+        moreCommentsButton.anchor(top: notificationToggle.bottomAnchor,
+                                  left: contentView.leftAnchor,
+                                  bottom: commentBackButtons.topAnchor,
+                                  right: contentView.rightAnchor,
+                                  leftConstant: 25,
+                                  bottomConstant: 24,
+                                  rightConstant: 25)
+        
+        commentBackButtons.anchor(top: moreCommentsButton.bottomAnchor,
                                   left: contentView.leftAnchor,
                                   bottom: contentView.bottomAnchor,
                                   right: contentView.rightAnchor,
-                                  topConstant: 24.5,
                                   leftConstant: 26,
                                   bottomConstant: 105,
                                   rightConstant: 24)
