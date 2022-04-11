@@ -32,8 +32,6 @@ class MessageField: UIView{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
-    
    
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -73,9 +71,6 @@ class MessageField: UIView{
     //MARK: - Setup of the actions
     func setActions(){
         //action set in view controller
-    }
-    
-    
-    
+    }    
 }
 

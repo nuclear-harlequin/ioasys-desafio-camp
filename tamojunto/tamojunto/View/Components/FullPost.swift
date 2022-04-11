@@ -173,7 +173,7 @@ class FullPost: UIView{
                                rightConstant: 23)
         
         postView.anchor(bottom: messageTextView.bottomAnchor,
-                        bottomConstant: -28.64)
+                        bottomConstant: 28.64)
         
     }
     

@@ -124,6 +124,4 @@ extension PostView: CodeView {
         postContentLabel.numberOfLines = 5
         postContentLabel.lineBreakMode = .byTruncatingTail
     }
-    
-    
 }

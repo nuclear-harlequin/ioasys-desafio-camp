@@ -19,7 +19,6 @@ class TitleField: UIView{
         textField.text = ""
         textField.autocapitalizationType = .none
         textField.clearsOnBeginEditing = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -30,7 +29,6 @@ class TitleField: UIView{
         view.layer.cornerRadius = 16
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor(red: 0.718, green: 0.714, blue: 0.678, alpha: 1).cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -54,10 +52,7 @@ class TitleField: UIView{
     
     //MARK: - Setup of the cnstraints
     func setConstraints(){
-        titleTextFieldView.anchor(top: topAnchor,
-                                     left: leftAnchor,
-                                     bottom: bottomAnchor,
-                                     right: rightAnchor)
+        titleTextFieldView.anchorTo(superview: self)
                 
 
         titleTextField.anchor(top: titleTextFieldView.topAnchor,

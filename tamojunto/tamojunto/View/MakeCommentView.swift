@@ -36,7 +36,6 @@ class MakeCommentView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 extension MakeCommentView: CodeView {
@@ -98,6 +97,4 @@ extension MakeCommentView: CodeView {
     func setupAdditionalConfiguration() {
         commentLabel.numberOfLines = 1
     }
-    
-
 }

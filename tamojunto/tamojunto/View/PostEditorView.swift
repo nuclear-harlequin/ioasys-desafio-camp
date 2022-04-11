@@ -19,7 +19,6 @@ class PostEditorView: UIView{
         lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textAlignment = .center
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
 
@@ -30,7 +29,6 @@ class PostEditorView: UIView{
         lbl.textColor = UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -43,7 +41,6 @@ class PostEditorView: UIView{
         lbl.textColor = UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -56,7 +53,6 @@ class PostEditorView: UIView{
         lbl.textColor = UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -89,7 +85,6 @@ class PostEditorView: UIView{
         btn.layer.cornerRadius = 16
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor(red: 0.718, green: 0.714, blue: 0.678, alpha: 1).cgColor
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
@@ -101,14 +96,12 @@ class PostEditorView: UIView{
     lazy var contentView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = true
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     //scrollView
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
