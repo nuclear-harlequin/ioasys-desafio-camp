@@ -42,8 +42,7 @@ class FullPost: UIView{
     //stroke
     lazy var stroke: UIView = {
         var stroke = UIView()
-        stroke.layer.borderWidth = 1
-        stroke.layer.borderColor = UIColor(red: 0.529, green: 0.627, blue: 0.655, alpha: 1).cgColor
+        stroke.backgroundColor = UIColor(named: "primary80")
         stroke.translatesAutoresizingMaskIntoConstraints = false
         return stroke
     }()
@@ -54,7 +53,7 @@ class FullPost: UIView{
         lbl.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 13)
         lbl.textColor = UIColor(red: 0.008, green: 0.071, blue: 0.059, alpha: 1)
-
+        
         lbl.lineBreakMode = .byWordWrapping
         lbl.numberOfLines = 0
         lbl.textAlignment = .justified
@@ -135,7 +134,7 @@ class FullPost: UIView{
                          right: postView.rightAnchor,
                          topConstant: 12,
                          rightConstant: 14)
-
+        
         authorTextView.anchor(top: editImage.bottomAnchor,
                               left: postView.leftAnchor,
                               right: postView.rightAnchor,
@@ -145,26 +144,27 @@ class FullPost: UIView{
         
         stroke.anchorCenterXToSuperview()
         stroke.anchor(top: authorTextView.bottomAnchor,
-                       left: postView.leftAnchor,
-                       right: postView.rightAnchor,
-                       topConstant: 4,
-                       leftConstant: 23,
-                       rightConstant: 23)
-
+                      left: postView.leftAnchor,
+                      right: postView.rightAnchor,
+                      topConstant: 4,
+                      leftConstant: 23,
+                      rightConstant: 23,
+                      heightConstant: 1)
+        
         titleTextView.anchor(top: stroke.bottomAnchor,
                              left: postView.leftAnchor,
                              right: postView.rightAnchor,
                              topConstant: 8,
                              leftConstant: 23,
                              rightConstant: 23)
-
+        
         commentsTextView.anchor(top: titleTextView.bottomAnchor,
-                          left: postView.leftAnchor,
-                          right: postView.rightAnchor,
-                          topConstant: 16,
-                          leftConstant: 23,
-                          rightConstant: 23)
-
+                                left: postView.leftAnchor,
+                                right: postView.rightAnchor,
+                                topConstant: 16,
+                                leftConstant: 23,
+                                rightConstant: 23)
+        
         messageTextView.anchor(top: commentsTextView.bottomAnchor,
                                left: postView.leftAnchor,
                                right: postView.rightAnchor,

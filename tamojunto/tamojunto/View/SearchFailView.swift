@@ -1,40 +1,15 @@
 //
-//  FullPostView.swift
+//  SearchFailView.swift
 //  tamojunto
 //
-//  Created by Gustavo Perbone on 07/04/22.
+//  Created by Gustavo Perbone on 11/04/22.
 //
 
 import Foundation
 import UIKit
 
-class FullPostView: UIView{
+class SearchFailView: UIView{
     lazy var header = Header()
-
-    //currentPageLbl
-    lazy var currentPageLbl: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Administração > Título do Tópico"
-        lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
-        lbl.font = UIFont(name: "Raleway-Bold", size: 16)
-        lbl.textAlignment = .center
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-    //postView
-    lazy var postView = FullPost()
-    
-    //showCommentsButton
-    lazy var showCommentsButton = LongButton()
-    
-    //buttonsStack
-    lazy var buttonsStack: ButtonsStack = {
-        let buttonsStack = ButtonsStack()
-        buttonsStack.postButton.setTitle("COMENTAR", for: .normal)
-        buttonsStack.cancelButton.setTitle("VOLTAR", for: .normal)
-        return buttonsStack
-    }()
     
     //scrollView
     lazy var scrollView: UIScrollView = {
@@ -50,6 +25,38 @@ class FullPostView: UIView{
         return view
     }()
     
+    //searchBar
+    lazy var searchBar = SearchBar()
+    
+    lazy var noResultsLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont(name: "Raleway-Regular", size: 16)
+        lbl.textColor = UIColor(named: "primary800")
+        lbl.lineBreakMode = .byWordWrapping
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .justified
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.19
+        let string = """
+        Sentimos muito!\n
+        Infelizmente não encontramos resultados para “Palavra-chave buscada”.\n
+        Verifique a ortografia ou busque por termos relacionados.
+        """
+        lbl.attributedText = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+  
+    //imageView
+    lazy var imageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "searchFail")
+        imgView.contentMode = .scaleAspectFit
+        imgView.layer.cornerRadius = 12
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -68,10 +75,9 @@ class FullPostView: UIView{
         self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(currentPageLbl)
-        contentView.addSubview(postView)
-        contentView.addSubview(showCommentsButton)
-        contentView.addSubview(buttonsStack)
+        contentView.addSubview(searchBar)
+        contentView.addSubview(noResultsLabel)
+        contentView.addSubview(imageView)
     }
     
     //MARK: - Setup of the cnstraints
@@ -108,37 +114,30 @@ class FullPostView: UIView{
             contentViewHeight
         ])
         
+        searchBar.anchor(top: contentView.topAnchor,
+                         left: contentView.leftAnchor,
+                         right: contentView.rightAnchor,
+                         leftConstant: 23,
+                         rightConstant: 23,
+                        heightConstant: 56)
         
-        currentPageLbl.anchor(top: contentView.topAnchor,
-                                left: contentView.leftAnchor,
-                                leftConstant: 25,
-                                heightConstant: 23)
-        
-        postView.anchor(top: currentPageLbl.bottomAnchor,
-                        left: contentView.leftAnchor,
-                        right: contentView.rightAnchor,
-                        topConstant: 16.5,
-                        leftConstant: 26,
-                        rightConstant: 26)
-        
-        showCommentsButton.anchor(top: postView.bottomAnchor,
-                                  left: contentView.leftAnchor,
-                                  right: contentView.rightAnchor,
-                                  topConstant: 24,
-                                  leftConstant: 25,
-                                  rightConstant: 25,
-                                  heightConstant: 55)
-        
-        buttonsStack.anchor(top: showCommentsButton.bottomAnchor,
-                            left: contentView.leftAnchor,
-                            right: contentView.rightAnchor,
-                            topConstant: 24,
-                            leftConstant: 26,
-                            rightConstant: 26,
-                            heightConstant: 55)
-        
-        contentView.anchor(bottom: buttonsStack.bottomAnchor,
-                           bottomConstant: 32)
+        noResultsLabel.anchor(top: searchBar.bottomAnchor,
+                     left: contentView.leftAnchor,
+                     right: contentView.rightAnchor,
+                     topConstant: 24,
+                     leftConstant: 24,
+                     rightConstant: 24)
+
+        imageView.anchor(top: noResultsLabel.bottomAnchor,
+                         left: contentView.leftAnchor,
+                         right: contentView.rightAnchor,
+                         topConstant: 16,
+                         leftConstant: 24,
+                         rightConstant: 24,
+        heightConstant: 224)
+
+//        contentView.anchor(bottom: showMoreButton.bottomAnchor,
+//                          bottomConstant: -30)
         
     }
     
