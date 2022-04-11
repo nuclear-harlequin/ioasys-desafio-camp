@@ -9,11 +9,11 @@ import UIKit
 
 class CommentsInPostView: UIView {
     
-    lazy var commentsTable = UITableView()
     lazy var post = PostView()
     lazy var notificationToggle = ActivateNotificationStack()
     lazy var moreCommentsButton = LongButton()
     lazy var commentBackButtons = ButtonsStack()
+    lazy var commentsStack = CommentsStackView()
     
     lazy var contentView: UIView = {
         let view = UIView()
@@ -29,11 +29,6 @@ class CommentsInPostView: UIView {
         lbl.text = text
         return lbl
     }()
-    
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        return view
-    }()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -47,9 +42,8 @@ class CommentsInPostView: UIView {
 
 extension CommentsInPostView: CodeView {
     func buildViewHierarchy() {
-        self.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(commentsTable)
+        self.addSubview(contentView)
+        contentView.addSubview(commentsStack)
         contentView.addSubview(post)
         contentView.addSubview(notificationToggle)
         contentView.addSubview(moreCommentsButton)
@@ -58,8 +52,7 @@ extension CommentsInPostView: CodeView {
     }
     
     func setupConstraints() {
-        scrollView.anchorTo(superview: self)
-        contentView.anchorTo(superview: scrollView)
+        contentView.anchorTo(superview: self)
         
         post.anchor(top: contentView.topAnchor,
                     left: contentView.leftAnchor,
@@ -72,23 +65,21 @@ extension CommentsInPostView: CodeView {
         
         numberOfCommentsLabel.anchor(top: post.bottomAnchor,
                                      left: contentView.leftAnchor,
-                                     bottom: commentsTable.topAnchor,
+                                     bottom: commentsStack.topAnchor,
                                      right: contentView.rightAnchor,
                                      topConstant: 16,
                                      leftConstant: 24,
                                      bottomConstant: 16,
                                      rightConstant: 24)
         
-        commentsTable.anchor(top: numberOfCommentsLabel.bottomAnchor,
+        commentsStack.anchor(top: numberOfCommentsLabel.bottomAnchor,
                              left: contentView.leftAnchor,
                              bottom: notificationToggle.topAnchor,
                              right: contentView.rightAnchor,
-                             topConstant: 16,
-                             leftConstant: 26,
-                             bottomConstant: 24.5,
-                             rightConstant: 22)
+                             leftConstant: 8,
+                             rightConstant: 8)
         
-        notificationToggle.anchor(top: commentsTable.bottomAnchor,
+        notificationToggle.anchor(top: commentsStack.bottomAnchor,
                                   left: contentView.leftAnchor,
                                   bottom: moreCommentsButton.topAnchor,
                                   right: contentView.rightAnchor,

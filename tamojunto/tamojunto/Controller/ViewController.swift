@@ -9,12 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var myHomeView = CommentsInPostView()
+    lazy var myHomeView = PostEditorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        myHomeView.buttonsStack.postButton.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
+        myHomeView.buttonsStack.postButton.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
     }
 
     @IBAction func login(_ sender: UIButton) {
