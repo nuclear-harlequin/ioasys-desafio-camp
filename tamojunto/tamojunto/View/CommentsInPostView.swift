@@ -74,6 +74,7 @@ extension CommentsInPostView: CodeView {
                                      left: contentView.leftAnchor,
                                      bottom: commentsStack.topAnchor,
                                      right: contentView.rightAnchor,
+                                     topConstant: 16,
                                      leftConstant: 24,
                                      bottomConstant: 16,
                                      rightConstant: 24)
@@ -82,6 +83,7 @@ extension CommentsInPostView: CodeView {
                              left: contentView.leftAnchor,
                              bottom: notificationToggle.topAnchor,
                              right: contentView.rightAnchor,
+                             topConstant: 16,
                              leftConstant: 24,
                              bottomConstant: 24.5,
                              rightConstant: 24)
@@ -90,6 +92,7 @@ extension CommentsInPostView: CodeView {
                                   left: contentView.leftAnchor,
                                   bottom: moreCommentsButton.topAnchor,
                                   right: contentView.rightAnchor,
+                                  topConstant: 24.5,
                                   leftConstant: 24,
                                   bottomConstant: 24.5,
                                   rightConstant: 24)
@@ -98,16 +101,16 @@ extension CommentsInPostView: CodeView {
                                   left: contentView.leftAnchor,
                                   bottom: commentBackButtons.topAnchor,
                                   right: contentView.rightAnchor,
+                                  topConstant: 24.5,
                                   leftConstant: 25,
                                   bottomConstant: 24,
                                   rightConstant: 25)
         
         commentBackButtons.anchor(top: moreCommentsButton.bottomAnchor,
                                   left: contentView.leftAnchor,
-                                  bottom: contentView.bottomAnchor,
                                   right: contentView.rightAnchor,
+                                  topConstant: 24,
                                   leftConstant: 26,
-                                  bottomConstant: 105,
                                   rightConstant: 24)
     }
     
