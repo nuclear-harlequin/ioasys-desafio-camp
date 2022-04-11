@@ -1,14 +1,14 @@
 //
-//  MainPageView.swift
+//  TopicMainPageView.swift
 //  tamojunto
 //
-//  Created by Gustavo Perbone on 08/04/22.
+//  Created by Gustavo Perbone on 11/04/22.
 //
 
 import Foundation
 import UIKit
 
-class MainPageView: UIView{
+class TopicMainPageView: UIView{
     lazy var header = Header()
     
     //scrollView
@@ -29,20 +29,59 @@ class MainPageView: UIView{
     lazy var searchBar = SearchBar()
     
     //topicsLabel
-    lazy var topicsLabel: UILabel = {
+    lazy var breadcrumbs: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
-        lbl.text = "Escolha um tema para conversar:"
+        lbl.text = "Home > Administração"
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
-    lazy var card = TopicCardNarrow()
-    lazy var card2 = TopicCardNarrow()
-    lazy var card3 = TopicCardNarrow()
-    lazy var card4 = TopicCardNarrow()
-    lazy var card5 = TopicCardLong()
+    lazy var topicImageCard = ImageCard()
+    
+    //publicationsLabel
+    lazy var topicLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont(name: "Raleway-Bold", size: 16)
+        lbl.textColor = UIColor(named: "primary500")
+        lbl.text = "Administração"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    //publicationsStackView
+    lazy var publicationsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 14
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var post = PostThreeLines()
+    lazy var post2 = PostThreeLines()
+    lazy var post3 = PostThreeLines()
+    
+    lazy var showMoreButton: LongButton = {
+        let btn = LongButton()
+        btn.longButton.setTitle("CARREGAR MAIS TÓPICOS", for: .normal)
+        btn.longButton.setTitleColor(.white, for: .normal)
+        btn.longButton.layer.backgroundColor = UIColor(named: "primary500")?.cgColor
+        btn.layer.borderColor = UIColor(named: "primary500")?.cgColor
+        return btn
+    }()
+    
+    //exploreLabel
+    lazy var exploreLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont(name: "Raleway-Bold", size: 16)
+        lbl.textColor = UIColor(named: "primary500")
+        lbl.text = "Explore outros temas:"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
     
     //topicsScrollView
     lazy var topicsScrollView: UIScrollView = {
@@ -63,39 +102,9 @@ class MainPageView: UIView{
         return stackView
     }()
     
-    //publicationsLabel
-    lazy var publicationsLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Raleway-Bold", size: 16)
-        lbl.textColor = UIColor(named: "primary500")
-        lbl.text = "Publicações mais recentes:"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-    //publicationsStackView
-    lazy var publicationsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    lazy var post = PostTwoLines()
-    lazy var post2 = PostTwoLines()
-    lazy var post3 = PostTwoLines()
-    lazy var post4 = PostTwoLines()
-    
-    lazy var showMoreButton: LongButton = {
-        let btn = LongButton()
-        btn.longButton.setTitle("CARREGAR MAIS TÓPICOS", for: .normal)
-        btn.longButton.setTitleColor(.white, for: .normal)
-        btn.longButton.layer.backgroundColor = UIColor(named: "primary500")?.cgColor
-        btn.layer.borderColor = UIColor(named: "primary500")?.cgColor
-        return btn
-    }()
+    lazy var topic = TopicCardSmall()
+    lazy var topic2 = TopicCardSmall()
+    lazy var topic3 = TopicCardSmall()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -115,21 +124,20 @@ class MainPageView: UIView{
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(searchBar)
-        contentView.addSubview(topicsLabel)
-        contentView.addSubview(topicsScrollView)
-        topicsScrollView.addSubview(topicsScrollStackView)
-        topicsScrollStackView.addArrangedSubview(card)
-        topicsScrollStackView.addArrangedSubview(card2)
-        topicsScrollStackView.addArrangedSubview(card3)
-        topicsScrollStackView.addArrangedSubview(card4)
-        contentView.addSubview(card5)
-        contentView.addSubview(publicationsLabel)
+        contentView.addSubview(breadcrumbs)
+        contentView.addSubview(topicImageCard)
+        contentView.addSubview(topicLabel)
         contentView.addSubview(publicationsStackView)
         publicationsStackView.addArrangedSubview(post)
         publicationsStackView.addArrangedSubview(post2)
         publicationsStackView.addArrangedSubview(post3)
-        publicationsStackView.addArrangedSubview(post4)
         contentView.addSubview(showMoreButton)
+        contentView.addSubview(exploreLabel)
+        contentView.addSubview(topicsScrollView)
+        topicsScrollView.addSubview(topicsScrollStackView)
+        topicsScrollStackView.addArrangedSubview(topic)
+        topicsScrollStackView.addArrangedSubview(topic2)
+        topicsScrollStackView.addArrangedSubview(topic3)
     }
     
     //MARK: - Setup of the cnstraints
@@ -173,7 +181,7 @@ class MainPageView: UIView{
                          rightConstant: 23,
                         heightConstant: 56)
         
-        topicsLabel.anchor(top: searchBar.bottomAnchor,
+        breadcrumbs.anchor(top: searchBar.bottomAnchor,
                      left: contentView.leftAnchor,
                      right: contentView.rightAnchor,
                      topConstant: 24,
@@ -181,35 +189,22 @@ class MainPageView: UIView{
                      rightConstant: 24,
                     heightConstant: 23)
 
-        NSLayoutConstraint.activate([
-            topicsScrollView.topAnchor.constraint(equalTo: topicsLabel.bottomAnchor, constant: 16),
-            topicsScrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            topicsScrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            topicsScrollView.heightAnchor.constraint(equalToConstant: 240)
-        ])
+        topicImageCard.anchor(top: breadcrumbs.bottomAnchor,
+                              left: contentView.leftAnchor,
+                              right: contentView.rightAnchor,
+                              topConstant: 16.5,
+                              leftConstant: 23,
+                              rightConstant: 23,
+                             heightConstant: 120)
 
-        NSLayoutConstraint.activate([
-            topicsScrollStackView.topAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.topAnchor),
-            topicsScrollStackView.bottomAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.bottomAnchor),
-            topicsScrollStackView.leadingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.leadingAnchor, constant: 23),
-            topicsScrollStackView.trailingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.trailingAnchor, constant: -23)
-        ])
-        
-        card5.anchor(top: topicsScrollStackView.bottomAnchor,
-                     left: contentView.leftAnchor,
-                     right: contentView.rightAnchor,
-                     topConstant: 24,
-                     leftConstant: 23,
-                     rightConstant: 23)
-
-        publicationsLabel.anchor(top: card5.bottomAnchor,
+        topicLabel.anchor(top: topicImageCard.bottomAnchor,
                                  left: contentView.leftAnchor,
                                  right: contentView.rightAnchor,
-                                 topConstant: 24,
-                                 leftConstant: 23,
-                                 rightConstant: 23)
+                                 topConstant: 16,
+                                 leftConstant: 24,
+                                 rightConstant: 24)
         
-        publicationsStackView.anchor(top: publicationsLabel.bottomAnchor,
+        publicationsStackView.anchor(top: topicLabel.bottomAnchor,
                     left: contentView.leftAnchor,
                     right: contentView.rightAnchor,
                     topConstant: 16,
@@ -219,12 +214,33 @@ class MainPageView: UIView{
         showMoreButton.anchor(top: publicationsStackView.bottomAnchor,
                               left: contentView.leftAnchor,
                               right: contentView.rightAnchor,
-                              topConstant: 24,
+                              topConstant: 22,
                               leftConstant: 23,
                               rightConstant: 23)
         
-        contentView.anchor(bottom: showMoreButton.bottomAnchor,
-                          bottomConstant: -20)
+        exploreLabel.anchor(top: showMoreButton.bottomAnchor,
+                            left: contentView.leftAnchor,
+                            right: contentView.rightAnchor,
+                            topConstant: 24,
+                            leftConstant: 23,
+                            rightConstant: 23)
+        
+        NSLayoutConstraint.activate([
+            topicsScrollView.topAnchor.constraint(equalTo: exploreLabel.bottomAnchor, constant: 16),
+            topicsScrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            topicsScrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            topicsScrollView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+
+        NSLayoutConstraint.activate([
+            topicsScrollStackView.topAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.topAnchor),
+            topicsScrollStackView.bottomAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.bottomAnchor),
+            topicsScrollStackView.leadingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.leadingAnchor, constant: 24),
+            topicsScrollStackView.trailingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.trailingAnchor, constant: -24)
+        ])
+        
+        contentView.anchor(bottom: topicsScrollView.bottomAnchor,
+                          bottomConstant: -66)
         
     }
     

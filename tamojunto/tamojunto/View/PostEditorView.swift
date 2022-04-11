@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class PostEditorView: UIView{
-    
+    lazy var header = Header()
+
     //currentPageLbl
     lazy var currentPageLbl: UILabel = {
         let lbl = UILabel()
@@ -125,6 +126,7 @@ class PostEditorView: UIView{
     
     //MARK: - Setup of the subviews
     func setSubviews(){
+        self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(currentPageLbl)
@@ -140,15 +142,21 @@ class PostEditorView: UIView{
     
     //MARK: - Setup of the cnstraints
     func setConstraints(){
-       NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+        header.anchor(top: topAnchor,
+                      left: leftAnchor,
+                      right: rightAnchor,
+                      heightConstant: 80)
+        
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 24),
             contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor)
