@@ -89,6 +89,7 @@ extension PostView: CodeView {
                         left: blankView.leftAnchor,
                         bottom: postTitleLabel.topAnchor,
                         right: blankView.rightAnchor,
+                        topConstant: 6.41,
                         leftConstant: 24,
                         bottomConstant: 8.02,
                         rightConstant: 22,
