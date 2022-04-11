@@ -38,8 +38,7 @@ class CommentsStackView: UIView {
 
 extension CommentsStackView: CodeView {
     func buildViewHierarchy() {
-        self.addSubview(scrollView)
-        scrollView.addSubview(commentsStack)
+        self.addSubview(commentsStack)
         commentsStack.addArrangedSubview(comment1)
         commentsStack.addArrangedSubview(comment2)
         commentsStack.addArrangedSubview(comment3)
@@ -47,11 +46,8 @@ extension CommentsStackView: CodeView {
     }
     
     func setupConstraints() {
-        scrollView.anchorTo(superview: self)
-        scrollView.anchorCenterSuperview()
-        
-        commentsStack.anchorTo(superview: scrollView)
-        scrollView.anchorCenterSuperview()
+        commentsStack.anchorTo(superview: self)
+        commentsStack.anchorCenterSuperview()
     }
     
     func setupAdditionalConfiguration() {

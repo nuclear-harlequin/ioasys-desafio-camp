@@ -15,11 +15,17 @@ class CommentsInPostView: UIView {
     lazy var commentBackButtons = ButtonsStack()
     lazy var commentsStack = CommentsStackView()
     
-    lazy var scrollView = UIScrollView()
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
+    //contentView
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "primary20")
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -55,11 +61,31 @@ extension CommentsInPostView: CodeView {
     }
     
     func setupConstraints() {
-        scrollView.anchorTo(superview: self)
-        scrollView.anchorCenterSuperview()
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+        ])
         
-        contentView.anchorTo(superview: scrollView)
-        contentView.anchorCenterSuperview()
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor)
+        ])
+        
+        let contentViewCenterY = contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
+        contentViewCenterY.priority = .defaultLow
+
+        let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: heightAnchor)
+        contentViewHeight.priority = .defaultLow
+
+        NSLayoutConstraint.activate([
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentViewCenterY,
+            contentViewHeight
+        ])
         
         post.anchor(top: contentView.topAnchor,
                     left: contentView.leftAnchor,
@@ -111,7 +137,11 @@ extension CommentsInPostView: CodeView {
                                   right: contentView.rightAnchor,
                                   topConstant: 24,
                                   leftConstant: 26,
-                                  rightConstant: 24)
+                                  rightConstant: 24,
+                                  heightConstant: 55)
+        
+        contentView.anchor(bottom: commentBackButtons.bottomAnchor,
+                           bottomConstant: -104)
     }
     
     func setupAdditionalConfiguration() {

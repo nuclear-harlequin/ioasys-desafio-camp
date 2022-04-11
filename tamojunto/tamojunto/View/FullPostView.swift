@@ -130,7 +130,7 @@ class FullPostView: UIView{
                             heightConstant: 55)
         
         contentView.anchor(bottom: buttonsStack.bottomAnchor,
-                           bottomConstant: -32)
+                           bottomConstant: 32)
         
     }
     
