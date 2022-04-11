@@ -14,6 +14,8 @@ class CommentsStackView: UIView {
     private var comment3 = CommentView()
     private var comment4 = CommentView()
     
+    lazy var scrollView = UIScrollView()
+    
     lazy var commentsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -36,7 +38,8 @@ class CommentsStackView: UIView {
 
 extension CommentsStackView: CodeView {
     func buildViewHierarchy() {
-        self.addSubview(commentsStack)
+        self.addSubview(scrollView)
+        scrollView.addSubview(commentsStack)
         commentsStack.addSubview(comment1)
         commentsStack.addSubview(comment2)
         commentsStack.addSubview(comment3)
@@ -44,7 +47,11 @@ extension CommentsStackView: CodeView {
     }
     
     func setupConstraints() {
-        commentsStack.anchorTo(superview: self)
+        scrollView.anchorTo(superview: self)
+        scrollView.anchorCenterSuperview()
+        
+        commentsStack.anchorTo(superview: scrollView)
+        scrollView.anchorCenterSuperview()
     }
     
     func setupAdditionalConfiguration() {
