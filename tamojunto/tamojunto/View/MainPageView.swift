@@ -204,7 +204,7 @@ class MainPageView: UIView{
         publicationsStackView.anchor(top: publicationsLabel.bottomAnchor,
                     left: contentView.leftAnchor,
                     right: contentView.rightAnchor,
-                    topConstant: 24,
+                    topConstant: 16,
                     leftConstant: 23,
                     rightConstant: 23)
         
