@@ -18,7 +18,6 @@ class FullPostView: UIView{
         lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textAlignment = .center
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     

@@ -34,7 +34,6 @@ class SearchSuccessView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Resultados da sua busca:"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -62,8 +61,6 @@ class SearchSuccessView: UIView{
         btn.layer.borderColor = UIColor(named: "primary500")?.cgColor
         return btn
     }()
-    
-  
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

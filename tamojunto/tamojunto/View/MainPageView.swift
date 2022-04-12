@@ -34,7 +34,6 @@ class MainPageView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Escolha um tema para conversar:"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -69,7 +68,6 @@ class MainPageView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Publicações mais recentes:"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     

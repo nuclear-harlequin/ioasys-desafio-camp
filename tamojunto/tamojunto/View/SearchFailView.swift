@@ -43,8 +43,6 @@ class SearchFailView: UIView{
         Verifique a ortografia ou busque por termos relacionados.
         """
         lbl.attributedText = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
   
@@ -54,7 +52,6 @@ class SearchFailView: UIView{
         imgView.image = UIImage(named: "searchFail")
         imgView.contentMode = .scaleAspectFit
         imgView.layer.cornerRadius = 12
-        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
     

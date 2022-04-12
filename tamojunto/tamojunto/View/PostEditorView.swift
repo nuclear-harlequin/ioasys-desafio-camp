@@ -96,12 +96,14 @@ class PostEditorView: UIView{
     lazy var contentView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     //scrollView
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     

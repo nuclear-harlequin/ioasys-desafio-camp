@@ -34,7 +34,6 @@ class TopicMainPageView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Home > Administração"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -46,7 +45,6 @@ class TopicMainPageView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Administração"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
