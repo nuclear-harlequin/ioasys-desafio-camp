@@ -8,19 +8,22 @@
 import Foundation
 
 enum TamoJunto {
-    static let baseUrl = "https://camp-tamojunto.herokuapp.com/"
+    static let baseUrl = "https://camp-tamojunto.herokuapp.com"
     
     case userLogin
-    case fetchBooks
+    case fetchSubjects
+    case fetchThreads
     
     var path: String {
         switch self {
         case .userLogin:
             return "/auth/sign-in"
             
-        case .fetchBooks:
-            return "/books"
+        case .fetchSubjects:
+            return "/subjects"
             
+        case .fetchThreads:
+            return "/threads?order=ASC&page=1&take=10"
             
         }
     }

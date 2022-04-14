@@ -22,9 +22,18 @@ class NetworkService {
     
     private init() {}
     
-    func makeUrlRequest<T: Decodable>(_ request: URLRequest, resultHandler: @escaping (Result<T, RequestError>) -> Void) {
-        let urlTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    func makeUrlRequest<T: Decodable>(route: TamoJunto,
+                                      method: Method,
+                                      header: [String:String]?,
+                                      body: Data?,
+                                      parameters: [String:String]?,
+                                      resultHandler: @escaping (Result<T, RequestError>) -> Void) {
+        
+        guard let request = createRequest(route: route, method: method, header: header, body: body, parameters: parameters) else { return }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
+                print(error?.localizedDescription)
                 resultHandler(.failure(.clientError))
                 return
             }
@@ -33,21 +42,22 @@ class NetworkService {
                 resultHandler(.failure(.serverError))
                 return
             }
+            print(response)
+            self.header = response.allHeaderFields
             
             guard let data = data else {
                 resultHandler(.failure(.noData))
                 return
             }
+            print(data)
             
             guard let decodedData = self.decodeFromJSON(type: T.self, data: data) else {
                 resultHandler(.failure(.dataDecodingError))
                 return
             }
-            
+//            print(decodedData)
             resultHandler(.success(decodedData))
-        }
-        
-        urlTask.resume()
+        }.resume()
     }
     
     private func createRequest(route: TamoJunto,
@@ -57,17 +67,18 @@ class NetworkService {
                                parameters: [String:String]?) -> URLRequest? {
         
         let urlString = TamoJunto.baseUrl + route.path
-        guard let url = urlString.asUrl else { return nil }
-        
-        guard let body = body else { return nil }
-        let encodedBody = encodeToJSON(data: body)
-
+        guard let url = URL(string: urlString) else
+            {
+                print("No URL")
+                return nil
+            }
+        print(url)
         
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpMethod = method.rawValue
-        urlRequest.httpBody = encodedBody
+        urlRequest.httpBody = body
         
         return urlRequest
     }

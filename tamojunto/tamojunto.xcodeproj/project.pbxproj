@@ -210,13 +210,13 @@
 		0E61E36327FCB62E00C21E83 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6993077E2800B0D800405DD6 /* MainPageViewController.swift */,
 				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
 				69CF954B27FDFA5200545017 /* TabBarController.swift */,
 				69CF954D27FDFA9C00545017 /* PostEditorViewController.swift */,
 				0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */,
 				69CF956227FF195100545017 /* FullPostViewController.swift */,
 				0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */,
-				6993077E2800B0D800405DD6 /* MainPageViewController.swift */,
 				69B73CDE28046F4200B65379 /* TopicMainPageViewController.swift */,
 				69B73CE42804B0D300B65379 /* SearchSuccessViewController.swift */,
 			);
@@ -238,12 +238,12 @@
 			children = (
 				693671BE28060A3E001E0668 /* LoginDTOModel.swift */,
 				693671C028060A69001E0668 /* CreateUserDTOModel.swift */,
+				693671CC28060CAC001E0668 /* SubjectModel.swift */,
 				693671C228060AAC001E0668 /* StateModel.swift */,
 				693671C428060B37001E0668 /* CityModel.swift */,
 				693671C628060B95001E0668 /* FileModel.swift */,
 				693671C828060BBB001E0668 /* UserModel.swift */,
 				693671CA28060C8B001E0668 /* CreateSubjectDTOModel.swift */,
-				693671CC28060CAC001E0668 /* SubjectModel.swift */,
 				693671CE28060DFB001E0668 /* CreateThreadDTOModel.swift */,
 				693671D028060E5C001E0668 /* ThreadModel.swift */,
 				693671D228060EAA001E0668 /* CreateCommentDTOModel.swift */,
