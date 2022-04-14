@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E08F1732807790B001298CD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E08F1722807790B001298CD /* NetworkService.swift */; };
+		0E08F17528077A10001298CD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E08F17428077A10001298CD /* StringExtension.swift */; };
+		0E08F1772807853F001298CD /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E08F1762807853F001298CD /* RequestError.swift */; };
+		0E08F179280790CE001298CD /* TamoJuntoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E08F178280790CE001298CD /* TamoJuntoAPI.swift */; };
 		0E26ED3F28008EB4000F995F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26ED3E28008EB4000F995F /* CommentView.swift */; };
 		0E26ED4028008FCF000F995F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ECB68B527FE4FC1000CD6B0 /* Assets.xcassets */; };
 		0E26ED422800C15E000F995F /* CommentsInPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26ED412800C15E000F995F /* CommentsInPostView.swift */; };
@@ -67,6 +71,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E08F1722807790B001298CD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0E08F17428077A10001298CD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		0E08F1762807853F001298CD /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		0E08F178280790CE001298CD /* TamoJuntoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamoJuntoAPI.swift; sourceTree = "<group>"; };
 		0E26ED3E28008EB4000F995F /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		0E26ED412800C15E000F995F /* CommentsInPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsInPostView.swift; sourceTree = "<group>"; };
 		0E54D37C27FB40F400EB3D81 /* tamojunto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tamojunto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +226,9 @@
 		0E61E36427FCB63900C21E83 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				0E08F1722807790B001298CD /* NetworkService.swift */,
+				0E08F1762807853F001298CD /* RequestError.swift */,
+				0E08F178280790CE001298CD /* TamoJuntoAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -254,6 +265,7 @@
 			children = (
 				0E61E36827FCB6B900C21E83 /* UIViewExtension.swift */,
 				0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */,
+				0E08F17428077A10001298CD /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,9 +395,11 @@
 				69CF954E27FDFA9D00545017 /* PostEditorViewController.swift in Sources */,
 				69CF956527FF2AAD00545017 /* LongButton.swift in Sources */,
 				69CF956327FF195100545017 /* FullPostViewController.swift in Sources */,
+				0E08F1772807853F001298CD /* RequestError.swift in Sources */,
 				693671BF28060A3E001E0668 /* LoginDTOModel.swift in Sources */,
 				699307832800BC1C00405DD6 /* SearchBar.swift in Sources */,
 				693671D528060ECE001E0668 /* CommentModel.swift in Sources */,
+				0E08F1732807790B001298CD /* NetworkService.swift in Sources */,
 				693671C128060A69001E0668 /* CreateUserDTOModel.swift in Sources */,
 				693671CB28060C8B001E0668 /* CreateSubjectDTOModel.swift in Sources */,
 				6993077B28007F3900405DD6 /* MainPageView.swift in Sources */,
@@ -401,6 +415,7 @@
 				69CF953F27FCE20B00545017 /* PostEditorView.swift in Sources */,
 				69CF955F27FF12D700545017 /* FullPost.swift in Sources */,
 				69CF956727FF2B4400545017 /* FullPostView.swift in Sources */,
+				0E08F179280790CE001298CD /* TamoJuntoAPI.swift in Sources */,
 				0E26ED3F28008EB4000F995F /* CommentView.swift in Sources */,
 				6993077928007EB000405DD6 /* TopicCardNarrow.swift in Sources */,
 				69B73CE128048EAC00B65379 /* Header.swift in Sources */,
@@ -422,6 +437,7 @@
 				69B73CD8280462B600B65379 /* PostThreeLines.swift in Sources */,
 				0EC7FB9627FF24A2004DB853 /* PostView.swift in Sources */,
 				0E54D38227FB40F400EB3D81 /* SceneDelegate.swift in Sources */,
+				0E08F17528077A10001298CD /* StringExtension.swift in Sources */,
 				699307812800B48F00405DD6 /* TopicCardLong.swift in Sources */,
 				693671C928060BBB001E0668 /* UserModel.swift in Sources */,
 				693671C728060B95001E0668 /* FileModel.swift in Sources */,
