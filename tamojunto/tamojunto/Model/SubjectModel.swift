@@ -8,8 +8,8 @@
 import Foundation
 
 struct Subject: Codable {
-    var id, name: String
-    var picture: File
-    var thread: [String]
-    var createdAt, updatedAt, deletedAt : String
+    var id: String
+    var name: String
+    var picture: File?
+    var threadCount: Int
 }
