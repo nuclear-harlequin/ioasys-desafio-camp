@@ -14,7 +14,7 @@ enum TamoJunto {
     case fetchSubjects
     case fetchThreads
     
-    var path: String {
+    var endpoint: String {
         switch self {
         case .userLogin:
             return "/auth/sign-in"
@@ -23,7 +23,7 @@ enum TamoJunto {
             return "/subjects"
             
         case .fetchThreads:
-            return "/threads?order=ASC&page=1&take=10"
+            return "/threads"
             
         }
     }

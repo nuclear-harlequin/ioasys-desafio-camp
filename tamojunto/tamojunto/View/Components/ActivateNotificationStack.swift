@@ -71,15 +71,11 @@ class ActivateNotificationStack: UIView{
 
         notificationSwitch.anchor(right: notificationStackView.rightAnchor,
                                   heightConstant: 24)
-        
     }
     
     //MARK: - Setup of the actions
     func setActions(){
         //action set in view controller
     }
-    
-    
-    
 }
 

@@ -22,23 +22,25 @@ class NetworkService {
     
     private init() {}
     
-    func makeUrlRequest<T: Decodable>(route: TamoJunto,
+    func makeUrlRequest<T: Decodable>(endpoint: TamoJunto,
+                                      path: String?,
                                       method: Method,
                                       header: [String:String]?,
                                       body: Data?,
                                       parameters: [String:String]?,
                                       resultHandler: @escaping (Result<T, RequestError>) -> Void) {
         
-        guard let request = createRequest(route: route, method: method, header: header, body: body, parameters: parameters) else { return }
+        guard let request = createRequest(endpoint: endpoint, path: path, method: method, header: header, body: body, parameters: parameters) else { return }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
-                print(error?.localizedDescription)
+                print("Client error")
                 resultHandler(.failure(.clientError))
                 return
             }
             
             guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                print("Server error")
                 resultHandler(.failure(.serverError))
                 return
             }
@@ -46,12 +48,14 @@ class NetworkService {
             self.header = response.allHeaderFields
             
             guard let data = data else {
+                print("No data retrieved")
                 resultHandler(.failure(.noData))
                 return
             }
-            print(data)
+//            print(data)
             
             guard let decodedData = self.decodeFromJSON(type: T.self, data: data) else {
+                print("Error decoding data")
                 resultHandler(.failure(.dataDecodingError))
                 return
             }
@@ -60,18 +64,30 @@ class NetworkService {
         }.resume()
     }
     
-    private func createRequest(route: TamoJunto,
+    private func createRequest(endpoint: TamoJunto,
+                               path: String?,
                                method: Method,
                                header: [String:String]?,
                                body: Data?,
                                parameters: [String:String]?) -> URLRequest? {
         
-        let urlString = TamoJunto.baseUrl + route.path
-        guard let url = URL(string: urlString) else
-            {
-                print("No URL")
-                return nil
+        let urlString = TamoJunto.baseUrl + endpoint.endpoint
+        guard var url = URL(string: urlString) else
+        {
+            print("No URL")
+            return nil
+        }
+        
+        if let path = path {
+            url.appendPathExtension(path)
+        }
+        
+        if let parameters = parameters {
+            for (name, value) in parameters {
+                url.appendQueryItem(name: name, value: value)
             }
+        }
+        
         print(url)
         
         var urlRequest = URLRequest(url: url)

@@ -16,3 +16,13 @@ struct User: Codable {
     var avatar : File
     var createdAt, updatedAt, deletedAt : String
 }
+
+struct UserThreads: Codable {
+    let id: String
+    let email: String
+    let firstName: String
+    let lastName: String
+    let businessName: String
+    let cnpj: String
+    let phone: String
+}

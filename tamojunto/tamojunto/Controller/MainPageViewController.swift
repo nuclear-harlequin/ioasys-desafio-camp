@@ -12,6 +12,8 @@ class MainPageViewController: UIViewController {
     lazy var myMainPageView = MainPageView()
     
     var allSubjects: [Subject]?
+    var recentThreads: ThreadResponse?
+    
     let network = NetworkService.shared
     
     override func viewDidLoad() {
@@ -24,22 +26,52 @@ class MainPageViewController: UIViewController {
         
         self.view = myMainPageView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
-        fetchSubjects()
+//        fetchSubjects()
+        fetchRecentThreads()
     }
 }
 
 extension MainPageViewController {
     func fetchSubjects() {
-        network.makeUrlRequest(route: .fetchSubjects, method: .get, header: nil, body: nil, parameters: nil) { (result: Result<[Subject], RequestError>) in
+        network.makeUrlRequest(endpoint: .fetchSubjects, path: nil, method: .get, header: nil, body: nil, parameters: nil) { (result: Result<[Subject], RequestError>) in
             switch result {
-            case .success(let successValue):
-                self.allSubjects = successValue
+            case .success(let fetchedSubjects):
+//                print(fetchedSubjects)
+                self.allSubjects = fetchedSubjects
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
+    
+    func fetchRecentThreads() {
+        let parameters = ["order": "ASC", "page": "1", "take": "10"]
+        
+        network.makeUrlRequest(endpoint: .fetchThreads, path: nil, method: .get, header: nil, body: nil, parameters: parameters) { (result: Result<ThreadResponse, RequestError>) in
+            switch result {
+            case .success(let fetchedThreads):
+                print(fetchedThreads)
+//                self.recentThreads = fetchedThreads
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+//    func fetchSubjectContent() {
+//        let path =
+//
+//        let parameters = ["order": "ASC", "page": "1", "take": "10"]
+//
+//        network.makeUrlRequest(endpoint: .fetchSubjects, path: , method: .get, header: nil, body: nil, parameter: parameters) { (result: Result<[Subject], RequestError>) in
+//            switch result {
+//            case .success(let successValue):
+//                self.subject = successValue
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
 }
 
 //

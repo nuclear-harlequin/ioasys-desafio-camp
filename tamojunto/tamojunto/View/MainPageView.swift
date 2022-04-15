@@ -5,7 +5,6 @@
 //  Created by Gustavo Perbone on 08/04/22.
 //
 
-import Foundation
 import UIKit
 
 class MainPageView: UIView{
@@ -38,10 +37,7 @@ class MainPageView: UIView{
     }()
     
     lazy var card = TopicCardNarrow()
-    lazy var card2 = TopicCardNarrow()
-    lazy var card3 = TopicCardNarrow()
-    lazy var card4 = TopicCardNarrow()
-    lazy var card5 = TopicCardLong()
+    lazy var longCard = TopicCardLong()
     
     //topicsScrollView
     lazy var topicsScrollView: UIScrollView = {
@@ -117,10 +113,7 @@ class MainPageView: UIView{
         contentView.addSubview(topicsScrollView)
         topicsScrollView.addSubview(topicsScrollStackView)
         topicsScrollStackView.addArrangedSubview(card)
-        topicsScrollStackView.addArrangedSubview(card2)
-        topicsScrollStackView.addArrangedSubview(card3)
-        topicsScrollStackView.addArrangedSubview(card4)
-        contentView.addSubview(card5)
+        contentView.addSubview(longCard)
         contentView.addSubview(publicationsLabel)
         contentView.addSubview(publicationsStackView)
         publicationsStackView.addArrangedSubview(post)
@@ -169,15 +162,15 @@ class MainPageView: UIView{
                          right: contentView.rightAnchor,
                          leftConstant: 23,
                          rightConstant: 23,
-                        heightConstant: 56)
+                         heightConstant: 56)
         
         topicsLabel.anchor(top: searchBar.bottomAnchor,
-                     left: contentView.leftAnchor,
-                     right: contentView.rightAnchor,
-                     topConstant: 24,
-                     leftConstant: 24,
-                     rightConstant: 24,
-                    heightConstant: 23)
+                           left: contentView.leftAnchor,
+                           right: contentView.rightAnchor,
+                           topConstant: 24,
+                           leftConstant: 24,
+                           rightConstant: 24,
+                           heightConstant: 23)
 
         NSLayoutConstraint.activate([
             topicsScrollView.topAnchor.constraint(equalTo: topicsLabel.bottomAnchor, constant: 16),
@@ -193,14 +186,14 @@ class MainPageView: UIView{
             topicsScrollStackView.trailingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.trailingAnchor, constant: -23)
         ])
         
-        card5.anchor(top: topicsScrollStackView.bottomAnchor,
+        longCard.anchor(top: topicsScrollStackView.bottomAnchor,
                      left: contentView.leftAnchor,
                      right: contentView.rightAnchor,
                      topConstant: 24,
                      leftConstant: 23,
                      rightConstant: 23)
 
-        publicationsLabel.anchor(top: card5.bottomAnchor,
+        publicationsLabel.anchor(top: longCard.bottomAnchor,
                                  left: contentView.leftAnchor,
                                  right: contentView.rightAnchor,
                                  topConstant: 24,
@@ -223,15 +216,11 @@ class MainPageView: UIView{
         
         contentView.anchor(bottom: showMoreButton.bottomAnchor,
                           bottomConstant: -20)
-        
     }
     
     //MARK: - Setup of the actions
     func setActions(){
         //action set in view controller
     }
-    
-    
-    
 }
 

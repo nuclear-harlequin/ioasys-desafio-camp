@@ -7,10 +7,29 @@
 
 import Foundation
 
-struct Thread: Codable {
-    var id, title, content: String
-    var subject: Subject
-    var user: User
-    var comments : [String]
-    var createdAt, updatedAt, deletedAt : String
+struct ThreadResponse: Codable {
+    let data: [Thread]
+    let meta: Meta
 }
+
+// MARK: - Datum
+struct Thread: Codable {
+    let id: String
+    let title: String
+    let content: String
+    let subject: String
+    let user: UserThreads
+    let createdAt: String
+    let commentCount: Int
+}
+
+// MARK: - Meta
+struct Meta: Codable {
+    let page: Int
+    let take: Int
+    let itemCount: Int
+    let pageCount: Int
+    let hasPreviousPage: Bool
+    let hasNextPage: Bool
+}
+

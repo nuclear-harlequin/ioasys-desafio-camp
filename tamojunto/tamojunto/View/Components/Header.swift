@@ -82,7 +82,6 @@ class Header: UIView{
         NSLayoutConstraint.activate([
             labelStackView.topAnchor.constraint(equalTo: blankView.topAnchor, constant: 45),
             labelStackView.centerXAnchor.constraint(equalTo: blankView.centerXAnchor),
-
         ])
         
         juntoLabel.anchor(
