@@ -136,7 +136,8 @@ class PostTwoLines: UIView{
                               right: blankView.rightAnchor,
                               topConstant: 8,
                               leftConstant: 24,
-                              rightConstant: 24)
+                              rightConstant: 24,
+                                heightConstant: 34)
         
         postContentLabel.anchor(top: postTitleLabel.bottomAnchor,
                                 left: blankView.leftAnchor,
