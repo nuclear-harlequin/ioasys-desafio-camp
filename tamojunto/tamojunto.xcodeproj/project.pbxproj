@@ -25,7 +25,7 @@
 		0EC7FB9627FF24A2004DB853 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9527FF24A2004DB853 /* PostView.swift */; };
 		0EC7FB9927FF2682004DB853 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9827FF2682004DB853 /* CodeView.swift */; };
 		0EC7FB9D27FF2ADE004DB853 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */; };
-		0EC7FB9F27FF6473004DB853 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */; };
+		0EC7FB9F27FF6473004DB853 /* MakeCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9E27FF6473004DB853 /* MakeCommentViewController.swift */; };
 		0ECDB4232804756D00DA7908 /* PostCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */; };
 		0ECDB4252804BE0600DA7908 /* CommentsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECDB4242804BE0600DA7908 /* CommentsStackView.swift */; };
 		693671BF28060A3E001E0668 /* LoginDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671BE28060A3E001E0668 /* LoginDTOModel.swift */; };
@@ -39,7 +39,6 @@
 		693671CF28060DFB001E0668 /* CreateThreadDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671CE28060DFB001E0668 /* CreateThreadDTOModel.swift */; };
 		693671D128060E5C001E0668 /* ThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671D028060E5C001E0668 /* ThreadModel.swift */; };
 		693671D328060EAA001E0668 /* CreateCommentDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671D228060EAA001E0668 /* CreateCommentDTOModel.swift */; };
-		693671D528060ECE001E0668 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671D428060ECE001E0668 /* CommentModel.swift */; };
 		6993077928007EB000405DD6 /* TopicCardNarrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6993077828007EB000405DD6 /* TopicCardNarrow.swift */; };
 		6993077B28007F3900405DD6 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6993077A28007F3900405DD6 /* MainPageView.swift */; };
 		6993077F2800B0D800405DD6 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6993077E2800B0D800405DD6 /* MainPageViewController.swift */; };
@@ -70,6 +69,8 @@
 		69CF956327FF195100545017 /* FullPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956227FF195100545017 /* FullPostViewController.swift */; };
 		69CF956527FF2AAD00545017 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956427FF2AAD00545017 /* LongButton.swift */; };
 		69CF956727FF2B4400545017 /* FullPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF956627FF2B4400545017 /* FullPostView.swift */; };
+		69E85DAB280D9D8A002FEEBE /* SubjectIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E85DAA280D9D8A002FEEBE /* SubjectIDModel.swift */; };
+		69E85DAD280DB11B002FEEBE /* ThreadIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E85DAC280DB11B002FEEBE /* ThreadIDModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +93,7 @@
 		0EC7FB9527FF24A2004DB853 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0EC7FB9827FF2682004DB853 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		0EC7FB9C27FF2ADE004DB853 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
-		0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		0EC7FB9E27FF6473004DB853 /* MakeCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCommentViewController.swift; sourceTree = "<group>"; };
 		0ECB68B527FE4FC1000CD6B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = tamojunto/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentsViewController.swift; sourceTree = "<group>"; };
 		0ECDB4242804BE0600DA7908 /* CommentsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStackView.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		693671CE28060DFB001E0668 /* CreateThreadDTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadDTOModel.swift; sourceTree = "<group>"; };
 		693671D028060E5C001E0668 /* ThreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadModel.swift; sourceTree = "<group>"; };
 		693671D228060EAA001E0668 /* CreateCommentDTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommentDTOModel.swift; sourceTree = "<group>"; };
-		693671D428060ECE001E0668 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		6993077828007EB000405DD6 /* TopicCardNarrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCardNarrow.swift; sourceTree = "<group>"; };
 		6993077A28007F3900405DD6 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		6993077E2800B0D800405DD6 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +138,8 @@
 		69CF956227FF195100545017 /* FullPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPostViewController.swift; sourceTree = "<group>"; };
 		69CF956427FF2AAD00545017 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
 		69CF956627FF2B4400545017 /* FullPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPostView.swift; sourceTree = "<group>"; };
+		69E85DAA280D9D8A002FEEBE /* SubjectIDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectIDModel.swift; sourceTree = "<group>"; };
+		69E85DAC280DB11B002FEEBE /* ThreadIDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadIDModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,13 +217,13 @@
 			isa = PBXGroup;
 			children = (
 				6993077E2800B0D800405DD6 /* MainPageViewController.swift */,
+				69B73CDE28046F4200B65379 /* TopicMainPageViewController.swift */,
+				69CF956227FF195100545017 /* FullPostViewController.swift */,
+				0EC7FB9E27FF6473004DB853 /* MakeCommentViewController.swift */,
 				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
 				69CF954B27FDFA5200545017 /* TabBarController.swift */,
 				69CF954D27FDFA9C00545017 /* PostEditorViewController.swift */,
-				0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */,
-				69CF956227FF195100545017 /* FullPostViewController.swift */,
 				0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */,
-				69B73CDE28046F4200B65379 /* TopicMainPageViewController.swift */,
 				69B73CE42804B0D300B65379 /* SearchSuccessViewController.swift */,
 			);
 			path = Controller;
@@ -242,6 +244,8 @@
 			children = (
 				693671CC28060CAC001E0668 /* SubjectModel.swift */,
 				693671D028060E5C001E0668 /* ThreadModel.swift */,
+				69E85DAA280D9D8A002FEEBE /* SubjectIDModel.swift */,
+				69E85DAC280DB11B002FEEBE /* ThreadIDModel.swift */,
 				693671C828060BBB001E0668 /* UserModel.swift */,
 				693671BE28060A3E001E0668 /* LoginDTOModel.swift */,
 				693671C028060A69001E0668 /* CreateUserDTOModel.swift */,
@@ -251,7 +255,6 @@
 				693671CA28060C8B001E0668 /* CreateSubjectDTOModel.swift */,
 				693671CE28060DFB001E0668 /* CreateThreadDTOModel.swift */,
 				693671D228060EAA001E0668 /* CreateCommentDTOModel.swift */,
-				693671D428060ECE001E0668 /* CommentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,14 +400,13 @@
 				6993077F2800B0D800405DD6 /* MainPageViewController.swift in Sources */,
 				69CF955D27FE198500545017 /* TitleField.swift in Sources */,
 				693671CF28060DFB001E0668 /* CreateThreadDTOModel.swift in Sources */,
-				0EC7FB9F27FF6473004DB853 /* CommentViewController.swift in Sources */,
+				0EC7FB9F27FF6473004DB853 /* MakeCommentViewController.swift in Sources */,
 				69CF954E27FDFA9D00545017 /* PostEditorViewController.swift in Sources */,
 				69CF956527FF2AAD00545017 /* LongButton.swift in Sources */,
 				69CF956327FF195100545017 /* FullPostViewController.swift in Sources */,
 				0E08F1772807853F001298CD /* RequestError.swift in Sources */,
 				693671BF28060A3E001E0668 /* LoginDTOModel.swift in Sources */,
 				699307832800BC1C00405DD6 /* SearchBar.swift in Sources */,
-				693671D528060ECE001E0668 /* CommentModel.swift in Sources */,
 				0E08F1732807790B001298CD /* NetworkService.swift in Sources */,
 				693671C128060A69001E0668 /* CreateUserDTOModel.swift in Sources */,
 				693671CB28060C8B001E0668 /* CreateSubjectDTOModel.swift in Sources */,
@@ -426,6 +428,7 @@
 				0E26ED3F28008EB4000F995F /* CommentView.swift in Sources */,
 				6993077928007EB000405DD6 /* TopicCardNarrow.swift in Sources */,
 				69B73CE128048EAC00B65379 /* Header.swift in Sources */,
+				69E85DAD280DB11B002FEEBE /* ThreadIDModel.swift in Sources */,
 				69B73CE52804B0D300B65379 /* SearchSuccessViewController.swift in Sources */,
 				693671C328060AAC001E0668 /* StateModel.swift in Sources */,
 				0E61E36927FCB6BA00C21E83 /* UIViewExtension.swift in Sources */,
@@ -440,6 +443,7 @@
 				0EC7FB9D27FF2ADE004DB853 /* UILabelExtension.swift in Sources */,
 				69CF955B27FE196E00545017 /* MessageField.swift in Sources */,
 				699307852800C49100405DD6 /* PostTwoLines.swift in Sources */,
+				69E85DAB280D9D8A002FEEBE /* SubjectIDModel.swift in Sources */,
 				693671D128060E5C001E0668 /* ThreadModel.swift in Sources */,
 				69B73CDD28046BC700B65379 /* TopicCardSmall.swift in Sources */,
 				69B73CD8280462B600B65379 /* PostThreeLines.swift in Sources */,

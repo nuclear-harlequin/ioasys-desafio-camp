@@ -90,12 +90,8 @@ class FullPost: UIView{
         lbl.textAlignment = .justified
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.19
-        let string = """
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consectetur lectus dui, id sollicitudin elit dapibus id. Suspendisse potenti. Etiam interdum magna leo, et euismod neque bibendum vitae. Praesent velit sem, aliquet at ante tincidunt, vehicula porta nunc. Suspendisse potenti. In feugiat dignissim placerat. Aenean sit amet interdum ex. Donec vulputate ligula lacus, id pharetra augue efficitur ac. Morbi non diam vel lacus mollis vehicula. Integer tempor nisi nec placerat fermentum. Integer at aliquet nunc. Sed semper convallis ultrices. Nulla facilisi. Proin non lacus ultricies, efficitur tortor porta, laoreet arcu.
-        \nCurabitur ut metus orci. Sed sed lacus arcu. Suspendisse dui enim, blandit in eleifend ut, laoreet ac velit. Nam augue ligula, imperdiet vel nulla vel, euismod pellentesque orci. Nullam ipsum lectus, vestibulum ut scelerisque ut, ornare nec erat. Morbi commodo diam sit amet tempus scelerisque. Nullam ac mauris sed orci sollicitudin vestibulum.
-        \nCurabitur vehicula at orci ut gravida. Donec et elit metus. Nullam sit amet est et augue gravida consequat. Suspendisse eu gravida mi. Aenean libero justo, sodales sit amet tellus non.
-"""
-        lbl.attributedText = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        lbl.text = "Placeholder"
+        lbl.attributedText = NSMutableAttributedString(string: lbl.text ?? "FAIL", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -133,14 +129,16 @@ class FullPost: UIView{
         editImage.anchor(top: postView.topAnchor,
                          right: postView.rightAnchor,
                          topConstant: 12,
-                         rightConstant: 14)
+                         rightConstant: 14,
+                         heightConstant: 24)
         
         authorTextView.anchor(top: editImage.bottomAnchor,
                               left: postView.leftAnchor,
                               right: postView.rightAnchor,
                               topConstant: 4,
                               leftConstant: 23,
-                              rightConstant: 23)
+                              rightConstant: 23,
+                              heightConstant: 17.51)
         
         stroke.anchorCenterXToSuperview()
         stroke.anchor(top: authorTextView.bottomAnchor,
@@ -156,14 +154,16 @@ class FullPost: UIView{
                              right: postView.rightAnchor,
                              topConstant: 8,
                              leftConstant: 23,
-                             rightConstant: 23)
+                             rightConstant: 23,
+                             heightConstant: 53.85)
         
         commentsTextView.anchor(top: titleTextView.bottomAnchor,
                                 left: postView.leftAnchor,
                                 right: postView.rightAnchor,
                                 topConstant: 16,
                                 leftConstant: 23,
-                                rightConstant: 23)
+                                rightConstant: 23,
+                                heightConstant: 17.51)
         
         messageTextView.anchor(top: commentsTextView.bottomAnchor,
                                left: postView.leftAnchor,
@@ -172,8 +172,8 @@ class FullPost: UIView{
                                leftConstant: 23,
                                rightConstant: 23)
         
-        postView.anchor(bottom: messageTextView.bottomAnchor,
-                        bottomConstant: 28.64)
+       postView.anchor(bottom: messageTextView.bottomAnchor,
+                       bottomConstant: -28.64)
         
     }
     

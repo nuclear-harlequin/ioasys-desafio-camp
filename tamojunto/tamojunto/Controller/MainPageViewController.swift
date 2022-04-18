@@ -14,6 +14,7 @@ class MainPageViewController: UIViewController {
     var allSubjects: [Subject]?
     var recentThreads: ThreadResponse?
     var page = 1
+    var subjectsDict:[String:String] = ["Administração" : "32dd929b-d4e9-460a-9a12-c4dc0ade5daf", "Aluguel, compra e venda": "2c5c974d-133f-4a02-8c7b-b51267e6e302", "Colaboradores": "c3847b3f-4681-49fc-a52e-0d4c0b778a8f", "Estudos": "dd278e0e-7662-4671-906f-2deb5e6f6fcf","Finanças" : "826165a0-69f7-4b0a-b222-28d35d165819", "Fornecedores":  "76e9fc20-0afe-4b0c-befe-fcec16c0f72f", "Happy Hour" : "bd3231da-6756-4461-a4df-4dd357934028", "Inovação": "1e6e3211-c0ca-480e-bc23-2017b70905a7", "Marketing": "961f0486-1ff0-45e3-b860-baab867b7bfa", "Notícias": "94417693-72ad-41d0-b86a-c47c9dc28d4c"]
     
     let network = NetworkService.shared
     
@@ -79,7 +80,7 @@ class MainPageViewController: UIViewController {
                  }
                  
                  subject.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id)
+                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name)
                      }
                  
                  myMainPageView.topicsScrollStackView.addArrangedSubview(subject)
@@ -100,16 +101,16 @@ class MainPageViewController: UIViewController {
                      }
                  }
                  myMainPageView.longCard.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id)
+                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name)
                      }
                  
              }
          }
     }
     
-    func openSubjectPage(of subjectID: String) {
+    func openSubjectPage(of subjectID: String, name: String) {
             print("typed subject \(subjectID)")
-            let page = TopicMainPageViewController(subjectID: subjectID)
+        let page = TopicMainPageViewController(subjectID: subjectID, name: name)
     
           //  present(page, animated: true, completion: nil)
             
@@ -146,7 +147,7 @@ class MainPageViewController: UIViewController {
              recentThread.postContentLabel.text = safeRecentThreads[currentRecentThread].content
 
              recentThread.addTapGesture {
-                     self.openRecentThread(id: "1")
+                 self.openRecentThread(id: safeRecentThreads[currentRecentThread].id, subjectName: safeRecentThreads[currentRecentThread].subject, subjectID: self.subjectsDict[safeRecentThreads[currentRecentThread].subject] ?? "32dd929b-d4e9-460a-9a12-c4dc0ade5daf")
                      }
                  
                  myMainPageView.publicationsStackView.addArrangedSubview(recentThread)
@@ -154,9 +155,9 @@ class MainPageViewController: UIViewController {
          }
     }
     
-    func openRecentThread(id: String) {
+    func openRecentThread(id: String, subjectName: String, subjectID: String) {
             print("touched thread \(id)")
-            let page = FullPostViewController(threadID: id)
+            let page = FullPostViewController(threadID: id, subjectName: subjectName, subjectID: subjectID)
     
           //  present(page, animated: true, completion: nil)
             
@@ -171,5 +172,4 @@ class MainPageViewController: UIViewController {
 
 }
     
-
 

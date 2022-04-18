@@ -91,7 +91,7 @@ class PostThreeLines: UIView{
         let lbl = UILabel()
         lbl.font = UIFont(name: "Raleway-Bold", size: 13)
         lbl.textColor = UIColor(named: "secondary700")
-        lbl.text = "Novo"
+        lbl.text = ""
         lbl.textAlignment = .right
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
