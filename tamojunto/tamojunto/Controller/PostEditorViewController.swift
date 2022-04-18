@@ -25,13 +25,16 @@ class PostEditorViewController: UIViewController {
         
         self.view = myPostEditorView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
+        
+        postThread()
     }
 }
 
 extension PostEditorViewController {
     func postThread() {
-        let threadTitle = myPostEditorView.titleTextField.titleTextField.text
-        let threadContent = myPostEditorView.messageTextField.messageTextField.text
+        let threadTitle: String? = "Estou tentando criar um thread"//myPostEditorView.titleTextField.titleTextField.text
+        let threadContent: String? = "Esse é o conteúdo do thread"//myPostEditorView.messageTextField.messageTextField.text
+        let subjectId: String? = "32dd929b-d4e9-460a-9a12-c4dc0ade5daf"
         
         guard let threadTitle = threadTitle
         else {
@@ -45,8 +48,23 @@ extension PostEditorViewController {
             return
         }
         
-        network.makeUrlRequest(endpoint: .fetchThreads, path: nil, method: .post, header: nil, body: <#T##Data?#>, parameters: nil, resultHandler: <#T##(Result<Decodable, RequestError>) -> Void#>)
+        guard let subjectId = subjectId
+        else {
+            print("Choose subject where you want to post the thread")
+            return
+        }
         
+        let body = ["title": threadTitle, "content": threadContent, "subjectId": subjectId]
+        let encodedBody = network.encodeToJSON(data: body)
+        
+        network.makeUrlRequest(endpoint: .fetchThreads, path: nil, method: .post, header: nil, body: encodedBody, parameters: nil) { (result: Result<CreatedThread, RequestError>) in
+            switch result {
+            case .success:
+                print("Thread created successfully")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginDTO: Codable {
+struct Login: Codable {
     var email : String
     var password : String
 }

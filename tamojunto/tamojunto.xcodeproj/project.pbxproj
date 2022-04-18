@@ -28,7 +28,7 @@
 		0EC7FB9F27FF6473004DB853 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */; };
 		0ECDB4232804756D00DA7908 /* PostCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */; };
 		0ECDB4252804BE0600DA7908 /* CommentsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECDB4242804BE0600DA7908 /* CommentsStackView.swift */; };
-		693671BF28060A3E001E0668 /* LoginDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671BE28060A3E001E0668 /* LoginDTOModel.swift */; };
+		693671BF28060A3E001E0668 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671BE28060A3E001E0668 /* LoginModel.swift */; };
 		693671C128060A69001E0668 /* CreateUserDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671C028060A69001E0668 /* CreateUserDTOModel.swift */; };
 		693671C328060AAC001E0668 /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671C228060AAC001E0668 /* StateModel.swift */; };
 		693671C528060B37001E0668 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693671C428060B37001E0668 /* CityModel.swift */; };
@@ -96,7 +96,7 @@
 		0ECB68B527FE4FC1000CD6B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = tamojunto/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentsViewController.swift; sourceTree = "<group>"; };
 		0ECDB4242804BE0600DA7908 /* CommentsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStackView.swift; sourceTree = "<group>"; };
-		693671BE28060A3E001E0668 /* LoginDTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTOModel.swift; sourceTree = "<group>"; };
+		693671BE28060A3E001E0668 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		693671C028060A69001E0668 /* CreateUserDTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserDTOModel.swift; sourceTree = "<group>"; };
 		693671C228060AAC001E0668 /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		693671C428060B37001E0668 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 				693671CC28060CAC001E0668 /* SubjectModel.swift */,
 				693671D028060E5C001E0668 /* ThreadModel.swift */,
 				693671C828060BBB001E0668 /* UserModel.swift */,
-				693671BE28060A3E001E0668 /* LoginDTOModel.swift */,
+				693671BE28060A3E001E0668 /* LoginModel.swift */,
 				693671C028060A69001E0668 /* CreateUserDTOModel.swift */,
 				693671C228060AAC001E0668 /* StateModel.swift */,
 				693671C428060B37001E0668 /* CityModel.swift */,
@@ -402,7 +402,7 @@
 				69CF956527FF2AAD00545017 /* LongButton.swift in Sources */,
 				69CF956327FF195100545017 /* FullPostViewController.swift in Sources */,
 				0E08F1772807853F001298CD /* RequestError.swift in Sources */,
-				693671BF28060A3E001E0668 /* LoginDTOModel.swift in Sources */,
+				693671BF28060A3E001E0668 /* LoginModel.swift in Sources */,
 				699307832800BC1C00405DD6 /* SearchBar.swift in Sources */,
 				693671D528060ECE001E0668 /* CommentModel.swift in Sources */,
 				0E08F1732807790B001298CD /* NetworkService.swift in Sources */,
