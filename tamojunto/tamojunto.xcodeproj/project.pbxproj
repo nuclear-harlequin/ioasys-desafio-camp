@@ -189,14 +189,14 @@
 		0E61E36027FCB61600C21E83 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6993077A28007F3900405DD6 /* MainPageView.swift */,
+				69B73CD9280467CC00B65379 /* TopicMainPageView.swift */,
 				69CF953E27FCE20B00545017 /* PostEditorView.swift */,
 				69B73CE22804AF4000B65379 /* SearchSuccessView.swift */,
 				69B73CE62804B14E00B65379 /* SearchFailView.swift */,
 				0EC7FB9327FF23CA004DB853 /* MakeCommentView.swift */,
 				69CF956627FF2B4400545017 /* FullPostView.swift */,
 				0E26ED412800C15E000F995F /* CommentsInPostView.swift */,
-				6993077A28007F3900405DD6 /* MainPageView.swift */,
-				69B73CD9280467CC00B65379 /* TopicMainPageView.swift */,
 				69CF955327FE192100545017 /* Components */,
 			);
 			path = View;
@@ -214,15 +214,15 @@
 		0E61E36327FCB62E00C21E83 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6993077E2800B0D800405DD6 /* MainPageViewController.swift */,
 				0E54D38327FB40F400EB3D81 /* ViewController.swift */,
-				69CF954B27FDFA5200545017 /* TabBarController.swift */,
+				6993077E2800B0D800405DD6 /* MainPageViewController.swift */,
+				69B73CDE28046F4200B65379 /* TopicMainPageViewController.swift */,
 				69CF954D27FDFA9C00545017 /* PostEditorViewController.swift */,
+				69B73CE42804B0D300B65379 /* SearchSuccessViewController.swift */,
+				69CF954B27FDFA5200545017 /* TabBarController.swift */,
 				0EC7FB9E27FF6473004DB853 /* CommentViewController.swift */,
 				69CF956227FF195100545017 /* FullPostViewController.swift */,
 				0ECDB4222804756D00DA7908 /* PostCommentsViewController.swift */,
-				69B73CDE28046F4200B65379 /* TopicMainPageViewController.swift */,
-				69B73CE42804B0D300B65379 /* SearchSuccessViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

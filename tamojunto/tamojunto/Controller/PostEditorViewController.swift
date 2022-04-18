@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-class PostEditorViewController: UIViewController, UITextViewDelegate {
+class PostEditorViewController: UIViewController {
     var textViewClearedOnInitialEdit = false
+    let network = NetworkService.shared
     
     lazy var myPostEditorView = PostEditorView()
     
@@ -25,6 +26,31 @@ class PostEditorViewController: UIViewController, UITextViewDelegate {
         self.view = myPostEditorView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
     }
+}
+
+extension PostEditorViewController {
+    func postThread() {
+        let threadTitle = myPostEditorView.titleTextField.titleTextField.text
+        let threadContent = myPostEditorView.messageTextField.messageTextField.text
+        
+        guard let threadTitle = threadTitle
+        else {
+            print("Thread must contain title")
+            return
+        }
+        
+        guard let threadContent = threadContent
+        else {
+            print("Thread must contain body")
+            return
+        }
+        
+        network.makeUrlRequest(endpoint: .fetchThreads, path: nil, method: .post, header: nil, body: <#T##Data?#>, parameters: nil, resultHandler: <#T##(Result<Decodable, RequestError>) -> Void#>)
+        
+    }
+}
+
+extension PostEditorViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if !textViewClearedOnInitialEdit {
