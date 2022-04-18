@@ -7,17 +7,20 @@
 
 import UIKit
 
-class MakeCommentViewController: UIViewController {
+class MakeCommentViewController: UIViewController, UITextViewDelegate {
+    var textViewClearedOnInitialEdit = false
     
     lazy var myMakeCommentView = MakeCommentView()
     var thread: ThreadIDResponse?
     var subjectName: String
     var subjectID: String
+    var subjectImageURL: String
     
-    init(thread: ThreadIDResponse, subjectName: String, subjectID: String){
+    init(thread: ThreadIDResponse, subjectName: String, subjectID: String, subjectImageURL: String){
         self.thread = thread
         self.subjectName = subjectName
         self.subjectID = subjectID
+        self.subjectImageURL = subjectImageURL
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,6 +30,7 @@ class MakeCommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myMakeCommentView.comment.messageTextField.delegate = self
     }
     
     override func loadView() {
@@ -46,7 +50,7 @@ class MakeCommentViewController: UIViewController {
             return
         }
 
-        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID)
+        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("goingback")
     }
@@ -57,8 +61,15 @@ class MakeCommentViewController: UIViewController {
         }
 //postar comentario e levar user para pagina
         //@GIOVANNA
-        let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID)
+        let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL:subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("ppostingcomment")
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if !textViewClearedOnInitialEdit {
+            myMakeCommentView.comment.messageTextField.text = ""
+            textViewClearedOnInitialEdit = true
+        }
     }
 }

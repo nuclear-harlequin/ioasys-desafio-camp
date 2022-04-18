@@ -64,7 +64,7 @@ class MainPageViewController: UIViewController {
              if safeSubjects[currentSubject].name != "Aluguel, compra e venda"{
                  let subject = TopicCardNarrow()
                  subject.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
-
+                 subject.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
                  subject.topicNameLabel.text = safeSubjects[currentSubject].name
 
                  guard let myString = safeSubjects[currentSubject].picture?.url else {
@@ -80,7 +80,7 @@ class MainPageViewController: UIViewController {
                  }
                  
                  subject.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name)
+                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
                      }
                  
                  myMainPageView.topicsScrollStackView.addArrangedSubview(subject)
@@ -88,6 +88,7 @@ class MainPageViewController: UIViewController {
              else if safeSubjects[currentSubject].name == "Aluguel, compra e venda" {
                  myMainPageView.longCard.topicNameLabel.text = safeSubjects[currentSubject].name
                  myMainPageView.longCard.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
+                 myMainPageView.longCard.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
                  
                  guard let myString = safeSubjects[currentSubject].picture?.url else {
                      return
@@ -101,16 +102,20 @@ class MainPageViewController: UIViewController {
                      }
                  }
                  myMainPageView.longCard.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name)
+                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
                      }
                  
              }
          }
     }
     
-    func openSubjectPage(of subjectID: String, name: String) {
+    func openSubjectPage(of subjectID: String, name: String, subjectImageURL: String?) {
             print("typed subject \(subjectID)")
-        let page = TopicMainPageViewController(subjectID: subjectID, name: name)
+        guard let subjectImageURL = subjectImageURL else {
+            return
+        }
+        
+        let page = TopicMainPageViewController(subjectID: subjectID, name: name, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             
@@ -147,7 +152,20 @@ class MainPageViewController: UIViewController {
              recentThread.postContentLabel.text = safeRecentThreads[currentRecentThread].content
 
              recentThread.addTapGesture {
-                 self.openRecentThread(id: safeRecentThreads[currentRecentThread].id, subjectName: safeRecentThreads[currentRecentThread].subject, subjectID: self.subjectsDict[safeRecentThreads[currentRecentThread].subject] ?? "32dd929b-d4e9-460a-9a12-c4dc0ade5daf")
+                 guard let safeSubjects = self.allSubjects else {
+                     return
+                 }
+                 
+                 var subjectImageURL = ""
+                 for subject in 0..<safeSubjects.count{
+                     if safeSubjects[subject].name == safeRecentThreads[currentRecentThread].subject {
+                         guard let  subjectImage = safeSubjects[subject].picture else {
+                             return
+                         }
+                         subjectImageURL = subjectImage.url
+                     }
+                 }
+                 self.openRecentThread(id: safeRecentThreads[currentRecentThread].id, subjectName: safeRecentThreads[currentRecentThread].subject, subjectID: self.subjectsDict[safeRecentThreads[currentRecentThread].subject] ?? "32dd929b-d4e9-460a-9a12-c4dc0ade5daf", subjectImageURL: subjectImageURL )
                      }
                  
                  myMainPageView.publicationsStackView.addArrangedSubview(recentThread)
@@ -155,9 +173,10 @@ class MainPageViewController: UIViewController {
          }
     }
     
-    func openRecentThread(id: String, subjectName: String, subjectID: String) {
+    func openRecentThread(id: String, subjectName: String, subjectID: String,  subjectImageURL: String) {
             print("touched thread \(id)")
-            let page = FullPostViewController(threadID: id, subjectName: subjectName, subjectID: subjectID)
+        
+        let page = FullPostViewController(threadID: id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             

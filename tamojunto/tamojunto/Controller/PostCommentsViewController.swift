@@ -13,11 +13,13 @@ class PostCommentsViewController: UIViewController {
     var thread: ThreadIDResponse?
     var subjectName: String
     var subjectID: String
+    var subjectImageURL: String
     
-    init(thread: ThreadIDResponse, subjectName: String, subjectID: String){
+    init(thread: ThreadIDResponse, subjectName: String, subjectID: String, subjectImageURL: String){
         self.thread = thread
         self.subjectName = subjectName
         self.subjectID = subjectID
+        self.subjectImageURL = subjectImageURL
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,7 +49,7 @@ class PostCommentsViewController: UIViewController {
         guard let thread = thread else {
             return
         }
-        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID)
+        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("goingback")
     }
@@ -57,7 +59,7 @@ class PostCommentsViewController: UIViewController {
             return
         }
 
-        let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID)
+        let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("postComment")
     }

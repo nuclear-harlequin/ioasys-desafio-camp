@@ -18,12 +18,27 @@ class PostEditorViewController: UIViewController, UITextViewDelegate {
         myPostEditorView.messageTextField.messageTextField.delegate = self
         self.navigationController?.isNavigationBarHidden = true
     }
-
+    
     override func loadView() {
         super.loadView()
         
         self.view = myPostEditorView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
+        
+        myPostEditorView.buttonsStack.postButton.addTarget(self, action: #selector(postThread(_:)), for: .touchUpInside)
+        myPostEditorView.buttonsStack.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
+
+    }
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        let page = MainPageViewController()
+        self.navigationController?.setViewControllers([page], animated: true)
+        print("goingback")
+    }
+    
+    @IBAction func postThread(_ sender: UIButton) {
+        //postar thread e levar user para pagina da thread postada
+        //@GIOVANNA
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -33,4 +48,6 @@ class PostEditorViewController: UIViewController, UITextViewDelegate {
         }
     }
 }
+
+
 

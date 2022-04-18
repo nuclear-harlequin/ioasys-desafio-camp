@@ -15,11 +15,13 @@ class FullPostViewController: UIViewController{
     var threadID: String
     var subjectName: String
     var subjectID: String
+    var subjectImageURL: String
     
-    init(threadID: String, subjectName: String, subjectID: String){
+    init(threadID: String, subjectName: String, subjectID: String, subjectImageURL: String){
         self.threadID = threadID
         self.subjectName = subjectName
         self.subjectID = subjectID
+        self.subjectImageURL = subjectImageURL
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,7 +47,7 @@ class FullPostViewController: UIViewController{
     }
     
     @IBAction func goBack(_ sender: UIButton) {
-        let page = TopicMainPageViewController(subjectID: subjectID, name: subjectName)
+        let page = TopicMainPageViewController(subjectID: subjectID, name: subjectName, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("goingback")
     }
@@ -55,7 +57,7 @@ class FullPostViewController: UIViewController{
             return
         }
 
-        let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID)
+        let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("postComment")
     }
@@ -65,7 +67,7 @@ class FullPostViewController: UIViewController{
             return
         }
 
-        let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID)
+        let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("showComments")
     }

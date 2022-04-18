@@ -16,10 +16,12 @@ class TopicMainPageViewController: UIViewController{
     var page = 1
     let network = NetworkService.shared
     var threads: SubjectIDResponse?
+    var subjectImageURL: String
     
-    init(subjectID: String, name: String){
+    init(subjectID: String, name: String, subjectImageURL: String){
         self.subjectID = subjectID
         self.name = name
+        self.subjectImageURL = subjectImageURL
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,7 +57,13 @@ class TopicMainPageViewController: UIViewController{
     }
     
     func configuresubjectIDImage(){
-//entender request de picture
+        if let myURL = URL(string: subjectImageURL){
+            myTopicMainPageView.topicImageCard.imageView.load(url: myURL)
+         } else {
+             if let myURL = URL(string: "https://bitsofco.de/content/images/2018/12/broken-1.png"){
+                 myTopicMainPageView.topicImageCard.imageView.load(url: myURL)
+             }
+         }
     }
     
     func fetchSubjectIDContent() {
@@ -75,9 +83,6 @@ class TopicMainPageViewController: UIViewController{
     }
     
     func configureThreadsViews(){
-        guard let safeThreads = self.threads?.data else {
-            return
-        }
         guard let safeMeta = self.threads?.meta else {
             return
         }
@@ -111,7 +116,7 @@ class TopicMainPageViewController: UIViewController{
     func openThread(id: String) {
             print("touched thread \(id)")
             let page = FullPostViewController(threadID: id,
-            subjectName: name, subjectID: subjectID)
+                subjectName: name, subjectID: subjectID, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             
@@ -166,7 +171,10 @@ class TopicMainPageViewController: UIViewController{
                  }
                  
                  subject.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name)
+                     guard let topicImage = safeSubjects[currentSubject].picture else{
+                         return
+                     }
+                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: topicImage.url )
                      }
                  
                  myTopicMainPageView.topicsScrollStackView.addArrangedSubview(subject)
@@ -174,9 +182,9 @@ class TopicMainPageViewController: UIViewController{
          }
     }
     
-    func openSubjectPage(of subjectID: String, name: String) {
+    func openSubjectPage(of subjectID: String, name: String, subjectImageURL:String) {
             print("typed subject \(subjectID)")
-        let page = TopicMainPageViewController(subjectID: subjectID, name: name)
+        let page = TopicMainPageViewController(subjectID: subjectID, name: name, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             
