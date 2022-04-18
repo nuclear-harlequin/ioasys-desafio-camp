@@ -216,6 +216,7 @@ class MainPageView: UIView{
         
         contentView.anchor(bottom: showMoreButton.bottomAnchor,
                           bottomConstant: -20)
+        
     }
     
     //MARK: - Setup of the actions
