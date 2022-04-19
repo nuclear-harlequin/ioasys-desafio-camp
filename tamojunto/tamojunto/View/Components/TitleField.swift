@@ -13,7 +13,7 @@ class TitleField: UIView{
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Título..."
-        textField.attributedPlaceholder = NSAttributedString(string: "Título...", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)])
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "Digite aqui...", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)])
         textField.font = UIFont(name: "Raleway-Regular", size: 16)
         textField.textColor = UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)
         textField.text = ""

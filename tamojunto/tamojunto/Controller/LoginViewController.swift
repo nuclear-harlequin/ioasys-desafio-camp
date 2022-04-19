@@ -1,15 +1,16 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  tamojunto
 //
-//  Created by Giovanna Toni on 04/04/22.
+//  Created by Gustavo Perbone on 19/04/22.
 //
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
-    lazy var myWelcomeView = welcomeView()
+    lazy var myLoginView = loginView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +19,15 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = myWelcomeView
+        self.view = myLoginView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
-        myWelcomeView.loginButton.longButton.addTarget(self, action: #selector(goToLogin(_:)), for: .touchUpInside)
+        myLoginView.loginButton.longButton.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
     }
     
-    @IBAction func goToLogin(_ sender: UIButton) {
+    @IBAction func login(_ sender: UIButton) {
         print("clicked")
-        let loginViewController = LoginViewController()
-        self.navigationController?.setViewControllers([loginViewController], animated: true)
+        let tabBarController = TabBarController()
+        self.navigationController?.setViewControllers([tabBarController], animated: true)
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isToolbarHidden = true
         self.navigationController?.hidesBarsOnSwipe = true
