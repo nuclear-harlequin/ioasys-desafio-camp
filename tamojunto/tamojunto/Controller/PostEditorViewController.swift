@@ -25,15 +25,13 @@ class PostEditorViewController: UIViewController {
         
         self.view = myPostEditorView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
-        
-        postThread()
     }
 }
 
 extension PostEditorViewController {
     func postThread() {
-        let threadTitle: String? = "Estou tentando criar um thread"//myPostEditorView.titleTextField.titleTextField.text
-        let threadContent: String? = "Esse é o conteúdo do thread"//myPostEditorView.messageTextField.messageTextField.text
+        let threadTitle: String? = myPostEditorView.titleTextField.titleTextField.text
+        let threadContent: String? = myPostEditorView.messageTextField.messageTextField.text
         let subjectId: String? = "32dd929b-d4e9-460a-9a12-c4dc0ade5daf"
         
         guard let threadTitle = threadTitle
