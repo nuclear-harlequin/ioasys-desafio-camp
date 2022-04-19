@@ -117,9 +117,11 @@ class FullPostView: UIView{
         
         postView.anchor(top: currentPageLbl.bottomAnchor,
                         left: contentView.leftAnchor,
+                        bottom: showCommentsButton.topAnchor,
                         right: contentView.rightAnchor,
                         topConstant: 16.5,
                         leftConstant: 26,
+                        bottomConstant: 24,
                         rightConstant: 26)
         
         showCommentsButton.anchor(top: postView.bottomAnchor,
