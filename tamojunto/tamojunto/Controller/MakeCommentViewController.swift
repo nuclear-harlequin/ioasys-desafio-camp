@@ -41,10 +41,16 @@ class MakeCommentViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
         myMakeCommentView.sendCancelButtons.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
         myMakeCommentView.sendCancelButtons.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
+        
         guard let thread = thread else {
             return
         }
+
         myMakeCommentView.currentPageLbl.text = "\(subjectName) > \(thread.title)"
+        myMakeCommentView.post.postInfoLabel.text = " \(thread.user.firstName) \(thread.user.lastName) em \(thread.createdAt)"
+        myMakeCommentView.post.postTitleLabel.text = thread.title
+        myMakeCommentView.post.postContentLabel.text = thread.content
+        
     }
     
     @IBAction func goBack(_ sender: UIButton) {

@@ -14,6 +14,7 @@ class PostView: UIView {
         view.layer.cornerRadius = 12
         view.backgroundColor = .white
         view.addShadow(radius: 12)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -23,12 +24,14 @@ class PostView: UIView {
         var date = "dd/mm/aa"
         lbl.formatText(font: "Raleway-Regular", fontSize: 13, color: "primary800")
         lbl.text = "\(author) in \(date)"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     lazy var lineView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "primary80")
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -37,6 +40,7 @@ class PostView: UIView {
         var title = "Título Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id lacus vel blandit..."
         lbl.formatText(font: "Raleway-Bold", fontSize: 13, color: "primary800")
         lbl.text = title
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -50,6 +54,7 @@ class PostView: UIView {
             """
         lbl.formatText(font: "Raleway-Regular", fontSize: 13, color: "primary800")
         lbl.text = content
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -77,35 +82,28 @@ extension PostView: CodeView {
         blankView.anchor(top: topAnchor,
                          left: leftAnchor,
                          bottom: bottomAnchor,
-                         right: rightAnchor,
-                         heightConstant: 196)
+                         right: rightAnchor)
         
         postInfoLabel.anchor(top: blankView.topAnchor,
                              left: blankView.leftAnchor,
-                             bottom: lineView.topAnchor,
                              right: blankView.rightAnchor,
                              topConstant: 22.62,
                              leftConstant: 25.85,
-                             bottomConstant: 6.41,
                              rightConstant: 25.85)
         
         lineView.anchor(top: postInfoLabel.bottomAnchor,
                         left: blankView.leftAnchor,
-                        bottom: postTitleLabel.topAnchor,
                         right: blankView.rightAnchor,
                         topConstant: 6.41,
                         leftConstant: 24,
-                        bottomConstant: 8.02,
                         rightConstant: 22,
                         heightConstant: 1)
         
         postTitleLabel.anchor(top: lineView.bottomAnchor,
                               left: blankView.leftAnchor,
-                              bottom: postContentLabel.topAnchor,
                               right: blankView.rightAnchor,
                               topConstant: 8.02,
                               leftConstant: 24,
-                              bottomConstant: 8.02,
                               rightConstant: 22)
         
         postContentLabel.anchor(top: postTitleLabel.bottomAnchor,

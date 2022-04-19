@@ -91,6 +91,7 @@ class FullPost: UIView{
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.19
         lbl.text = "Placeholder"
+        lbl.backgroundColor = .red
         lbl.attributedText = NSMutableAttributedString(string: lbl.text ?? "FAIL", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -123,7 +124,6 @@ class FullPost: UIView{
     func setConstraints(){
         postView.anchor(top: topAnchor,
                         left: leftAnchor,
-                        bottom: bottomAnchor,
                         right: rightAnchor)
         
         editImage.anchor(top: postView.topAnchor,
@@ -137,8 +137,7 @@ class FullPost: UIView{
                               right: postView.rightAnchor,
                               topConstant: 4,
                               leftConstant: 23,
-                              rightConstant: 23,
-                              heightConstant: 17.51)
+                              rightConstant: 23)
         
         stroke.anchorCenterXToSuperview()
         stroke.anchor(top: authorTextView.bottomAnchor,
@@ -154,16 +153,14 @@ class FullPost: UIView{
                              right: postView.rightAnchor,
                              topConstant: 8,
                              leftConstant: 23,
-                             rightConstant: 23,
-                             heightConstant: 53.85)
+                             rightConstant: 23)
         
         commentsTextView.anchor(top: titleTextView.bottomAnchor,
                                 left: postView.leftAnchor,
                                 right: postView.rightAnchor,
                                 topConstant: 16,
                                 leftConstant: 23,
-                                rightConstant: 23,
-                                heightConstant: 17.51)
+                                rightConstant: 23)
         
         messageTextView.anchor(top: commentsTextView.bottomAnchor,
                                left: postView.leftAnchor,
@@ -171,7 +168,7 @@ class FullPost: UIView{
                                topConstant: 22.49,
                                leftConstant: 23,
                                rightConstant: 23)
-        
+
        postView.anchor(bottom: messageTextView.bottomAnchor,
                        bottomConstant: -28.64)
         

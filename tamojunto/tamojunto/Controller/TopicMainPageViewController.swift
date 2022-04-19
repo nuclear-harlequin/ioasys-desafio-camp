@@ -89,7 +89,9 @@ class TopicMainPageViewController: UIViewController{
         
         //if there is no nextpage, deletes "load more" button from screen
         if safeMeta.hasNextPage == false {
-            myTopicMainPageView.showMoreButton.longButton.isHidden = true
+            myTopicMainPageView.showMoreButton.longButton.removeTarget(self, action: #selector(loadMoreThreads(_:)), for: .touchUpInside)
+            myTopicMainPageView.showMoreButton.longButton.isEnabled = false
+            myTopicMainPageView.showMoreButton.longButton.layer.opacity = 0.5
         }
         
         guard let safeThreads = self.threads?.data else {
