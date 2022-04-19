@@ -90,9 +90,12 @@ class NetworkService {
         
         print(url)
         
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTAyOTIyNzgsImV4cCI6MTY1MDM3ODY3OH0.kvMGFXw5-EMe0UYUewKZxUYN5X55N8R6Toh-Y8jAc3M"
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body
         
