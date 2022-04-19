@@ -10,11 +10,14 @@ import UIKit
 
 class PostEditorViewController: UIViewController {
     var textViewClearedOnInitialEdit = false
+    var createdThread: CreatedThread?
 
     let network = NetworkService.shared
     
-    lazy var myPostEditorView = PostEditorView()
-    lazy var subjectsDict:[String:String] = ["Administração" : "32dd929b-d4e9-460a-9a12-c4dc0ade5daf", "Aluguel, compra e venda": "2c5c974d-133f-4a02-8c7b-b51267e6e302", "Colaboradores": "c3847b3f-4681-49fc-a52e-0d4c0b778a8f", "Estudos": "dd278e0e-7662-4671-906f-2deb5e6f6fcf","Finanças" : "826165a0-69f7-4b0a-b222-28d35d165819", "Fornecedores":  "76e9fc20-0afe-4b0c-befe-fcec16c0f72f", "Happy Hour" : "bd3231da-6756-4461-a4df-4dd357934028", "Inovação": "1e6e3211-c0ca-480e-bc23-2017b70905a7", "Marketing": "961f0486-1ff0-45e3-b860-baab867b7bfa", "Notícias": "94417693-72ad-41d0-b86a-c47c9dc28d4c"]
+    lazy var myPostEditorView = PostEditorView()    
+    lazy var subjectsDict = Dictionaries().subjectsDict
+    lazy var pictureURLDict = Dictionaries().pictureURLDict
+    
     lazy var selectedSubject = ""
     
     
@@ -41,31 +44,61 @@ class PostEditorViewController: UIViewController {
     @IBAction func goBack(_ sender: UIButton) {
         let page = MainPageViewController()
         self.navigationController?.setViewControllers([page], animated: true)
-        print("goingback")
+        print("Going back")
     }
     
     @IBAction func showDropDown(_ sender: UIButton) {
         myPostEditorView.dropdown.show()
         myPostEditorView.dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedSubject = item
-            myPostEditorView.subjectMenuButton.setTitle("\(item)", for: .normal)
-          print("Selected item: \(item) at index: \(index)")
-            
+            myPostEditorView.subjectMenuButton.setTitle("\(selectedSubject)", for: .normal)
+          print("Selected item: \(selectedSubject) at index: \(index)")
         }
         print("dropdown")
     }
     
     @IBAction func postThread(_ sender: UIButton) {
-        //postar thread e levar user para pagina da thread postada
-        //@GIOVANNA
+        postNewThread()
+        
+//        let threadId = self.createdThread?.id
+//        let subjectId = self.subjectsDict[self.selectedSubject]
+//
+//        print(self.selectedSubject)
+//
+//        guard let threadId = threadId
+//        else {
+//            print("Invalid thread id")
+//            return
+//        }
+//        print(threadId)
+//
+//        guard let subjectId = subjectId
+//        else {
+//            print("Invalid subject id")
+//            return
+//        }
+//        print(subjectId)
+//
+//        let subjectImage = self.pictureURLDict[subjectId]
+//
+//        guard let subjectImage = subjectImage
+//        else {
+//            print("Invalid subject image")
+//            return
+//        }
+//        print(subjectImage)
+        
+//        let page = FullPostViewController(threadID: threadId, subjectName: self.selectedSubject, subjectID: subjectId, subjectImageURL: subjectImage)
+//        //  present(page, animated: true, completion: nil)
+//        self.navigationController?.setViewControllers([page], animated: true)
     }
 }
 
 extension PostEditorViewController {
-    func postThread() {
+    func postNewThread() {
         let threadTitle: String? = myPostEditorView.titleTextField.titleTextField.text
         let threadContent: String? = myPostEditorView.messageTextField.messageTextField.text
-        let subjectId: String? = "32dd929b-d4e9-460a-9a12-c4dc0ade5daf"
+        let subjectId: String? = subjectsDict[selectedSubject]
         
         guard let threadTitle = threadTitle
         else {
@@ -81,7 +114,7 @@ extension PostEditorViewController {
         
         guard let subjectId = subjectId
         else {
-            print("Choose subject where you want to post the thread")
+            print("Invalid subject")
             return
         }
         
@@ -89,11 +122,43 @@ extension PostEditorViewController {
         let encodedBody = network.encodeToJSON(data: body)
         
         network.makeUrlRequest(endpoint: .fetchThreads, path: nil, method: .post, header: nil, body: encodedBody, parameters: nil) { (result: Result<CreatedThread, RequestError>) in
-            switch result {
-            case .success:
-                print("Thread created successfully")
-            case .failure(let error):
-                print(error)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self.createdThread = response
+                    print(response)
+                    print("Thread created successfully")
+                    
+                    let threadId = self.createdThread?.id
+                    let subjectId = self.subjectsDict[self.selectedSubject]
+                                    
+                    guard let threadId = threadId
+                    else {
+                        print("Invalid thread id")
+                        return
+                    }
+                    
+                    guard let subjectId = subjectId
+                    else {
+                        print("Invalid subject id")
+                        return
+                    }
+                    
+                    let subjectImage = self.pictureURLDict[subjectId]
+                    
+                    guard let subjectImage = subjectImage
+                    else {
+                        print("Invalid subject image")
+                        return
+                    }
+                    
+                    let page = FullPostViewController(threadID: threadId, subjectName: self.selectedSubject, subjectID: subjectId, subjectImageURL: subjectImage)
+                    //  present(page, animated: true, completion: nil)
+                    self.navigationController?.setViewControllers([page], animated: true)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

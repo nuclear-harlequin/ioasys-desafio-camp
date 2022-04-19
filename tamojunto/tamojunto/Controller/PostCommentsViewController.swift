@@ -65,7 +65,7 @@ class PostCommentsViewController: UIViewController {
     }
     
     func configureView(){
-        guard let thread = thread else {return}
+        guard let thread = thread else { return }
         
         myPostAndCommentsView.currentPageLbl.text = "Comentários do Post: \(thread.title)"
         myPostAndCommentsView.post.postInfoLabel.text = "\(thread.user.firstName) \(thread.user.lastName) em \(thread.createdAt)"
@@ -74,9 +74,7 @@ class PostCommentsViewController: UIViewController {
         
         myPostAndCommentsView.numberOfCommentsLabel.text = "\(thread.commentCount) Comentário(s)"
         
-        guard let comments = thread.comments else {
-            return
-        }
+        guard let comments = thread.comments else { return }
         
         for comment in 0..<comments.count{
             let commentView = CommentView()

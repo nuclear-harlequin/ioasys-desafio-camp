@@ -42,6 +42,6 @@ struct PostThread: Codable {
 // MARK: - CreatedThread
 struct CreatedThread: Codable {
     let title, content: String
-    let user: UserCreatedThread
+    let user: UserPosted
     let id, createdAt, updatedAt: String
 }

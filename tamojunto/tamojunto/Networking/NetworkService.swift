@@ -90,7 +90,7 @@ class NetworkService {
         
         print(url)
         
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTAyOTIyNzgsImV4cCI6MTY1MDM3ODY3OH0.kvMGFXw5-EMe0UYUewKZxUYN5X55N8R6Toh-Y8jAc3M"
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTAzODg5OTgsImV4cCI6MTY1MDQ3NTM5OH0.DuRaPYzAO7njzDVIIy8mxKjqej9Z_4Dr1FwpKTte7no"
         
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header
@@ -106,6 +106,7 @@ class NetworkService {
         do {
             return try JSONEncoder().encode(data)
         } catch {
+            print("Failed encoding to data")
             return nil
         }
     }

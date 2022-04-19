@@ -7,8 +7,10 @@
 
 import UIKit
 
-class MakeCommentViewController: UIViewController, UITextViewDelegate {
+class MakeCommentViewController: UIViewController {
     var textViewClearedOnInitialEdit = false
+    
+    let network = NetworkService.shared
     
     lazy var myMakeCommentView = MakeCommentView()
     var thread: ThreadIDResponse?
@@ -56,16 +58,51 @@ class MakeCommentViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func postComment(_ sender: UIButton) {
-        guard let thread = thread else {
+        postNewComment()
+    }
+}
+
+extension MakeCommentViewController {
+    func postNewComment() {
+        let content = myMakeCommentView.comment.messageTextField.text
+        let threadId = self.thread?.id
+       
+        guard let content = content
+        else {
+            print("Comment must have content")
             return
         }
-//postar comentario e levar user para pagina
-        //@GIOVANNA
-        let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL:subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
-        print("ppostingcomment")
+        
+        guard let threadId = threadId
+        else {
+            print("Invalid thread")
+            return
+        }
+        
+        let body = ["content": content, "threadId": threadId]
+        let encodedBody = network.encodeToJSON(data: body)
+        
+        network.makeUrlRequest(endpoint: .writeComment, path: nil, method: .post, header: nil, body: encodedBody, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    guard let thread = self.thread else { return }
+                    
+                    let page = PostCommentsViewController(thread: thread, subjectName: self.subjectName, subjectID: self.subjectID, subjectImageURL: self.subjectImageURL)
+                    
+                    self.navigationController?.setViewControllers([page], animated: true)
+                    print("postingcomment")
+                    print(response)
+                    print("Thread created successfully")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
-    
+}
+
+extension MakeCommentViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if !textViewClearedOnInitialEdit {
             myMakeCommentView.comment.messageTextField.text = ""

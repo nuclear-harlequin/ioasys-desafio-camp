@@ -66,7 +66,7 @@ class PostEditorView: UIView{
         btn.contentHorizontalAlignment = .fill
         btn.setTitleColor(UIColor(red: 0.329, green: 0.31, blue: 0.275, alpha: 1), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 16)
-        btn.titleEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
+//        btn.titleEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         btn.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         btn.layer.cornerRadius = 16
         btn.layer.borderWidth = 1

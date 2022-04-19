@@ -87,7 +87,7 @@ class TopicMainPageViewController: UIViewController{
             return
         }
         
-        //if there is no nextpage, deletes "load more"button from screen
+        //if there is no nextpage, deletes "load more" button from screen
         if safeMeta.hasNextPage == false {
             myTopicMainPageView.showMoreButton.longButton.isHidden = true
         }
@@ -95,28 +95,25 @@ class TopicMainPageViewController: UIViewController{
         guard let safeThreads = self.threads?.data else {
             return
         }
-
-         for currentThread in 0..<safeThreads.count{
-                 let thread = PostThreeLines()
-             
-             thread.postInfoLabel.text = "\(safeThreads[currentThread].user.firstName) \(safeThreads[currentThread].user.lastName) em \(safeThreads[currentThread].createdAt)"
-             thread.postTitleLabel.text = safeThreads[currentThread].title
-             thread.postContentLabel.text = safeThreads[currentThread].content
-             thread.commentsLabel.text = "\(safeThreads[currentThread].commentCount) Comentários"
-             
-             thread.addTapGesture {
-                 self.openThread(id: safeThreads[currentThread].id)
-                     }
-                 
-             myTopicMainPageView.publicationsStackView.addArrangedSubview(thread)
-             
-         }
+        
+        for currentThread in 0..<safeThreads.count{
+            let thread = PostThreeLines()
+            
+            thread.postInfoLabel.text = "\(safeThreads[currentThread].user.firstName) \(safeThreads[currentThread].user.lastName) em \(safeThreads[currentThread].createdAt)"
+            thread.postTitleLabel.text = safeThreads[currentThread].title
+            thread.postContentLabel.text = safeThreads[currentThread].content
+            thread.commentsLabel.text = "\(safeThreads[currentThread].commentCount) Comentários"
+            
+            thread.addTapGesture {
+                self.openThread(id: safeThreads[currentThread].id)
+            }
+            myTopicMainPageView.publicationsStackView.addArrangedSubview(thread)
+        }
     }
     
     func openThread(id: String) {
             print("touched thread \(id)")
-            let page = FullPostViewController(threadID: id,
-                subjectName: name, subjectID: subjectID, subjectImageURL: subjectImageURL)
+            let page = FullPostViewController(threadID: id, subjectName: name, subjectID: subjectID, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             

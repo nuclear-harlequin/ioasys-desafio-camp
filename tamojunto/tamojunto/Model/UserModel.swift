@@ -44,7 +44,7 @@ struct UserThreads: Codable {
 }
 
 // MARK: - UserCreatedThread
-struct UserCreatedThread: Codable {
+struct UserPosted: Codable {
     let id, email, firstName, lastName: String
     let businessName, cnpj, phone: String
     let avatar: File?
