@@ -14,6 +14,8 @@ class ImageCard: UIView{
     lazy var imageView: UIImageView = {
         let img = UIImageView()
         img.backgroundColor = UIColor(named: "neutral60")
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         img.layer.cornerRadius = 8
         img.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
         img.layer.shadowOpacity = 1

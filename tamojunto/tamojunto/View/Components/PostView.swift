@@ -74,7 +74,11 @@ extension PostView: CodeView {
     }
     
     func setupConstraints() {
-        blankView.anchorTo(superview: self)
+        blankView.anchor(top: topAnchor,
+                         left: leftAnchor,
+                         bottom: bottomAnchor,
+                         right: rightAnchor,
+                         heightConstant: 196)
         
         postInfoLabel.anchor(top: blankView.topAnchor,
                              left: blankView.leftAnchor,

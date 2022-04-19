@@ -8,20 +8,21 @@
 
 import Foundation
 import UIKit
+import DropDown
 
 class PostEditorView: UIView{
     lazy var header = Header()
-
+    
     //currentPageLbl
     lazy var currentPageLbl: UILabel = {
         let lbl = UILabel()
         lbl.text = "Novo Tópico"
         lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
         return lbl
     }()
-
+    
     //titleLbl
     lazy var titleLbl: UILabel = {
         let lbl = UILabel()
@@ -56,37 +57,23 @@ class PostEditorView: UIView{
         return lbl
     }()
     
-    //themeMenu
-    lazy var themeMenuButton: UIButton = {
+    let dropdown = DropDown()
+    
+    //subjectMenuButton
+    lazy var subjectMenuButton: UIButton = {
         let btn = UIButton()
-        let usersItem = UIAction(title: "Users", image: UIImage(systemName: "person.fill")) { (action) in
-
-              print("Users action was tapped")
-         }
-
-         let addUserItem = UIAction(title: "Add User", image: UIImage(systemName: "person.badge.plus")) { (action) in
-
-             print("Add User action was tapped")
-         }
-
-         let removeUserItem = UIAction(title: "Remove User", image: UIImage(systemName: "person.fill.xmark.rtl")) { (action) in
-              print("Remove User action was tapped")
-         }
-
-         let menu = UIMenu(title: "My Menu", options: .displayInline, children: [usersItem , addUserItem , removeUserItem])
-        
-        btn.menu = menu
-        btn.showsMenuAsPrimaryAction = true
-        btn.setTitle("Administração", for: .normal)
+        btn.setTitle("Escolha o tópico", for: .normal)
         btn.contentHorizontalAlignment = .fill
         btn.setTitleColor(UIColor(red: 0.329, green: 0.31, blue: 0.275, alpha: 1), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 16)
+        btn.titleEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         btn.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         btn.layer.cornerRadius = 16
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor(red: 0.718, green: 0.714, blue: 0.678, alpha: 1).cgColor
         return btn
     }()
+
     
     lazy var buttonsStack = ButtonsStack()
     
@@ -130,7 +117,8 @@ class PostEditorView: UIView{
         contentView.addSubview(messageLbl)
         contentView.addSubview(messageTextField)
         contentView.addSubview(themeLbl)
-        contentView.addSubview(themeMenuButton)
+        contentView.addSubview(subjectMenuButton)
+        subjectMenuButton.addSubview(dropdown)
         contentView.addSubview(notificationStack)
         contentView.addSubview(buttonsStack)
     }
@@ -159,10 +147,10 @@ class PostEditorView: UIView{
         
         let contentViewCenterY = contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
         contentViewCenterY.priority = .defaultLow
-
+        
         let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: heightAnchor)
         contentViewHeight.priority = .defaultLow
-
+        
         NSLayoutConstraint.activate([
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentViewCenterY,
@@ -170,68 +158,71 @@ class PostEditorView: UIView{
         ])
         
         currentPageLbl.anchor(top: contentView.topAnchor,
-                        left: contentView.leftAnchor,
-                        leftConstant: 25,
-                        heightConstant: 23)
+                              left: contentView.leftAnchor,
+                              right: contentView.rightAnchor,
+                              leftConstant: 24,
+                              rightConstant: 24,
+                              heightConstant: 23)
         
         titleLbl.anchor(top: currentPageLbl.bottomAnchor,
                         left: contentView.leftAnchor,
                         topConstant: 16.5,
                         leftConstant: 25,
                         heightConstant: 23)
-
-
+        
+        
         titleTextField.anchor(top: titleLbl.bottomAnchor,
-                                  left: leftAnchor,
-                                  right: rightAnchor,
-                                  topConstant: 8,
-                                  leftConstant: 25,
-                                  rightConstant: 24,
-                                  heightConstant: 55)
-
+                              left: leftAnchor,
+                              right: rightAnchor,
+                              topConstant: 8,
+                              leftConstant: 25,
+                              rightConstant: 24,
+                              heightConstant: 55)
+        
         messageLbl.anchor(top: titleTextField.bottomAnchor,
                           left: contentView.leftAnchor,
-                         topConstant: 16,
+                          topConstant: 16,
                           leftConstant: 25,
                           heightConstant: 23)
-
+        
         messageTextField.anchor(top: messageLbl.bottomAnchor,
-                                    left: leftAnchor,
-                                    right: rightAnchor,
-                                    topConstant: 8,
-                                    leftConstant: 25,
-                                    rightConstant: 24,
-                                    heightConstant: 264)
-
+                                left: leftAnchor,
+                                right: rightAnchor,
+                                topConstant: 8,
+                                leftConstant: 25,
+                                rightConstant: 24,
+                                heightConstant: 264)
+        
         themeLbl.anchor(top: messageTextField.bottomAnchor,
                         left: contentView.leftAnchor,
-                       topConstant: 31,
+                        topConstant: 31,
                         leftConstant: 25,
                         heightConstant: 23)
-
-        themeMenuButton.anchor(top: themeLbl.bottomAnchor,
+        
+        subjectMenuButton.anchor(top: themeLbl.bottomAnchor,
                                left: leftAnchor,
                                right: rightAnchor,
                                topConstant: 12,
                                leftConstant: 25,
                                rightConstant: 24,
                                heightConstant: 55)
-
-        notificationStack.anchor(top: themeMenuButton.bottomAnchor,
-                                     left: contentView.leftAnchor,
-                                     right: contentView.rightAnchor,
-                                     topConstant: 19.5,
-                                     leftConstant: 25,
-                                     rightConstant: 24,
-                                     heightConstant: 24)
-
+        dropdown.anchorView = subjectMenuButton
+        
+        notificationStack.anchor(top: subjectMenuButton.bottomAnchor,
+                                 left: contentView.leftAnchor,
+                                 right: contentView.rightAnchor,
+                                 topConstant: 19.5,
+                                 leftConstant: 25,
+                                 rightConstant: 24,
+                                 heightConstant: 24)
+        
         buttonsStack.anchor(top: notificationStack.bottomAnchor,
-                                left: contentView.leftAnchor,
-                                bottom: contentView.bottomAnchor,
-                                right: rightAnchor,
-                                topConstant: 17.5,
-                                leftConstant: 25,
-                                rightConstant: 24)
+                            left: contentView.leftAnchor,
+                            bottom: contentView.bottomAnchor,
+                            right: rightAnchor,
+                            topConstant: 17.5,
+                            leftConstant: 25,
+                            rightConstant: 24)
     }
     
     //MARK: - Setup of the actions

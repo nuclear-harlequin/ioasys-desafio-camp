@@ -13,6 +13,8 @@ class TopicCardLong: UIView{
     lazy var imageView: UIImageView = {
         let img = UIImageView()
         img.backgroundColor = UIColor(named: "neutral60")
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         img.layer.cornerRadius = 12
         img.translatesAutoresizingMaskIntoConstraints = false
         return img

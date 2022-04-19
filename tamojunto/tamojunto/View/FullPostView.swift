@@ -17,7 +17,7 @@ class FullPostView: UIView{
         lbl.text = "Administração > Título do Tópico"
         lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
         return lbl
     }()
     
@@ -109,9 +109,11 @@ class FullPostView: UIView{
         
         
         currentPageLbl.anchor(top: contentView.topAnchor,
-                                left: contentView.leftAnchor,
-                                leftConstant: 25,
-                                heightConstant: 23)
+                              left: contentView.leftAnchor,
+                              right: contentView.rightAnchor,
+                              leftConstant: 24,
+                              rightConstant: 24,
+                              heightConstant: 23)
         
         postView.anchor(top: currentPageLbl.bottomAnchor,
                         left: contentView.leftAnchor,
@@ -137,7 +139,7 @@ class FullPostView: UIView{
                             heightConstant: 55)
         
         contentView.anchor(bottom: buttonsStack.bottomAnchor,
-                           bottomConstant: 32)
+                           bottomConstant: -32)
         
     }
     

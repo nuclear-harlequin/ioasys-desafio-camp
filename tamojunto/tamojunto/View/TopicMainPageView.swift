@@ -34,12 +34,13 @@ class TopicMainPageView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Home > Administração"
+        lbl.textAlignment = .left
         return lbl
     }()
     
     lazy var topicImageCard = ImageCard()
     
-    //publicationsLabel
+    //topicLabel
     lazy var topicLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)

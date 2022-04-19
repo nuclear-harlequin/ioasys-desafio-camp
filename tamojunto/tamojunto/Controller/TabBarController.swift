@@ -30,15 +30,7 @@ class TabBarController: UITabBarController {
         controller2.tabBarItem = UITabBarItem(title: "Novo Tópico", image: UIImage(systemName: "plus.square"), selectedImage: UIImage(systemName: "plus.square.fill"))
         let nav2 = UINavigationController(rootViewController: controller2)
         
-        let controller3 = SearchSuccessViewController()
-        controller3.tabBarItem = UITabBarItem(title: "Configurações", image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
-        let nav3 = UINavigationController(rootViewController: controller3)
-        
-        let controller4 = CommentViewController()
-        controller4.tabBarItem = UITabBarItem(title: "Comentar", image: UIImage(systemName: "plus.bubble"), selectedImage: UIImage(systemName: "plus.bubble.fill"))
-        let nav4 = UINavigationController(rootViewController: controller4)
-
-        viewControllers = [nav1, nav2, nav4, nav3]
+        viewControllers = [nav1, nav2]
     }
     
     

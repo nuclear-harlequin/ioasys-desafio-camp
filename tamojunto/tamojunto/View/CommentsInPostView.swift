@@ -9,6 +9,18 @@ import UIKit
 
 class CommentsInPostView: UIView {
     
+    //currentPageLbl
+    lazy var currentPageLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.text = "Administração > Título do Tópico"
+        lbl.textColor = UIColor(red: 0.05, green: 0.29, blue: 0.31, alpha: 1)
+        lbl.font = UIFont(name: "Raleway-Bold", size: 16)
+        lbl.textAlignment = .left
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    lazy var header = Header()
     lazy var post = PostView()
     lazy var notificationToggle = ActivateNotificationStack()
     lazy var moreCommentsButton = LongButton()
@@ -50,8 +62,10 @@ class CommentsInPostView: UIView {
 
 extension CommentsInPostView: CodeView {
     func buildViewHierarchy() {
+        self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(currentPageLbl)
         contentView.addSubview(post)
         contentView.addSubview(numberOfCommentsLabel)
         contentView.addSubview(commentsStack)
@@ -61,15 +75,21 @@ extension CommentsInPostView: CodeView {
     }
     
     func setupConstraints() {
+        header.anchor(top: topAnchor,
+                      left: leftAnchor,
+                      right: rightAnchor,
+                      heightConstant: 80)
+        
+        
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 24),
             contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor)
@@ -87,11 +107,18 @@ extension CommentsInPostView: CodeView {
             contentViewHeight
         ])
         
-        post.anchor(top: contentView.topAnchor,
+        currentPageLbl.anchor(top: contentView.topAnchor,
+                              left: contentView.leftAnchor,
+                              right: contentView.rightAnchor,
+                              leftConstant: 24,
+                              rightConstant: 24,
+                              heightConstant: 23)
+        
+        post.anchor(top: currentPageLbl.bottomAnchor,
                     left: contentView.leftAnchor,
                     bottom: numberOfCommentsLabel.topAnchor,
                     right: contentView.rightAnchor,
-                    topConstant: 144,
+                    topConstant: 16.5,
                     leftConstant: 24,
                     bottomConstant: 16,
                     rightConstant: 24)
@@ -141,7 +168,7 @@ extension CommentsInPostView: CodeView {
                                   heightConstant: 55)
         
         contentView.anchor(bottom: commentBackButtons.bottomAnchor,
-                           bottomConstant: -104)
+                           bottomConstant: -32)
     }
     
     func setupAdditionalConfiguration() {
