@@ -33,3 +33,15 @@ struct Meta: Codable {
     let hasNextPage: Bool
 }
 
+struct PostThread: Codable {
+    let title: String
+    let content: String
+    let subjectId: String
+}
+
+// MARK: - CreatedThread
+struct CreatedThread: Codable {
+    let title, content: String
+    let user: UserCreatedThread
+    let id, createdAt, updatedAt: String
+}
