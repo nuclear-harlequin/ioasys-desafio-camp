@@ -83,7 +83,7 @@ class FullPostView: UIView{
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
@@ -117,13 +117,14 @@ class FullPostView: UIView{
         
         postView.anchor(top: currentPageLbl.bottomAnchor,
                         left: contentView.leftAnchor,
-                        bottom: showCommentsButton.topAnchor,
+                        bottom: postView.messageTextView.bottomAnchor,
                         right: contentView.rightAnchor,
                         topConstant: 16.5,
                         leftConstant: 26,
-                        bottomConstant: 24,
+                        bottomConstant: -28.64,
                         rightConstant: 26)
         
+
         showCommentsButton.anchor(top: postView.bottomAnchor,
                                   left: contentView.leftAnchor,
                                   right: contentView.rightAnchor,
@@ -139,10 +140,7 @@ class FullPostView: UIView{
                             leftConstant: 26,
                             rightConstant: 26,
                             heightConstant: 55)
-        
-        contentView.anchor(bottom: buttonsStack.bottomAnchor,
-                           bottomConstant: -32)
-        
+
     }
     
     //MARK: - Setup of the actions

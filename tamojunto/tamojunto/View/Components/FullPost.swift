@@ -91,7 +91,6 @@ class FullPost: UIView{
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.19
         lbl.text = "Placeholder"
-        lbl.backgroundColor = .red
         lbl.attributedText = NSMutableAttributedString(string: lbl.text ?? "FAIL", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -122,7 +121,11 @@ class FullPost: UIView{
     
     //MARK: - Setup of the cnstraints
     func setConstraints(){
-        postView.anchorTo(superview: self)
+
+        postView.anchor(top: topAnchor,
+                        left: leftAnchor,
+                        bottom: bottomAnchor,
+                        right: rightAnchor)
         
         button.anchor(top: postView.topAnchor,
                       left: postView.leftAnchor,
@@ -169,9 +172,8 @@ class FullPost: UIView{
                                leftConstant: 23,
                                rightConstant: 23)
 
-//       postView.anchor(bottom: messageTextView.bottomAnchor,
-//                       bottomConstant: -28.64)
-        
+       postView.anchor(bottom: messageTextView.bottomAnchor,
+                       bottomConstant: -28.64)        
     }
     
     //MARK: - Setup of the actions

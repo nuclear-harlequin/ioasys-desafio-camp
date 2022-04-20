@@ -34,6 +34,17 @@ class TopicMainPageViewController: UIViewController{
         self.navigationController?.isNavigationBarHidden = true
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            addFloatingButton()
+            floatingButton?.addTarget(self, action: #selector(floatingButtonPressed), for: .touchUpInside)
+    }
+
+    @objc func floatingButtonPressed(){
+        let postEditor = PostEditorViewController()
+        self.navigationController?.pushViewController(postEditor, animated: true)
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -50,6 +61,10 @@ class TopicMainPageViewController: UIViewController{
          }
         
         myTopicMainPageView.showMoreButton.longButton.addTarget(self, action: #selector(loadMoreThreads(_:)), for: .touchUpInside)
+        
+        myTopicMainPageView.goBackButton.longButton.addTarget(self, action: #selector(goToMainPage(_:)), for: .touchUpInside)
+        
+        myTopicMainPageView.searchBarButton.addTapGesture {self.goToSearchPage()}
         
         configuresubjectIDImage()
         fetchSubjectIDContent()
@@ -100,8 +115,12 @@ class TopicMainPageViewController: UIViewController{
         
         for currentThread in 0..<safeThreads.count{
             let thread = PostThreeLines()
+            let fullDate = safeThreads[currentThread].createdAt.prefix(10)
+            let day = fullDate.suffix(2)
+            let month = fullDate.suffix(5).prefix(2)
+            let year = fullDate.prefix(4)
             
-            thread.postInfoLabel.text = "\(safeThreads[currentThread].user.firstName) \(safeThreads[currentThread].user.lastName) em \(safeThreads[currentThread].createdAt)"
+            thread.postInfoLabel.text = "\(safeThreads[currentThread].user.firstName) \(safeThreads[currentThread].user.lastName) em \(day)-\(month)-\(year)"
             thread.postTitleLabel.text = safeThreads[currentThread].title
             thread.postContentLabel.text = safeThreads[currentThread].content
             thread.commentsLabel.text = "\(safeThreads[currentThread].commentCount) Comentários"
@@ -116,16 +135,18 @@ class TopicMainPageViewController: UIViewController{
     func openThread(id: String) {
             print("touched thread \(id)")
             let page = FullPostViewController(threadID: id, subjectName: name, subjectID: subjectID, subjectImageURL: subjectImageURL)
-    
-          //  present(page, animated: true, completion: nil)
-            
-          self.navigationController?.setViewControllers([page], animated: true)
+          self.navigationController?.pushViewController(page, animated: true)
     }
     
     @IBAction func loadMoreThreads(_ sender: UIButton) {
         page += 1
         fetchSubjectIDContent()
         print(page)
+    }
+    
+    @IBAction func goToMainPage(_ sender: UIButton) {
+        let page = MainPageViewController()
+        self.navigationController?.pushViewController(page, animated: true)
     }
 
 // bottom of page subjects
@@ -182,12 +203,14 @@ class TopicMainPageViewController: UIViewController{
     }
     
     func openSubjectPage(of subjectID: String, name: String, subjectImageURL:String) {
-            print("typed subject \(subjectID)")
+        print("typed subject \(subjectID)")
         let page = TopicMainPageViewController(subjectID: subjectID, name: name, subjectImageURL: subjectImageURL)
+        self.navigationController?.pushViewController(page, animated: true)
+    }
     
-          //  present(page, animated: true, completion: nil)
-            
-          self.navigationController?.setViewControllers([page], animated: true)
+    func goToSearchPage() {
+        let page = SearchSuccessViewController()
+          self.navigationController?.pushViewController(page, animated: true)
     }
 }
 

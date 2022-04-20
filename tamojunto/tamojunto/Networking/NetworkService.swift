@@ -90,7 +90,7 @@ class NetworkService {
         
         print(url)
         
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTA0ODgxMTYsImV4cCI6MTY1MDU3NDUxNn0.04u0tQijhnG0fX9lIuQJCVE9uTiWhC0ccTqxAJx56fY"
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTA0Nzc0NTMsImV4cCI6MTY1MDU2Mzg1M30.R6xkuuDduSflgA59vr9YmQgZVfaehpgBRIA1Qdo4WbQ"
         
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header

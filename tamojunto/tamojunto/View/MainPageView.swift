@@ -25,7 +25,7 @@ class MainPageView: UIView{
     }()
     
     //searchBar
-    lazy var searchBar = SearchBar()
+    lazy var searchBarButton = SearchBarButton()
     
     //topicsLabel
     lazy var topicsLabel: UILabel = {
@@ -108,7 +108,7 @@ class MainPageView: UIView{
         self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(searchBar)
+        contentView.addSubview(searchBarButton)
         contentView.addSubview(topicsLabel)
         contentView.addSubview(topicsScrollView)
         topicsScrollView.addSubview(topicsScrollStackView)
@@ -133,7 +133,7 @@ class MainPageView: UIView{
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
@@ -157,14 +157,14 @@ class MainPageView: UIView{
             contentViewHeight
         ])
         
-        searchBar.anchor(top: contentView.topAnchor,
+        searchBarButton.anchor(top: contentView.topAnchor,
                          left: contentView.leftAnchor,
                          right: contentView.rightAnchor,
                          leftConstant: 23,
                          rightConstant: 23,
                          heightConstant: 56)
         
-        topicsLabel.anchor(top: searchBar.bottomAnchor,
+        topicsLabel.anchor(top: searchBarButton.bottomAnchor,
                            left: contentView.leftAnchor,
                            right: contentView.rightAnchor,
                            topConstant: 24,

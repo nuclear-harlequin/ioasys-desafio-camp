@@ -25,6 +25,16 @@ class SearchSuccessView: UIView{
         return view
     }()
     
+    
+    lazy var backButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("< Voltar para a página anterior", for: .normal)
+        btn.setTitleColor(UIColor(named: "primary500"), for: .normal)
+        btn.titleLabel?.font = UIFont(name: "Raleway-Bold", size: 16)
+        btn.titleLabel?.textAlignment = .left
+        return btn
+    }()
+    
     //searchBar
     lazy var searchBar = SearchBar()
     
@@ -34,6 +44,8 @@ class SearchSuccessView: UIView{
         lbl.font = UIFont(name: "Raleway-Bold", size: 16)
         lbl.textColor = UIColor(named: "primary500")
         lbl.text = "Resultados da sua busca:"
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .left
         return lbl
     }()
     
@@ -79,6 +91,7 @@ class SearchSuccessView: UIView{
         self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(backButton)
         contentView.addSubview(searchBar)
         contentView.addSubview(resultsLabel)
         contentView.addSubview(resultsStackView)
@@ -100,7 +113,7 @@ class SearchSuccessView: UIView{
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
@@ -124,9 +137,14 @@ class SearchSuccessView: UIView{
             contentViewHeight
         ])
         
-        searchBar.anchor(top: contentView.topAnchor,
+        backButton.anchor(top: contentView.topAnchor,
+                          left: contentView.leftAnchor,
+                          leftConstant: 23)
+        
+        searchBar.anchor(top: backButton.bottomAnchor,
                          left: contentView.leftAnchor,
                          right: contentView.rightAnchor,
+                         topConstant: 10,
                          leftConstant: 23,
                          rightConstant: 23,
                         heightConstant: 56)
@@ -136,8 +154,7 @@ class SearchSuccessView: UIView{
                      right: contentView.rightAnchor,
                      topConstant: 24,
                      leftConstant: 24,
-                     rightConstant: 24,
-                    heightConstant: 23)
+                     rightConstant: 24)
 
         resultsStackView.anchor(top: resultsLabel.bottomAnchor,
                               left: contentView.leftAnchor,

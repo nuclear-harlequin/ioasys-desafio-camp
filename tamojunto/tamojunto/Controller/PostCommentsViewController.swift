@@ -45,13 +45,19 @@ class PostCommentsViewController: UIViewController {
         myPostAndCommentsView.commentBackButtons.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            addFloatingButton()
+            floatingButton?.addTarget(self, action: #selector(floatingButtonPressed), for: .touchUpInside)
+    }
+
+    @objc func floatingButtonPressed(){
+        let postEditor = PostEditorViewController()
+        self.navigationController?.pushViewController(postEditor, animated: true)
+    }
+    
     @IBAction func goBack(_ sender: UIButton) {
-        guard let thread = thread else {
-            return
-        }
-        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
-        print("goingback")
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func postComment(_ sender: UIButton) {
@@ -60,15 +66,19 @@ class PostCommentsViewController: UIViewController {
         }
 
         let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.pushViewController(page, animated: true)
         print("postComment")
     }
     
     func configureView(){
         guard let thread = thread else { return }
+        let fullDate = thread.createdAt.prefix(10)
+        let day = fullDate.suffix(2)
+        let month = fullDate.suffix(5).prefix(2)
+        let year = fullDate.prefix(4)
         
         myPostAndCommentsView.currentPageLbl.text = "Comentários do Post: \(thread.title)"
-        myPostAndCommentsView.post.postInfoLabel.text = "\(thread.user.firstName) \(thread.user.lastName) em \(thread.createdAt)"
+        myPostAndCommentsView.post.postInfoLabel.text = "\(thread.user.firstName) \(thread.user.lastName) em \(day)-\(month)-\(year)"
         myPostAndCommentsView.post.postTitleLabel.text = thread.title
         myPostAndCommentsView.post.postContentLabel.text = thread.content
         
@@ -78,7 +88,7 @@ class PostCommentsViewController: UIViewController {
         
         for comment in 0..<comments.count{
             let commentView = CommentView()
-            commentView.infoLabel.text = "\(comments[comment].user.firstName) \(comments[comment].user.lastName) em \(comments[comment].createdAt)"
+            commentView.infoLabel.text = "\(comments[comment].user.firstName) \(comments[comment].user.lastName) em \(day)-\(month)-\(year)"
             
             commentView.contentLabel.text = comments[comment].content
             

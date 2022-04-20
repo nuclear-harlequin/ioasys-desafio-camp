@@ -23,7 +23,18 @@ class MainPageViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addFloatingButton()
+        floatingButton?.addTarget(self, action: #selector(floatingButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func floatingButtonPressed(){
+        let postEditor = PostEditorViewController()
+        self.navigationController?.pushViewController(postEditor, animated: true)
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -32,12 +43,13 @@ class MainPageViewController: UIViewController {
         fetchSubjects()
         fetchRecentThreads()
         myMainPageView.showMoreButton.longButton.addTarget(self, action: #selector(loadMoreThreads(_:)), for: .touchUpInside)
+        myMainPageView.searchBarButton.addTapGesture {self.goToSearchPage()}
         
         for view in myMainPageView.publicationsStackView.arrangedSubviews{
-             view.removeFromSuperview()
-         }
+            view.removeFromSuperview()
+        }
     }
-
+    
     func fetchSubjects() {
         network.makeUrlRequest(endpoint: .fetchSubjects, path: nil, method: .get, header: nil, body: nil, parameters: nil) { (result: Result<[Subject], RequestError>) in
             switch result {
@@ -58,69 +70,66 @@ class MainPageViewController: UIViewController {
         }
         
         for view in myMainPageView.topicsScrollStackView.arrangedSubviews{
-             view.removeFromSuperview()
-         }
-
-         for currentSubject in 0..<safeSubjects.count{
-             if safeSubjects[currentSubject].name != "Aluguel, compra e venda"{
-                 let subject = TopicCardNarrow()
-                 subject.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
-                 subject.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
-                 subject.topicNameLabel.text = safeSubjects[currentSubject].name
-
-                 guard let myString = safeSubjects[currentSubject].picture?.url else {
-                     return
-                 }
-
+            view.removeFromSuperview()
+        }
+        
+        for currentSubject in 0..<safeSubjects.count{
+            if safeSubjects[currentSubject].name != "Aluguel, compra e venda"{
+                let subject = TopicCardNarrow()
+                subject.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
+                subject.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
+                subject.topicNameLabel.text = safeSubjects[currentSubject].name
+                
+                guard let myString = safeSubjects[currentSubject].picture?.url else {
+                    return
+                }
+                
                 if let myURL = URL(string: myString){
                     subject.imageView.load(url: myURL)
-                 } else {
-                     if let myURL = URL(string: "https://bitsofco.de/content/images/2018/12/broken-1.png"){
-                         subject.imageView.load(url: myURL)
-                     }
-                 }
-                 
-                 subject.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
-                     }
-                 
-                 myMainPageView.topicsScrollStackView.addArrangedSubview(subject)
-             }
-             else if safeSubjects[currentSubject].name == "Aluguel, compra e venda" {
-                 myMainPageView.longCard.topicNameLabel.text = safeSubjects[currentSubject].name
-                 myMainPageView.longCard.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
-                 myMainPageView.longCard.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
-                 
-                 guard let myString = safeSubjects[currentSubject].picture?.url else {
-                     return
-                 }
-
+                } else {
+                    if let myURL = URL(string: "https://bitsofco.de/content/images/2018/12/broken-1.png"){
+                        subject.imageView.load(url: myURL)
+                    }
+                }
+                
+                subject.addTapGesture {
+                    self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
+                }
+                
+                myMainPageView.topicsScrollStackView.addArrangedSubview(subject)
+            }
+            else if safeSubjects[currentSubject].name == "Aluguel, compra e venda" {
+                myMainPageView.longCard.topicNameLabel.text = safeSubjects[currentSubject].name
+                myMainPageView.longCard.commentNumberLabel.text = String(safeSubjects[currentSubject].threadCount)
+                myMainPageView.longCard.topicNumberLabel.text = "\(safeSubjects[currentSubject].threadCount) tópicos"
+                
+                guard let myString = safeSubjects[currentSubject].picture?.url else {
+                    return
+                }
+                
                 if let myURL = URL(string: myString){
                     myMainPageView.longCard.imageView.load(url: myURL)
-                 } else {
-                     if let myURL = URL(string: "https://bitsofco.de/content/images/2018/12/broken-1.png"){
-                         myMainPageView.longCard.imageView.load(url: myURL)
-                     }
-                 }
-                 myMainPageView.longCard.addTapGesture {
-                     self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
-                     }
-                 
-             }
-         }
+                } else {
+                    if let myURL = URL(string: "https://bitsofco.de/content/images/2018/12/broken-1.png"){
+                        myMainPageView.longCard.imageView.load(url: myURL)
+                    }
+                }
+                myMainPageView.longCard.addTapGesture {
+                    self.openSubjectPage(of: safeSubjects[currentSubject].id, name: safeSubjects[currentSubject].name, subjectImageURL: safeSubjects[currentSubject].picture?.url)
+                }
+                
+            }
+        }
     }
     
     func openSubjectPage(of subjectID: String, name: String, subjectImageURL: String?) {
-            print("typed subject \(subjectID)")
+        print("typed subject \(subjectID)")
         guard let subjectImageURL = subjectImageURL else {
             return
         }
         
         let page = TopicMainPageViewController(subjectID: subjectID, name: name, subjectImageURL: subjectImageURL)
-    
-          //  present(page, animated: true, completion: nil)
-            
-          self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.pushViewController(page, animated: true)
     }
     
     func fetchRecentThreads() {
@@ -146,9 +155,14 @@ class MainPageViewController: UIViewController {
         
         for currentRecentThread in 0..<safeRecentThreads.count{
             let recentThread = PostTwoLines()
+            let fullDate = safeRecentThreads[currentRecentThread].createdAt.prefix(10)
+            let day = fullDate.suffix(2)
+            let month = fullDate.suffix(5).prefix(2)
+            let year = fullDate.prefix(4)
+            
             
             recentThread.topicLabel.text = safeRecentThreads[currentRecentThread].subject
-            recentThread.postInfoLabel.text = "\(safeRecentThreads[currentRecentThread].user.firstName) \(safeRecentThreads[currentRecentThread].user.lastName) em \(safeRecentThreads[currentRecentThread].createdAt)"
+            recentThread.postInfoLabel.text = "\(safeRecentThreads[currentRecentThread].user.firstName) \(safeRecentThreads[currentRecentThread].user.lastName) em \(day)-\(month)-\(year)"
             recentThread.postTitleLabel.text = safeRecentThreads[currentRecentThread].title
             recentThread.postContentLabel.text = safeRecentThreads[currentRecentThread].content
             
@@ -170,6 +184,7 @@ class MainPageViewController: UIViewController {
             }
             
             myMainPageView.publicationsStackView.addArrangedSubview(recentThread)
+            
         }
     }
     
@@ -177,10 +192,7 @@ class MainPageViewController: UIViewController {
         print("touched thread \(id)")
         
         let page = FullPostViewController(threadID: id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-    
-          //  present(page, animated: true, completion: nil)
-            
-        self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.pushViewController(page, animated: true)
     }
     
     @IBAction func loadMoreThreads(_ sender: UIButton) {
@@ -188,8 +200,11 @@ class MainPageViewController: UIViewController {
         fetchRecentThreads()
         print(page)
     }
-}
-
-
     
-
+    func goToSearchPage() {
+        print("Cliclou")
+        let page = SearchSuccessViewController()
+        self.navigationController?.pushViewController(page, animated: true)
+    }
+    
+}

@@ -42,8 +42,8 @@ class welcomeView: UIView{
     //signupButton
     lazy var signupButton: LongButton = {
         let btn = LongButton()
-        btn.longButton.setTitle("Criar uma conta (em breve)", for: .normal)
-        btn.longButton.setTitleColor(UIColor(red: 1, green: 1, blue: 1, alpha: 0.5), for: .normal)
+        btn.longButton.setTitle("Criar uma conta no site", for: .normal)
+        btn.longButton.setTitleColor(UIColor(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
         btn.longButton.titleLabel?.font = UIFont(name: "Raleway-Bold", size: 20)
         btn.longButton.layer.backgroundColor = UIColor(named: "primary500")?.cgColor
         return btn
