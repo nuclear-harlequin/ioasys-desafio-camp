@@ -14,6 +14,7 @@ enum TamoJunto {
     case fetchSubjects
     case fetchThreads
     case writeComment
+    case makeSearch
     case fetchSubjectsID(subjectID: String)
     case fetchThreadID(threadID: String)
     
@@ -31,6 +32,9 @@ enum TamoJunto {
         case .writeComment:
             return "/comments"
             
+        case .makeSearch:
+            return "/search"
+            
         case let .fetchSubjectsID(subjectID: subjectID):
             return "/subjects/\(subjectID)"
             
@@ -39,3 +43,4 @@ enum TamoJunto {
         }
     }
 }
+

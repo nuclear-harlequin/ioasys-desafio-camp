@@ -26,7 +26,7 @@ class TopicMainPageView: UIView{
     }()
     
     //searchBar
-    lazy var searchBar = SearchBar()
+    lazy var searchBarButton = SearchBarButton()
     
     //topicsLabel
     lazy var breadcrumbs: UILabel = {
@@ -105,6 +105,12 @@ class TopicMainPageView: UIView{
     lazy var topic2 = TopicCardSmall()
     lazy var topic3 = TopicCardSmall()
     
+    lazy var goBackButton: LongButton = {
+        let btn = LongButton()
+        btn.longButton.setTitle("VOLTAR PARA HOME", for: .normal)
+        return btn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -122,7 +128,7 @@ class TopicMainPageView: UIView{
         self.addSubview(header)
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(searchBar)
+        contentView.addSubview(searchBarButton)
         contentView.addSubview(breadcrumbs)
         contentView.addSubview(topicImageCard)
         contentView.addSubview(topicLabel)
@@ -137,6 +143,7 @@ class TopicMainPageView: UIView{
         topicsScrollStackView.addArrangedSubview(topic)
         topicsScrollStackView.addArrangedSubview(topic2)
         topicsScrollStackView.addArrangedSubview(topic3)
+        contentView.addSubview(goBackButton)
     }
     
     //MARK: - Setup of the cnstraints
@@ -149,7 +156,7 @@ class TopicMainPageView: UIView{
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
@@ -173,14 +180,14 @@ class TopicMainPageView: UIView{
             contentViewHeight
         ])
         
-        searchBar.anchor(top: contentView.topAnchor,
+        searchBarButton.anchor(top: contentView.topAnchor,
                          left: contentView.leftAnchor,
                          right: contentView.rightAnchor,
                          leftConstant: 23,
                          rightConstant: 23,
                         heightConstant: 56)
         
-        breadcrumbs.anchor(top: searchBar.bottomAnchor,
+        breadcrumbs.anchor(top: searchBarButton.bottomAnchor,
                      left: contentView.leftAnchor,
                      right: contentView.rightAnchor,
                      topConstant: 24,
@@ -238,8 +245,15 @@ class TopicMainPageView: UIView{
             topicsScrollStackView.trailingAnchor.constraint(equalTo: topicsScrollView.contentLayoutGuide.trailingAnchor, constant: -24)
         ])
         
-        contentView.anchor(bottom: topicsScrollView.bottomAnchor,
-                          bottomConstant: -66)
+        goBackButton.anchor(top: topicsScrollView.bottomAnchor,
+                            left: contentView.leftAnchor,
+                            right: contentView.rightAnchor,
+                            topConstant: 24,
+                            leftConstant: 23,
+                            rightConstant: 23)
+        
+        contentView.anchor(bottom: goBackButton.bottomAnchor,
+                          bottomConstant: -36)
         
     }
     

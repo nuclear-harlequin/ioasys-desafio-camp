@@ -21,15 +21,21 @@ class ViewController: UIViewController {
         self.view = myWelcomeView
         self.view.backgroundColor = UIColor(red: 0.898, green: 0.914, blue: 0.925, alpha: 1)
         myWelcomeView.loginButton.longButton.addTarget(self, action: #selector(goToLogin(_:)), for: .touchUpInside)
+        myWelcomeView.signupButton.longButton.addTarget(self, action: #selector(takeToSignUpPage(_:)), for: .touchUpInside)
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
-        print("clicked")
         let loginViewController = LoginViewController()
         self.navigationController?.setViewControllers([loginViewController], animated: true)
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isToolbarHidden = true
         self.navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    @IBAction func takeToSignUpPage(_ sender: UIButton) {
+        if let url = URL(string: "https://www.apple.com") {
+           UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
 }
