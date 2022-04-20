@@ -26,6 +26,16 @@ class CommentView: UIView {
         return lbl
     }()
     
+    lazy var button: UIButton = {
+        let bttn = UIButton()
+        let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 18)
+        bttn.setImage(UIImage(systemName: "x.square", withConfiguration: buttonImageConfig), for: .normal)
+        bttn.imageView?.contentMode = .scaleAspectFit
+        bttn.contentMode = .scaleAspectFit
+        bttn.tintColor = UIColor(named: "primary500")
+        return bttn
+    }()
+    
     lazy var contentLabel: UILabel = {
         let lbl = UILabel()
         var content = """
@@ -54,12 +64,22 @@ class CommentView: UIView {
 extension CommentView: CodeView {
     func buildViewHierarchy() {
         self.addSubview(blankView)
+        blankView.addSubview(button)
         blankView.addSubview(infoLabel)
         blankView.addSubview(contentLabel)
     }
     
     func setupConstraints() {
         blankView.anchorTo(superview: self)
+        
+        button.anchor(top: blankView.topAnchor,
+                      left: blankView.leftAnchor,
+                      bottom: contentLabel.topAnchor,
+                      right: blankView.rightAnchor,
+                      topConstant: 10,
+                      leftConstant: 290,
+                      bottomConstant: 20,
+                      rightConstant: 10)
         
         infoLabel.anchor(top: blankView.topAnchor,
                          left: blankView.leftAnchor,

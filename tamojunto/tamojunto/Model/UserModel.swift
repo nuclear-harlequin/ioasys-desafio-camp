@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct LoginResponse: Codable {
-    let user: UserLogin
-    let expiresIn: String
-    let accessToken: String
-}
-
 struct UserLogin: Codable {
     let id: String
     let email: String
@@ -43,7 +37,6 @@ struct UserThreads: Codable {
     let phone: String
 }
 
-// MARK: - UserCreatedThread
 struct UserPosted: Codable {
     let id, email, firstName, lastName: String
     let businessName, cnpj, phone: String

@@ -1,11 +1,16 @@
 //
-//  CreateCommentModel.swift
+//  CommentModel.swift
 //  tamojunto
 //
 //  Created by Gustavo Perbone on 12/04/22.
 //
 
 import Foundation
+
+struct Comment: Codable {
+    let id, content, createdAt, updatedAt: String
+    let user: UserThreadID
+}
 
 // MARK: - CreatedComment
 struct CreatedComment: Codable {
@@ -15,3 +20,4 @@ struct CreatedComment: Codable {
     let createdAt: String
     let updatedAt: String
 }
+

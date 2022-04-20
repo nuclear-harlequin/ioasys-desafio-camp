@@ -45,3 +45,17 @@ struct CreatedThread: Codable {
     let user: UserPosted
     let id, createdAt, updatedAt: String
 }
+
+struct ThreadIDResponse: Codable {
+    let id, title, content: String
+    let user: UserThreadID
+    let comments: [Comment]?
+    let createdAt: String
+    let commentCount: Int
+}
+
+struct UserThreadID: Codable {
+    let id, email, firstName, lastName: String
+    let businessName, cnpj, phone: String
+    let avatar: File?
+}

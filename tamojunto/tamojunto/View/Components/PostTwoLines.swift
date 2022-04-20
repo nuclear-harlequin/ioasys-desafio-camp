@@ -37,6 +37,16 @@ class PostTwoLines: UIView{
         return lbl
     }()
     
+    lazy var button: UIButton = {
+        let bttn = UIButton()
+        let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 18)
+        bttn.setImage(UIImage(systemName: "x.square", withConfiguration: buttonImageConfig), for: .normal)
+        bttn.imageView?.contentMode = .scaleAspectFit
+        bttn.contentMode = .scaleAspectFit
+        bttn.tintColor = UIColor(named: "primary500")
+        return bttn
+    }()
+    
     lazy var lineView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "primary80")
@@ -96,6 +106,7 @@ class PostTwoLines: UIView{
     func setSubviews(){
         self.addSubview(blankView)
         blankView.addSubview(topicLabel)
+        blankView.addSubview(button)
         blankView.addSubview(postInfoLabel)
         blankView.addSubview(lineView)
         blankView.addSubview(postTitleLabel)
@@ -123,6 +134,15 @@ class PostTwoLines: UIView{
                              topConstant: 4,
                              leftConstant: 24,
                              rightConstant: 24)
+        
+        button.anchor(top: blankView.topAnchor,
+                      left: blankView.leftAnchor,
+                      bottom: postTitleLabel.topAnchor,
+                      right: blankView.rightAnchor,
+                      topConstant: 10,
+                      leftConstant: 290,
+                      bottomConstant: 20,
+                      rightConstant: 10)
         
         lineView.anchor(top: postInfoLabel.bottomAnchor,
                         left: blankView.leftAnchor,

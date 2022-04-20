@@ -18,14 +18,14 @@ class FullPost: UIView{
         return view
     }()
     
-    //edit image
-    lazy var editImage: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(systemName: "slider.horizontal.3")
-        imgView.contentMode = .scaleAspectFit
-        imgView.tintColor =   UIColor(red: 0.051, green: 0.29, blue: 0.306, alpha: 1)
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        return imgView
+    lazy var button: UIButton = {
+        let bttn = UIButton()
+        let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 18)
+        bttn.setImage(UIImage(systemName: "x.square", withConfiguration: buttonImageConfig), for: .normal)
+        bttn.imageView?.contentMode = .scaleAspectFit
+        bttn.contentMode = .scaleAspectFit
+        bttn.tintColor = UIColor(named: "primary500")
+        return bttn
     }()
     
     //authorTextView
@@ -112,7 +112,7 @@ class FullPost: UIView{
     //MARK: - Setup of the subviews
     func setSubviews(){
         self.addSubview(postView)
-        postView.addSubview(editImage)
+        postView.addSubview(button)
         postView.addSubview(authorTextView)
         postView.addSubview(stroke)
         postView.addSubview(titleTextView)
@@ -122,17 +122,17 @@ class FullPost: UIView{
     
     //MARK: - Setup of the cnstraints
     func setConstraints(){
-        postView.anchor(top: topAnchor,
-                        left: leftAnchor,
-                        right: rightAnchor)
+        postView.anchorTo(superview: self)
         
-        editImage.anchor(top: postView.topAnchor,
-                         right: postView.rightAnchor,
-                         topConstant: 12,
-                         rightConstant: 14,
-                         heightConstant: 24)
+        button.anchor(top: postView.topAnchor,
+                      left: postView.leftAnchor,
+                      bottom: titleTextView.topAnchor,
+                      right: postView.rightAnchor,
+                      topConstant: 10,
+                      leftConstant: 290,
+                      bottomConstant: 30)
         
-        authorTextView.anchor(top: editImage.bottomAnchor,
+        authorTextView.anchor(top: button.bottomAnchor,
                               left: postView.leftAnchor,
                               right: postView.rightAnchor,
                               topConstant: 4,
@@ -169,8 +169,8 @@ class FullPost: UIView{
                                leftConstant: 23,
                                rightConstant: 23)
 
-       postView.anchor(bottom: messageTextView.bottomAnchor,
-                       bottomConstant: -28.64)
+//       postView.anchor(bottom: messageTextView.bottomAnchor,
+//                       bottomConstant: -28.64)
         
     }
     

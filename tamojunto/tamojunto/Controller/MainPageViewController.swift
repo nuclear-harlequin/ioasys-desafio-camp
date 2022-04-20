@@ -13,8 +13,9 @@ class MainPageViewController: UIViewController {
     
     var allSubjects: [Subject]?
     var recentThreads: ThreadResponse?
-    var page = 1
     var subjectsDict = Dictionaries().subjectsDict
+    
+    var page = 1
     
     let network = NetworkService.shared
     
@@ -142,45 +143,44 @@ class MainPageViewController: UIViewController {
         guard let safeRecentThreads = self.recentThreads?.data else {
             return
         }
-
-         for currentRecentThread in 0..<safeRecentThreads.count{
-                 let recentThread = PostTwoLines()
-             
-             recentThread.topicLabel.text = safeRecentThreads[currentRecentThread].subject
-             recentThread.postInfoLabel.text = "\(safeRecentThreads[currentRecentThread].user.firstName) \(safeRecentThreads[currentRecentThread].user.lastName) em \(safeRecentThreads[currentRecentThread].createdAt)"
-             recentThread.postTitleLabel.text = safeRecentThreads[currentRecentThread].title
-             recentThread.postContentLabel.text = safeRecentThreads[currentRecentThread].content
-
-             recentThread.addTapGesture {
-                 guard let safeSubjects = self.allSubjects else {
-                     return
-                 }
-                 
-                 var subjectImageURL = ""
-                 for subject in 0..<safeSubjects.count{
-                     if safeSubjects[subject].name == safeRecentThreads[currentRecentThread].subject {
-                         guard let  subjectImage = safeSubjects[subject].picture else {
-                             return
-                         }
-                         subjectImageURL = subjectImage.url
-                     }
-                 }
-                 self.openRecentThread(id: safeRecentThreads[currentRecentThread].id, subjectName: safeRecentThreads[currentRecentThread].subject, subjectID: self.subjectsDict[safeRecentThreads[currentRecentThread].subject] ?? "32dd929b-d4e9-460a-9a12-c4dc0ade5daf", subjectImageURL: subjectImageURL )
-                     }
-                 
-                 myMainPageView.publicationsStackView.addArrangedSubview(recentThread)
-             
-         }
+        
+        for currentRecentThread in 0..<safeRecentThreads.count{
+            let recentThread = PostTwoLines()
+            
+            recentThread.topicLabel.text = safeRecentThreads[currentRecentThread].subject
+            recentThread.postInfoLabel.text = "\(safeRecentThreads[currentRecentThread].user.firstName) \(safeRecentThreads[currentRecentThread].user.lastName) em \(safeRecentThreads[currentRecentThread].createdAt)"
+            recentThread.postTitleLabel.text = safeRecentThreads[currentRecentThread].title
+            recentThread.postContentLabel.text = safeRecentThreads[currentRecentThread].content
+            
+            recentThread.addTapGesture {
+                guard let safeSubjects = self.allSubjects else {
+                    return
+                }
+                
+                var subjectImageURL = ""
+                for subject in 0..<safeSubjects.count{
+                    if safeSubjects[subject].name == safeRecentThreads[currentRecentThread].subject {
+                        guard let  subjectImage = safeSubjects[subject].picture else {
+                            return
+                        }
+                        subjectImageURL = subjectImage.url
+                    }
+                }
+                self.openRecentThread(id: safeRecentThreads[currentRecentThread].id, subjectName: safeRecentThreads[currentRecentThread].subject, subjectID: self.subjectsDict[safeRecentThreads[currentRecentThread].subject] ?? "32dd929b-d4e9-460a-9a12-c4dc0ade5daf", subjectImageURL: subjectImageURL )
+            }
+            
+            myMainPageView.publicationsStackView.addArrangedSubview(recentThread)
+        }
     }
     
     func openRecentThread(id: String, subjectName: String, subjectID: String, subjectImageURL: String) {
-            print("touched thread \(id)")
+        print("touched thread \(id)")
         
         let page = FullPostViewController(threadID: id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
     
           //  present(page, animated: true, completion: nil)
             
-          self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.setViewControllers([page], animated: true)
     }
     
     @IBAction func loadMoreThreads(_ sender: UIButton) {
@@ -188,7 +188,8 @@ class MainPageViewController: UIViewController {
         fetchRecentThreads()
         print(page)
     }
-
 }
+
+
     
 

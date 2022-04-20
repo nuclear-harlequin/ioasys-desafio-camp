@@ -45,7 +45,7 @@ class MakeCommentViewController: UIViewController {
         guard let thread = thread else {
             return
         }
-
+        
         myMakeCommentView.currentPageLbl.text = "\(subjectName) > \(thread.title)"
         myMakeCommentView.post.postInfoLabel.text = " \(thread.user.firstName) \(thread.user.lastName) em \(thread.createdAt)"
         myMakeCommentView.post.postTitleLabel.text = thread.title
@@ -57,7 +57,7 @@ class MakeCommentViewController: UIViewController {
         guard let thread = thread else {
             return
         }
-
+        
         let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
         self.navigationController?.setViewControllers([page], animated: true)
         print("goingback")
@@ -71,8 +71,8 @@ class MakeCommentViewController: UIViewController {
 extension MakeCommentViewController {
     func postNewComment() {
         let content = myMakeCommentView.comment.messageTextField.text
-        let threadId = self.thread?.id
-       
+        let threadId = thread?.id
+        
         guard let content = content
         else {
             print("Comment must have content")
@@ -86,23 +86,24 @@ extension MakeCommentViewController {
         }
         
         let body = ["content": content, "threadId": threadId]
-        let encodedBody = network.encodeToJSON(data: body)
+        let encodedBody = self.network.encodeToJSON(data: body)
         
         network.makeUrlRequest(endpoint: .writeComment, path: nil, method: .post, header: nil, body: encodedBody, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
+            
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
                     guard let thread = self.thread else { return }
                     
                     let page = PostCommentsViewController(thread: thread, subjectName: self.subjectName, subjectID: self.subjectID, subjectImageURL: self.subjectImageURL)
                     
                     self.navigationController?.setViewControllers([page], animated: true)
+                }
                     print("postingcomment")
                     print(response)
                     print("Thread created successfully")
                 case .failure(let error):
                     print(error)
-                }
             }
         }
     }

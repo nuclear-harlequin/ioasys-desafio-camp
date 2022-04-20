@@ -11,3 +11,9 @@ struct Login: Codable {
     var email : String
     var password : String
 }
+
+struct LoginResponse: Codable {
+    let user: UserLogin
+    let expiresIn: String
+    let accessToken: String
+}
