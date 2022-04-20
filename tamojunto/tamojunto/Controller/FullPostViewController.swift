@@ -33,6 +33,17 @@ class FullPostViewController: UIViewController{
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            addFloatingButton()
+            floatingButton?.addTarget(self, action: #selector(floatingButtonPressed), for: .touchUpInside)
+    }
+
+    @objc func floatingButtonPressed(){
+        let postEditor = PostEditorViewController()
+        self.navigationController?.pushViewController(postEditor, animated: true)
+    }
 
     override func loadView() {
         super.loadView()
@@ -47,9 +58,7 @@ class FullPostViewController: UIViewController{
     }
     
     @IBAction func goBack(_ sender: UIButton) {
-        let page = TopicMainPageViewController(subjectID: subjectID, name: subjectName, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
-        print("goingback")
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func postComment(_ sender: UIButton) {
@@ -58,7 +67,7 @@ class FullPostViewController: UIViewController{
         }
 
         let page = MakeCommentViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.pushViewController(page, animated: true)
         print("postComment")
     }
     
@@ -68,7 +77,7 @@ class FullPostViewController: UIViewController{
         }
 
         let page = PostCommentsViewController(thread: thread, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.pushViewController(page, animated: true)
         print("showComments")
     }
     
@@ -90,14 +99,21 @@ class FullPostViewController: UIViewController{
         guard let safeThread = self.thread else {
             return
         }
+        
+        let fullDate = safeThread.createdAt.prefix(10)
+        let day = fullDate.suffix(2)
+        let month = fullDate.suffix(5).prefix(2)
+        let year = fullDate.prefix(4)
+        
         //breadcrumbs da pagina
         myFullPostView.currentPageLbl.text = "\(subjectName) > \(safeThread.title)"
 
-        myFullPostView.postView.authorTextView.text =  "\(safeThread.user.firstName) \(safeThread.user.lastName) em \(safeThread.createdAt)"
-         
+        myFullPostView.postView.authorTextView.text =  "\(safeThread.user.firstName) \(safeThread.user.lastName) em \(day)-\(month)-\(year)"
+
         myFullPostView.postView.titleTextView.text = safeThread.title
         myFullPostView.postView.commentsTextView.text = "\(safeThread.commentCount) comentários"
         myFullPostView.postView.messageTextView.text = safeThread.content
+        
     }
 }
 

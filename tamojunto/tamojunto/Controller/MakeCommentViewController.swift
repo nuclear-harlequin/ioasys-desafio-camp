@@ -46,21 +46,20 @@ class MakeCommentViewController: UIViewController {
             return
         }
 
+        let fullDate = thread.createdAt.prefix(10)
+        let day = fullDate.suffix(2)
+        let month = fullDate.suffix(5).prefix(2)
+        let year = fullDate.prefix(4)
+        
         myMakeCommentView.currentPageLbl.text = "\(subjectName) > \(thread.title)"
-        myMakeCommentView.post.postInfoLabel.text = " \(thread.user.firstName) \(thread.user.lastName) em \(thread.createdAt)"
+        myMakeCommentView.post.postInfoLabel.text = " \(thread.user.firstName) \(thread.user.lastName) em \(day)-\(month)-\(year)"
         myMakeCommentView.post.postTitleLabel.text = thread.title
         myMakeCommentView.post.postContentLabel.text = thread.content
         
     }
     
     @IBAction func goBack(_ sender: UIButton) {
-        guard let thread = thread else {
-            return
-        }
-
-        let page = FullPostViewController(threadID: thread.id, subjectName: subjectName, subjectID: subjectID, subjectImageURL: subjectImageURL)
-        self.navigationController?.setViewControllers([page], animated: true)
-        print("goingback")
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func postComment(_ sender: UIButton) {
@@ -96,7 +95,7 @@ extension MakeCommentViewController {
                     
                     let page = PostCommentsViewController(thread: thread, subjectName: self.subjectName, subjectID: self.subjectID, subjectImageURL: self.subjectImageURL)
                     
-                    self.navigationController?.setViewControllers([page], animated: true)
+                    self.navigationController?.pushViewController(page, animated: true)
                     print("postingcomment")
                     print(response)
                     print("Thread created successfully")

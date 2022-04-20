@@ -94,7 +94,7 @@ class loginView: UIView{
     
     lazy var signupButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("cadastre-se aqui. (EM BREVE)", for: .normal)
+        btn.setTitle("cadastre-se no nosso site.", for: .normal)
         btn.setTitleColor(UIColor(named: "primary800"), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Raleway-Bold", size: 18)
         return btn

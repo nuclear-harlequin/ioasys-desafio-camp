@@ -42,8 +42,7 @@ class PostEditorViewController: UIViewController {
     }
     
     @IBAction func goBack(_ sender: UIButton) {
-        let page = MainPageViewController()
-        self.navigationController?.setViewControllers([page], animated: true)
+        self.navigationController?.popViewController(animated: true)
         print("Going back")
     }
     
@@ -153,8 +152,7 @@ extension PostEditorViewController {
                     }
                     
                     let page = FullPostViewController(threadID: threadId, subjectName: self.selectedSubject, subjectID: subjectId, subjectImageURL: subjectImage)
-                    //  present(page, animated: true, completion: nil)
-                    self.navigationController?.setViewControllers([page], animated: true)
+                    self.navigationController?.pushViewController(page, animated: true)
                     
                 case .failure(let error):
                     print(error)
