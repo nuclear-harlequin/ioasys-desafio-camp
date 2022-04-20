@@ -47,7 +47,7 @@ class MakeCommentViewController: UIViewController {
         guard let thread = thread else {
             return
         }
-
+        
         let fullDate = thread.createdAt.prefix(10)
         let day = fullDate.suffix(2)
         let month = fullDate.suffix(5).prefix(2)
@@ -106,9 +106,9 @@ extension MakeCommentViewController {
                     print("postingcomment")
                     print(response)
                     print("Thread created successfully")
-                case .failure(let error):
-                    print(error)
                 }
+            case .failure(let error):
+                print(error)
             }
         }
     }
