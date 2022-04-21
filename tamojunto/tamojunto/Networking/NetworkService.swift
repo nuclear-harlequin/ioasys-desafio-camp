@@ -41,6 +41,7 @@ class NetworkService {
             
             guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
                 print("Server error")
+                print(response)
                 resultHandler(.failure(.serverError))
                 return
             }
@@ -89,8 +90,9 @@ class NetworkService {
         }
         
         print(url)
-        
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNjFhODUzZS1hMzM1LTRjN2ItYWYxZi04MWNjMjE0OGQwY2UiLCJpYXQiOjE2NTA0Nzc0NTMsImV4cCI6MTY1MDU2Mzg1M30.R6xkuuDduSflgA59vr9YmQgZVfaehpgBRIA1Qdo4WbQ"
+        let userToken = UserToken()
+        let accessToken = userToken.userToken
+        print(accessToken)
         
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header
@@ -98,7 +100,7 @@ class NetworkService {
         urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body
-        
+
         return urlRequest
     }
     

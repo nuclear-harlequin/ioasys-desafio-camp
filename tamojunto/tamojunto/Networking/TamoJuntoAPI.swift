@@ -21,7 +21,7 @@ enum TamoJunto {
     var endpoint: String {
         switch self {
         case .userLogin:
-            return "/auth/sign-in"
+            return "/auth/login"
             
         case .fetchSubjects:
             return "/subjects"

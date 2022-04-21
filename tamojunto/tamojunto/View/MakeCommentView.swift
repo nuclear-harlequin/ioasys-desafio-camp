@@ -126,13 +126,14 @@ extension MakeCommentView: CodeView {
                             right: contentView.rightAnchor,
                             topConstant: 16,
                             leftConstant: 24,
-                            rightConstant: 24)
+                            rightConstant: 24,
+                            heightConstant: 23)
         
         comment.anchor(top: commentLabel.bottomAnchor,
                        left: contentView.leftAnchor,
                        right: contentView.rightAnchor,
+                       topConstant: 8,
                        leftConstant: 25,
-                       bottomConstant: 8,
                        rightConstant: 24,
                        heightConstant: 264)
         
@@ -156,5 +157,8 @@ extension MakeCommentView: CodeView {
     
     func setupAdditionalConfiguration() {
         commentLabel.numberOfLines = 1
+        
+        //para dispensar o teclado ao clicar fora do textfield
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
     }
 }

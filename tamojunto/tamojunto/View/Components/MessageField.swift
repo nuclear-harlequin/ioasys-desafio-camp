@@ -12,7 +12,7 @@ class MessageField: UIView{
     //messageTextField
     lazy var messageTextField: UITextView = {
         let textField = UITextView()
-        textField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        textField.backgroundColor = .white
         textField.font = UIFont(name: "Raleway-Regular", size: 16)
         textField.textColor = UIColor(red: 0.204, green: 0.176, blue: 0.145, alpha: 1)
         textField.text = "Seu texto aqui..."

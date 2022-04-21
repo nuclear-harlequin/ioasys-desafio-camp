@@ -18,7 +18,7 @@ class MainPageViewController: UIViewController {
     var page = 1
     
     let network = NetworkService.shared
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true

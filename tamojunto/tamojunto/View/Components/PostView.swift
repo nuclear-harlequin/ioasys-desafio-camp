@@ -103,11 +103,9 @@ extension PostView: CodeView {
                              rightConstant: 25.85)
         
         button.anchor(top: blankView.topAnchor,
-                      left: blankView.leftAnchor,
                       bottom: postTitleLabel.topAnchor,
                       right: blankView.rightAnchor,
                       topConstant: 10,
-                      leftConstant: 290,
                       bottomConstant: 20,
                       rightConstant: 10)
         
@@ -128,12 +126,13 @@ extension PostView: CodeView {
         
         postContentLabel.anchor(top: postTitleLabel.bottomAnchor,
                                 left: blankView.leftAnchor,
-                                bottom: blankView.bottomAnchor,
                                 right: blankView.rightAnchor,
                                 topConstant: 8.02,
                                 leftConstant: 24,
-                                bottomConstant: 14,
                                 rightConstant: 22)
+        
+        blankView.anchor(bottom: postContentLabel.bottomAnchor,
+                         bottomConstant: -14)
     }
     
     func setupAdditionalConfiguration() {

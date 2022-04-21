@@ -144,8 +144,8 @@ class loginView: UIView{
                          left: backgroundImage.leftAnchor,
                          right: backgroundImage.rightAnchor,
                           topConstant: 19.7,
-                         leftConstant: 81,
-                         rightConstant: 81)
+                         leftConstant: 24,
+                         rightConstant: 24)
         
         emailLbl.anchor(top: welcomeLbl.bottomAnchor,
                          left: backgroundImage.leftAnchor,
@@ -202,7 +202,8 @@ class loginView: UIView{
     
     //MARK: - Setup of the actions
     func setActions(){
-        //action set in view controller
+        //para dispensar o teclado ao clicar fora do textfield
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
     }
     
     

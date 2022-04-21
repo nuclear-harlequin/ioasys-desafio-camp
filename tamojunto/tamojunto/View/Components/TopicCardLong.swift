@@ -127,14 +127,12 @@ class TopicCardLong: UIView{
                          left: leftAnchor,
                          bottom: bottomAnchor,
                          right: rightAnchor,
-                         widthConstant: 344,
                          heightConstant: 240)
         
         bannerView.anchor(
             left: imageView.leftAnchor,
             bottom: imageView.bottomAnchor,
             right: imageView.rightAnchor,
-            widthConstant: 344,
             heightConstant: 120)
         
         topicNameLabel.anchor(top: bannerView.topAnchor,
@@ -158,9 +156,9 @@ class TopicCardLong: UIView{
                                 rightConstant: 9)
         
         commentNumberView.anchor(top: imageView.topAnchor,
-                                 left: imageView.leftAnchor,
+                                 right: imageView.rightAnchor,
                                  topConstant: 104,
-                                 leftConstant: 276,
+                                 rightConstant: 16.4,
                                  widthConstant: 51.68,
                                  heightConstant: 48)
         

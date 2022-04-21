@@ -23,7 +23,6 @@ class CommentsInPostView: UIView {
     lazy var header = Header()
     lazy var post = PostView()
     lazy var notificationToggle = ActivateNotificationStack()
-    lazy var moreCommentsButton = LongButton()
     lazy var commentBackButtons = ButtonsStack()
     lazy var commentsStack = CommentsStackView()
     
@@ -70,7 +69,6 @@ extension CommentsInPostView: CodeView {
         contentView.addSubview(numberOfCommentsLabel)
         contentView.addSubview(commentsStack)
         contentView.addSubview(notificationToggle)
-        contentView.addSubview(moreCommentsButton)
         contentView.addSubview(commentBackButtons)
     }
     
@@ -143,23 +141,14 @@ extension CommentsInPostView: CodeView {
         
         notificationToggle.anchor(top: commentsStack.bottomAnchor,
                                   left: contentView.leftAnchor,
-                                  bottom: moreCommentsButton.topAnchor,
                                   right: contentView.rightAnchor,
                                   topConstant: 24.5,
                                   leftConstant: 24,
-                                  bottomConstant: 24.5,
                                   rightConstant: 24)
         
-        moreCommentsButton.anchor(top: notificationToggle.bottomAnchor,
-                                  left: contentView.leftAnchor,
-                                  bottom: commentBackButtons.topAnchor,
-                                  right: contentView.rightAnchor,
-                                  topConstant: 24.5,
-                                  leftConstant: 25,
-                                  bottomConstant: 24,
-                                  rightConstant: 25)
+
         
-        commentBackButtons.anchor(top: moreCommentsButton.bottomAnchor,
+        commentBackButtons.anchor(top: notificationToggle.bottomAnchor,
                                   left: contentView.leftAnchor,
                                   right: contentView.rightAnchor,
                                   topConstant: 24,
@@ -172,7 +161,7 @@ extension CommentsInPostView: CodeView {
     }
     
     func setupAdditionalConfiguration() {
-        moreCommentsButton.longButton.setTitle("EXIBIR MAIS COMENTÁRIOS", for: .normal)
+    
         commentBackButtons.cancelButton.setTitle("VOLTAR", for: .normal)
         commentBackButtons.postButton.setTitle("COMENTAR", for: .normal)
     }

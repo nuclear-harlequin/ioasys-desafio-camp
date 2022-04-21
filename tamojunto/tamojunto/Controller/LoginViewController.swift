@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     lazy var myLoginView = loginView()
+    let network = NetworkService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +27,48 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        let mainPageView = MainPageViewController()
-        self.navigationController?.setViewControllers([mainPageView], animated: true)
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.isToolbarHidden = true
-        self.navigationController?.hidesBarsOnSwipe = true
+        performLoginServer()
     }
     
     @IBAction func takeToSignUpPage(_ sender: UIButton) {
         if let url = URL(string: "https://www.apple.com") {
-           UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    func performLoginServer() {
+        let email = self.myLoginView.emailTextField.titleTextField.text ?? ""
+        let pass = self.myLoginView.passwordTextField.titleTextField.text ?? ""
+
+        let body = ["email": email, "password": pass]
+        let encodedBody = self.network.encodeToJSON(data: body)
+        
+            print("comecando network")
+            network.makeUrlRequest(endpoint: .userLogin, path: nil, method: .post, header: nil, body: encodedBody, parameters: nil) { (result: Result<LoginResponse, RequestError>) in
+                switch result {
+                case .success(let loginResponse):
+                    print(loginResponse)
+                    DispatchQueue.main.async {
+    
+                        var userID = UserID()
+                        var userToken = UserToken()
+                        
+                        userID.userID = loginResponse.user.id
+                        userToken.userToken = loginResponse.accessToken
+
+                        
+                        let mainPageView = MainPageViewController()
+                        self.navigationController?.setViewControllers([mainPageView], animated: true)
+                        self.navigationController?.isNavigationBarHidden = true
+                        self.navigationController?.isToolbarHidden = true
+                        self.navigationController?.hidesBarsOnSwipe = true
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
     
 }

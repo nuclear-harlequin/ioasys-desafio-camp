@@ -63,6 +63,7 @@ class PostEditorView: UIView{
     lazy var subjectMenuButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Escolha o tópico", for: .normal)
+        btn.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         btn.contentHorizontalAlignment = .fill
         btn.setTitleColor(UIColor(red: 0.329, green: 0.31, blue: 0.275, alpha: 1), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 16)
@@ -72,7 +73,7 @@ class PostEditorView: UIView{
         btn.layer.borderColor = UIColor(red: 0.718, green: 0.714, blue: 0.678, alpha: 1).cgColor
         return btn
     }()
-
+    
     
     lazy var buttonsStack = ButtonsStack()
     
@@ -199,13 +200,14 @@ class PostEditorView: UIView{
                         heightConstant: 23)
         
         subjectMenuButton.anchor(top: themeLbl.bottomAnchor,
-                               left: leftAnchor,
-                               right: rightAnchor,
-                               topConstant: 12,
-                               leftConstant: 25,
-                               rightConstant: 24,
-                               heightConstant: 55)
-        dropdown.anchorView = subjectMenuButton
+                                 left: leftAnchor,
+                                 right: rightAnchor,
+                                 topConstant: 12,
+                                 leftConstant: 25,
+                                 rightConstant: 24,
+                                 heightConstant: 55)
+        
+        dropdown.anchorTo(superview: subjectMenuButton)
         
         notificationStack.anchor(top: subjectMenuButton.bottomAnchor,
                                  left: contentView.leftAnchor,
@@ -226,7 +228,9 @@ class PostEditorView: UIView{
     
     //MARK: - Setup of the actions
     func setActions(){
-        //action set in view controller
+        //para dispensar o teclado ao clicar fora do textfield
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
+        
     }
     
     

@@ -10,6 +10,7 @@ import UIKit
 class PostCommentsViewController: UIViewController {
     
     lazy var myPostAndCommentsView = CommentsInPostView()
+    let network = NetworkService.shared
     var thread: ThreadIDResponse?
     var subjectName: String
     var subjectID: String
@@ -39,10 +40,11 @@ class PostCommentsViewController: UIViewController {
         for view in myPostAndCommentsView.commentsStack.commentsStack.arrangedSubviews{
             view.removeFromSuperview()
         }
-        configureView()
+        loadComments()
         
         myPostAndCommentsView.commentBackButtons.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
         myPostAndCommentsView.commentBackButtons.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,5 +98,18 @@ class PostCommentsViewController: UIViewController {
         }
     }
     
+    func loadComments() {
+        network.makeUrlRequest(endpoint: .fetchThreadID(threadID: thread!.id), path: nil, method: .get, header: nil, body: nil, parameters: nil) { (result: Result<ThreadIDResponse, RequestError>) in
+            switch result {
+            case .success(let successValue):
+                self.thread = successValue
+                DispatchQueue.main.async {
+                    self.configureView()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 

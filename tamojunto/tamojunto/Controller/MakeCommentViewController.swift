@@ -42,7 +42,6 @@ class MakeCommentViewController: UIViewController {
         myMakeCommentView.sendCancelButtons.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
         myMakeCommentView.sendCancelButtons.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
         
-        myMakeCommentView.comment.messageTextField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:))))
         
         guard let thread = thread else {
             return
@@ -66,10 +65,6 @@ class MakeCommentViewController: UIViewController {
     
     @IBAction func postComment(_ sender: UIButton) {
         postNewComment()
-    }
-    
-    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        myMakeCommentView.comment.messageTextField.resignFirstResponder()
     }
 }
 
