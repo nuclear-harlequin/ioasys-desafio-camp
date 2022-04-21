@@ -121,4 +121,12 @@ extension MakeCommentViewController: UITextViewDelegate {
             textViewClearedOnInitialEdit = true
         }
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if let character = text.first, character.isNewline {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }

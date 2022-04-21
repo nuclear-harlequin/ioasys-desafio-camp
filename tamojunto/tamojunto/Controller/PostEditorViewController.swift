@@ -24,6 +24,8 @@ class PostEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myPostEditorView.messageTextField.messageTextField.delegate = self
+        myPostEditorView.titleTextField.titleTextField.delegate = self
+        
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -130,7 +132,7 @@ extension PostEditorViewController {
                     
                     let threadId = self.createdThread?.id
                     let subjectId = self.subjectsDict[self.selectedSubject]
-                                    
+                    
                     guard let threadId = threadId
                     else {
                         print("Invalid thread id")
@@ -162,13 +164,26 @@ extension PostEditorViewController {
     }
 }
 
-extension PostEditorViewController: UITextViewDelegate {
+extension PostEditorViewController: UITextViewDelegate, UITextFieldDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if !textViewClearedOnInitialEdit {
             myPostEditorView.messageTextField.messageTextField.text = ""
             textViewClearedOnInitialEdit = true
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if let character = text.first, character.isNewline {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }
 
