@@ -41,7 +41,7 @@ class NetworkService {
             
             guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
                 print("Server error")
-                print(response)
+                print(response as Any)
                 resultHandler(.failure(.serverError))
                 return
             }

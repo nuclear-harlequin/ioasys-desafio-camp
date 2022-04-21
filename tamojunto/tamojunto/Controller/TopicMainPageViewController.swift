@@ -17,6 +17,7 @@ class TopicMainPageViewController: UIViewController{
     let network = NetworkService.shared
     var threads: SubjectIDResponse?
     var subjectImageURL: String
+    var threadsId: [Int:String] = [:]
     
     init(subjectID: String, name: String, subjectImageURL: String){
         self.subjectID = subjectID
@@ -53,17 +54,13 @@ class TopicMainPageViewController: UIViewController{
         
         myTopicMainPageView.topicLabel.text = name
         myTopicMainPageView.breadcrumbs.text = "Home > \(name)"
-
-        
         
         for view in myTopicMainPageView.publicationsStackView.arrangedSubviews{
              view.removeFromSuperview()
          }
         
         myTopicMainPageView.showMoreButton.longButton.addTarget(self, action: #selector(loadMoreThreads(_:)), for: .touchUpInside)
-        
         myTopicMainPageView.goBackButton.longButton.addTarget(self, action: #selector(goToMainPage(_:)), for: .touchUpInside)
-        
         myTopicMainPageView.searchBarButton.addTapGesture {self.goToSearchPage()}
         
         configuresubjectIDImage()
@@ -125,6 +122,22 @@ class TopicMainPageViewController: UIViewController{
             let day = fullDate.suffix(2)
             let month = fullDate.suffix(5).prefix(2)
             let year = fullDate.prefix(4)
+            
+            let user = UserID()
+            let userId = user.userID
+            
+            print(userId)
+            print(safeThreads[currentThread].user.id)
+            
+            if userId != safeThreads[currentThread].user.id {
+                thread.button.isHidden = true
+            } else {
+                thread.button.tag += 1
+                let buttonTag = thread.button.tag
+                self.threadsId[buttonTag] = safeThreads[currentThread].id
+            }
+            
+            thread.button.addTarget(self, action: #selector(deleteThreadAlert(_:)), for: .touchUpInside)
             
             thread.postInfoLabel.text = "\(safeThreads[currentThread].user.firstName) \(safeThreads[currentThread].user.lastName) em \(day)-\(month)-\(year)"
             thread.postTitleLabel.text = safeThreads[currentThread].title
@@ -217,6 +230,43 @@ class TopicMainPageViewController: UIViewController{
     func goToSearchPage() {
         let page = SearchSuccessViewController()
           self.navigationController?.pushViewController(page, animated: true)
+    }
+    
+    @IBAction func deleteThreadAlert(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Deletar postagem", message: "Após concluída, esta ação não pode ser desfeita", preferredStyle: UIAlertController.Style.alert)
+        
+        let buttonTag = sender.tag
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.cancel, handler: {(_: UIAlertAction!) in
+            print("button pressed on thread")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Deletar", style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction!) in
+            self.deleteThread(buttonTag)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteThread(_ buttonTag: Int) {
+        guard let threadId = self.threadsId[buttonTag]
+        else {
+            print("Error finding thread id")
+            return
+        }
+        
+        network.makeUrlRequest(endpoint: .deleteThread(threadId: threadId), path: nil, method: .delete, header: nil, body: nil, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    let page = MainPageViewController()
+                    self.navigationController?.pushViewController(page, animated: true)
+                    print("returned sucessfully to thread page")
+                }
+                print("Post deleted successfully")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

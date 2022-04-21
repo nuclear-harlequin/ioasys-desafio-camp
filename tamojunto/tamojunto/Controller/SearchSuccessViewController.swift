@@ -94,6 +94,8 @@ class SearchSuccessViewController: UIViewController {
             let month = fullDate.suffix(5).prefix(2)
             let year = fullDate.prefix(4)
             
+            thread.button.isHidden = true
+            
             thread.topicLabel.text = searchResults[currentThread].subject
             thread.postInfoLabel.text = "Criado em \(day)-\(month)-\(year)"
             thread.postTitleLabel.text = searchResults[currentThread].title
@@ -144,7 +146,7 @@ class SearchSuccessViewController: UIViewController {
                     print("There was an error fetching the results")
                     return
                 }
-
+                
                 if foundThreads.isEmpty {
                     DispatchQueue.main.async {
                         for view in self.mySearchResults.resultsStackView.arrangedSubviews{
@@ -154,7 +156,7 @@ class SearchSuccessViewController: UIViewController {
                         self.mySearchResults.showMoreButton.isHidden = true
                         
                         self.mySearchResults.resultsLabel.text =
-"""
+                        """
                         Sentimos muito!\n
                         Infelizmente não encontramos resultados para “Palavra-chave buscada”.\n
                         Verifique a ortografia ou busque por termos relacionados.
@@ -166,7 +168,7 @@ class SearchSuccessViewController: UIViewController {
                         self.configureThreadViews()
                     }
                 }
-     
+                
             case .failure(let error):
                 print(error)
             }

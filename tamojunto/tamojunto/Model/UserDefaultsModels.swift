@@ -23,7 +23,6 @@ class UserID {
                 return
             }
         }
-
         userID = ""
     }
 }
@@ -45,7 +44,6 @@ class UserToken {
                 return
             }
         }
-
         userToken = ""
     }
 }

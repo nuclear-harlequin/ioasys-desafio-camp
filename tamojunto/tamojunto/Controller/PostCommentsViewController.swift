@@ -15,6 +15,8 @@ class PostCommentsViewController: UIViewController {
     var subjectName: String
     var subjectID: String
     var subjectImageURL: String
+    var commentsId: [Int:String] = [:]
+    var threadsId: [Int:String] = [:]
     
     init(thread: ThreadIDResponse, subjectName: String, subjectID: String, subjectImageURL: String){
         self.thread = thread
@@ -50,7 +52,6 @@ class PostCommentsViewController: UIViewController {
             let page = MainPageViewController()
             self.navigationController?.setViewControllers([page], animated: true)
         }
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +86,22 @@ class PostCommentsViewController: UIViewController {
         let month = fullDate.suffix(5).prefix(2)
         let year = fullDate.prefix(4)
         
+        let user = UserID()
+        let userId = user.userID
+        
+        print(userId)
+        print(thread.user.id)
+        
+        if userId != thread.user.id {
+            self.myPostAndCommentsView.post.button.isHidden = true
+        }  else {
+            self.myPostAndCommentsView.post.button.tag += 1
+            let buttonTag = self.myPostAndCommentsView.post.button.tag
+            self.threadsId[buttonTag] = thread.id
+        }
+        
+        myPostAndCommentsView.post.button.addTarget(self, action: #selector(deleteThreadAlert(_:)), for: .touchUpInside)
+        
         myPostAndCommentsView.currentPageLbl.text = "Comentários do Post: \(thread.title)"
         myPostAndCommentsView.post.postInfoLabel.text = "\(thread.user.firstName) \(thread.user.lastName) em \(day)-\(month)-\(year)"
         myPostAndCommentsView.post.postTitleLabel.text = thread.title
@@ -96,8 +113,20 @@ class PostCommentsViewController: UIViewController {
         
         for comment in 0..<comments.count{
             let commentView = CommentView()
-            commentView.infoLabel.text = "\(comments[comment].user.firstName) \(comments[comment].user.lastName) em \(day)-\(month)-\(year)"
             
+            if userId != comments[comment].user.id {
+                commentView.button.isHidden = true
+            } else {
+                commentView.button.tag += 1
+                self.commentsId[commentView.button.tag] = comments[comment].id
+                print(commentView.button.tag)
+                print(comments[comment].id)
+                print(self.commentsId as Any)
+            }
+            
+            commentView.button.addTarget(self, action: #selector(deleteCommentAlert(_:)), for: .touchUpInside)
+            
+            commentView.infoLabel.text = "\(comments[comment].user.firstName) \(comments[comment].user.lastName) em \(day)-\(month)-\(year)"
             commentView.contentLabel.text = comments[comment].content
             
             myPostAndCommentsView.commentsStack.commentsStack.addArrangedSubview(commentView)
@@ -112,6 +141,81 @@ class PostCommentsViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.configureView()
                 }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func deleteCommentAlert(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Deletar comentário", message: "Após concluída, esta ação não pode ser desfeita", preferredStyle: UIAlertController.Style.alert)
+        
+        let buttonTag = sender.tag
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Deletar", style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction!) in
+            self.deleteComment(buttonTag)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteComment(_ buttonTag: Int) {
+        guard let commentId = self.commentsId[buttonTag]
+        else {
+            print("Error finding comment id")
+            return
+        }
+        
+        network.makeUrlRequest(endpoint: .deleteComment(commentId: commentId), path: nil, method: .delete, header: nil, body: nil, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    guard let thread = self.thread else { return }
+                    
+                    let page = PostCommentsViewController(thread: thread, subjectName: self.subjectName, subjectID: self.subjectID, subjectImageURL: self.subjectImageURL)
+                    
+                    self.navigationController?.pushViewController(page, animated: true)
+                    print("returned sucessfully to thread page")
+                }
+                print("Comment deleted successfully")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func deleteThreadAlert(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Deletar postagem", message: "Após concluída, esta ação não pode ser desfeita", preferredStyle: UIAlertController.Style.alert)
+        
+        let buttonTag = sender.tag
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.cancel, handler: {(_: UIAlertAction!) in
+            print("button pressed on thread")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Deletar", style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction!) in
+            self.deleteThread(buttonTag)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteThread(_ buttonTag: Int) {
+        guard let threadId = self.threadsId[buttonTag]
+        else {
+            print("Error finding thread id")
+            return
+        }
+        
+        network.makeUrlRequest(endpoint: .deleteThread(threadId: threadId), path: nil, method: .delete, header: nil, body: nil, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    let page = MainPageViewController()
+                    self.navigationController?.pushViewController(page, animated: true)
+                    print("returned sucessfully to thread page")
+                }
+                print("Post deleted successfully")
             case .failure(let error):
                 print(error)
             }

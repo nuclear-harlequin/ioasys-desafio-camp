@@ -52,6 +52,7 @@ class loginView: UIView{
     
     lazy var emailTextField: TitleField = {
         let txtfield = TitleField()
+        txtfield.titleTextField.autocorrectionType = .no
         txtfield.titleTextField.placeholder = "Digite seu email..."
         return txtfield
     }()
@@ -69,6 +70,7 @@ class loginView: UIView{
     lazy var passwordTextField: TitleField = {
         let txtfield = TitleField()
         txtfield.titleTextField.placeholder = "Digite sua senha..."
+        txtfield.titleTextField.isSecureTextEntry = true
         return txtfield
     }()
     

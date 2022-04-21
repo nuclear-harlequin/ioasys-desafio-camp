@@ -17,6 +17,8 @@ enum TamoJunto {
     case makeSearch
     case fetchSubjectsID(subjectID: String)
     case fetchThreadID(threadID: String)
+    case deleteComment(commentId: String)
+    case deleteThread(threadId: String)
     
     var endpoint: String {
         switch self {
@@ -40,6 +42,12 @@ enum TamoJunto {
             
         case let .fetchThreadID(threadID: threadID):
             return "/threads/\(threadID)"
+            
+        case let .deleteComment(commentId: commentId):
+            return "/comments/\(commentId)"
+            
+        case let .deleteThread(threadId: threadId):
+            return "/threads/\(threadId)"
         }
     }
 }

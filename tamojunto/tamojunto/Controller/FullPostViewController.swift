@@ -16,6 +16,7 @@ class FullPostViewController: UIViewController{
     var subjectName: String
     var subjectID: String
     var subjectImageURL: String
+    var threadsId: [Int:String] = [:]
     
     init(threadID: String, subjectName: String, subjectID: String, subjectImageURL: String){
         self.threadID = threadID
@@ -106,6 +107,22 @@ class FullPostViewController: UIViewController{
             return
         }
         
+        let user = UserID()
+        let userId = user.userID
+        
+        print(userId)
+        print(safeThread.user.id)
+        
+        if userId != safeThread.user.id {
+            self.myFullPostView.postView.button.isHidden = true
+        } else {
+            self.myFullPostView.postView.button.tag += 1
+            let buttonTag = self.myFullPostView.postView.button.tag
+            self.threadsId[buttonTag] = safeThread.id
+        }
+        
+        myFullPostView.postView.button.addTarget(self, action: #selector(deleteThreadAlert(_:)), for: .touchUpInside)
+        
         let fullDate = safeThread.createdAt.prefix(10)
         let day = fullDate.suffix(2)
         let month = fullDate.suffix(5).prefix(2)
@@ -120,6 +137,43 @@ class FullPostViewController: UIViewController{
         myFullPostView.postView.commentsTextView.text = "\(safeThread.commentCount) comentários"
         myFullPostView.postView.messageTextView.text = safeThread.content
         
+    }
+    
+    @IBAction func deleteThreadAlert(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Deletar postagem", message: "Após concluída, esta ação não pode ser desfeita", preferredStyle: UIAlertController.Style.alert)
+        
+        let buttonTag = sender.tag
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.cancel, handler: {(_: UIAlertAction!) in
+            print("button pressed on thread")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Deletar", style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction!) in
+            self.deleteThread(buttonTag)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteThread(_ buttonTag: Int) {
+        guard let threadId = self.threadsId[buttonTag]
+        else {
+            print("Error finding thread id")
+            return
+        }
+        
+        network.makeUrlRequest(endpoint: .deleteThread(threadId: threadId), path: nil, method: .delete, header: nil, body: nil, parameters: nil) { (result: Result<CreatedComment, RequestError>) in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    let page = MainPageViewController()
+                    self.navigationController?.pushViewController(page, animated: true)
+                    print("returned sucessfully to thread page")
+                }
+                print("Post deleted successfully")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

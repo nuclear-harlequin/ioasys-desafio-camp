@@ -50,8 +50,8 @@ class LoginViewController: UIViewController {
                     print(loginResponse)
                     DispatchQueue.main.async {
     
-                        var userID = UserID()
-                        var userToken = UserToken()
+                        let userID = UserID()
+                        let userToken = UserToken()
                         
                         userID.userID = loginResponse.user.id
                         userToken.userToken = loginResponse.accessToken

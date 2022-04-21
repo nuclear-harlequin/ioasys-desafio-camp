@@ -103,7 +103,7 @@ extension MakeCommentViewController {
                     let page = PostCommentsViewController(thread: thread, subjectName: self.subjectName, subjectID: self.subjectID, subjectImageURL: self.subjectImageURL)
                     
                     self.navigationController?.pushViewController(page, animated: true)
-                    print("postingcomment")
+                    print("posting comment")
                     print(response)
                     print("Thread created successfully")
                 }
