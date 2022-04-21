@@ -91,7 +91,7 @@ class Header: UIView{
     
     //MARK: - Setup of the actions
     func setActions(){
-        //action set in view controller
+
     }
     
     

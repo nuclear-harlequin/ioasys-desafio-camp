@@ -44,6 +44,12 @@ class PostCommentsViewController: UIViewController {
         
         myPostAndCommentsView.commentBackButtons.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
         myPostAndCommentsView.commentBackButtons.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
+        
+        //send to main page
+        myPostAndCommentsView.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
 
     }
     

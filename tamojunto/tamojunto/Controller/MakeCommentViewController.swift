@@ -57,6 +57,11 @@ class MakeCommentViewController: UIViewController {
         myMakeCommentView.post.postTitleLabel.text = thread.title
         myMakeCommentView.post.postContentLabel.text = thread.content
         
+        //send to main page
+        myMakeCommentView.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
     }
     
     @IBAction func goBack(_ sender: UIButton) {

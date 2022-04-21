@@ -45,6 +45,11 @@ class SearchSuccessViewController: UIViewController {
         
         mySearchResults.backButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
         mySearchResults.showMoreButton.longButton.addTarget(self, action: #selector(loadMoreResults(_:)), for: .touchUpInside)
+        //send to main page
+        mySearchResults.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
     }
     
     @IBAction func goBack(_ sender: UIButton) {

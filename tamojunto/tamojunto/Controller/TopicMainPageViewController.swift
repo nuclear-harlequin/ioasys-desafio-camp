@@ -69,6 +69,12 @@ class TopicMainPageViewController: UIViewController{
         configuresubjectIDImage()
         fetchSubjectIDContent()
         fetchSubjects()
+        
+        //send to main page
+        myTopicMainPageView.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
     }
     
     func configuresubjectIDImage(){

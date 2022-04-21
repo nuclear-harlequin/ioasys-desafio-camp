@@ -48,6 +48,7 @@ class MainPageViewController: UIViewController {
         for view in myMainPageView.publicationsStackView.arrangedSubviews{
             view.removeFromSuperview()
         }
+
     }
     
     func fetchSubjects() {

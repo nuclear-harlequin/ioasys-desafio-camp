@@ -40,6 +40,12 @@ class PostEditorViewController: UIViewController {
         myPostEditorView.subjectMenuButton.addTarget(self, action: #selector(showDropDown(_:)), for: .touchUpInside)
         
         myPostEditorView.dropdown.dataSource = Array(subjectsDict.keys)
+        
+        //send to main page
+        myPostEditorView.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
 
     }
     
@@ -61,37 +67,6 @@ class PostEditorViewController: UIViewController {
     @IBAction func postThread(_ sender: UIButton) {
         postNewThread()
         
-//        let threadId = self.createdThread?.id
-//        let subjectId = self.subjectsDict[self.selectedSubject]
-//
-//        print(self.selectedSubject)
-//
-//        guard let threadId = threadId
-//        else {
-//            print("Invalid thread id")
-//            return
-//        }
-//        print(threadId)
-//
-//        guard let subjectId = subjectId
-//        else {
-//            print("Invalid subject id")
-//            return
-//        }
-//        print(subjectId)
-//
-//        let subjectImage = self.pictureURLDict[subjectId]
-//
-//        guard let subjectImage = subjectImage
-//        else {
-//            print("Invalid subject image")
-//            return
-//        }
-//        print(subjectImage)
-        
-//        let page = FullPostViewController(threadID: threadId, subjectName: self.selectedSubject, subjectID: subjectId, subjectImageURL: subjectImage)
-//        //  present(page, animated: true, completion: nil)
-//        self.navigationController?.setViewControllers([page], animated: true)
     }
 }
 

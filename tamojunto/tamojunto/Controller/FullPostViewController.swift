@@ -55,6 +55,12 @@ class FullPostViewController: UIViewController{
         myFullPostView.buttonsStack.cancelButton.addTarget(self, action: #selector(goBack(_:)), for: .touchUpInside)
         myFullPostView.buttonsStack.postButton.addTarget(self, action: #selector(postComment(_:)), for: .touchUpInside)
         myFullPostView.showCommentsButton.longButton.addTarget(self, action: #selector(showComments(_:)), for: .touchUpInside)
+        
+        //send to main page
+        myFullPostView.header.labelStackView.addTapGesture {
+            let page = MainPageViewController()
+            self.navigationController?.setViewControllers([page], animated: true)
+        }
     }
     
     @IBAction func goBack(_ sender: UIButton) {
