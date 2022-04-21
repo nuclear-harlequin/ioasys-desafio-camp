@@ -13,7 +13,7 @@ struct Login: Codable {
 }
 
 struct LoginResponse: Codable {
-    let user: UserLogin
-    let expiresIn: String
-    let accessToken: String
+    let user: UserPosted
+//    let expiresIn: String
+//    let accessToken: String
 }

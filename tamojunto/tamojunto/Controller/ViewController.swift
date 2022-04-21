@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func takeToSignUpPage(_ sender: UIButton) {
-        if let url = URL(string: "https://www.apple.com") {
+        if let url = URL(string: "https://tamo-junto.vercel.app/") {
            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }

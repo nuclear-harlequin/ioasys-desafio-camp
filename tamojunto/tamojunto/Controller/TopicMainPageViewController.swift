@@ -233,7 +233,7 @@ class TopicMainPageViewController: UIViewController{
     }
     
     @IBAction func deleteThreadAlert(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Deletar postagem", message: "Após concluída, esta ação não pode ser desfeita", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Deletar postagem", message: "Após concluída, esta ação não poderá ser desfeita", preferredStyle: UIAlertController.Style.alert)
         
         let buttonTag = sender.tag
         

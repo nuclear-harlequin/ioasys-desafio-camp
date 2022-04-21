@@ -96,8 +96,8 @@ class NetworkService {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = header
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body
 
@@ -124,7 +124,6 @@ class NetworkService {
     func getHeaderValue(forKey: String) -> String {
         return header?[forKey] as? String ?? ""
     }
-    
 }
 
 //class NetworkingService {

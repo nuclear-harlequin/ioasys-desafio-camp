@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func takeToSignUpPage(_ sender: UIButton) {
-        if let url = URL(string: "https://www.apple.com") {
+        if let url = URL(string: "https://tamo-junto.vercel.app/") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -53,16 +53,21 @@ class LoginViewController: UIViewController {
                         let userID = UserID()
                         let userToken = UserToken()
                         
-                        userID.userID = loginResponse.user.id
-                        userToken.userToken = loginResponse.accessToken
-
+//                        guard let responseHeader = self.network.header else { return }
+//                        print("Header da resposta: \(responseHeader)")
                         
+                        let authorization = self.network.getHeaderValue(forKey: "Authorization")
+                        
+//                        print("Acess token: \(authorization)")
+                        
+                        userID.userID = loginResponse.user.id
+                        userToken.userToken = authorization
+
                         let mainPageView = MainPageViewController()
                         self.navigationController?.setViewControllers([mainPageView], animated: true)
                         self.navigationController?.isNavigationBarHidden = true
                         self.navigationController?.isToolbarHidden = true
                         self.navigationController?.hidesBarsOnSwipe = true
-                        
                     }
                     
                 case .failure(let error):
