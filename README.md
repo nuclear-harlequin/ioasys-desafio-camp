@@ -48,7 +48,8 @@ TamoJunto is a forum-styled community, aiming to be a space for the exchange of 
 :heavy_check_mark: Create and delete topics\
 :heavy_check_mark: Create and delete comments\
 :heavy_check_mark: Look for topics\
-:heavy_check_mark: Redirect button to create account on website
+:heavy_check_mark: Redirect button to create account on website\
+:heavy_check_mark: Notifications (coming soon...)
 
 ## :rocket: Technologies
 
