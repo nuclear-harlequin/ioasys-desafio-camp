@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Tamojunto" />
+  <img src="https://github.com/nuclear-harlequin/ioasys-desafio-camp/blob/main/tamojuntoiosapp.gif" alt="Tamojunto" />
 
 &#xa0;
 
@@ -57,6 +57,7 @@ The following tools were used in this project:
 
 - [Swift](https://developer.apple.com/swift/)
 - [UIKit](https://developer.apple.com/documentation/uikit)
+- [AssitoLab/DropDown](https://github.com/AssistoLab/DropDown)
 
 ## :white_check_mark: Requirements
 
